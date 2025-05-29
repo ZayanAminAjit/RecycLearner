@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RecycLearner</title>
+    <link rel="icon" type="image/png" href="assets/tab.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        :root {
+            --primary-blue: #007bff;
+            --primary-green: #28a745;
+            --background-start: #e0f7fa;
+            --background-mid: #c8e6c9;
+            --background-end: #fff9c4;
+            --card-background: rgba(255, 255, 255, 0.85);
+            --header-background: rgba(255, 255, 255, 0.7);
+            --text-dark: #333;
+            --text-light: #555;
+            --border-radius-lg: 30px;
+            --border-radius-md: 20px;
+            --border-radius-sm: 15px;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--background-start), var(--background-mid), var(--background-end));
+            background-size: 400% 400%;
+            animation: bgAnimation 20s ease infinite;
+            color: var(--text-dark);
+        }
+
+        @keyframes bgAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--header-background);
+            padding: 1.5rem 0;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        header .logo-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        header .logo-title .recyc {
+            color: var(--primary-blue);
+        }
+
+        header .logo-title .learner {
+            color: var(--primary-green);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 0;
+            animation: fadeInUp 1s ease-out 0.3s;
+            animation-fill-mode: backwards; /* Ensures it starts hidden */
+        }
+
+        /* --- Navigation Tabs --- */
+        .nav-pills {
+            background-color: rgba(255, 255, 255, 0.6);
+            padding: 0.8rem;
+            border-radius: var(--border-radius-lg);
+            display: inline-flex; /* Center the tabs */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2.5rem; /* Increased margin */
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-pills .nav-item {
+            margin: 0 5px;
+        }
+
+        .nav-pills .nav-link {
+            border-radius: var(--border-radius-lg);
+            color: var(--text-dark);
+            background-color: transparent;
+            font-weight: 600;
+            padding: 0.8rem 1.5rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 2px solid transparent;
+        }
+
+        .nav-pills .nav-link:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            transform: translateY(-3px);
+            color: var(--primary-blue);
+        }
+
+        .nav-pills .nav-link.active {
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
+            color: white;
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+            transform: translateY(-3px);
+            border: 2px solid transparent;
+        }
+
+        /* --- Tab Content --- */
+        .tab-content {
+            background-color: var(--card-background);
+            padding: 2.5rem 3rem; /* Increased padding */
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            min-height: 400px;
+            transition: all 0.5s ease-in-out;
+            backdrop-filter: blur(8px);
+        }
+
+        .tab-content h2 {
+            color: var(--primary-green);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--primary-blue);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .tab-pane {
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+            opacity: 0;
+            transform: translateY(20px);
+            display: none; /* Hide inactive tabs */
+        }
+
+        .tab-pane.fade {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .tab-pane.fade.show.active {
+            opacity: 1;
+            transform: translateY(0);
+            display: block; /* Show active tab */
+        }
+
+        /* --- Subscription Plans --- */
+        .subscription-plan {
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius-md);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .subscription-plan:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .subscription-plan h3 {
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .subscription-plan h4 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 1.5rem 0;
+        }
+
+        .subscription-plan p {
+            color: var(--text-light);
+            flex-grow: 1;
+        }
+
+        /* --- Buttons --- */
+        .btn-custom,
+        .subscription-plan button,
+        #payment-form button,
+        #waste-form button {
+            background: linear-gradient(45deg, var(--primary-blue), #0056b3);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: var(--border-radius-lg);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.25);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 1rem;
+        }
+
+         .btn-custom:hover,
+        .subscription-plan button:hover,
+        #payment-form button:hover,
+        #waste-form button:hover {
+            background: linear-gradient(45deg, #0056b3, var(--primary-blue));
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0, 123, 255, 0.35);
+        }
+
+         .subscription-plan .btn-contact {
+            background: linear-gradient(45deg, var(--primary-green), #1e7e34);
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.25);
+         }
+         .subscription-plan .btn-contact:hover {
+            background: linear-gradient(45deg, #1e7e34, var(--primary-green));
+            box-shadow: 0 7px 15px rgba(40, 167, 69, 0.35);
+         }
+
+
+        /* --- Forms --- */
+        .form-control {
+            border-radius: var(--border-radius-sm);
+            padding: 0.8rem 1.2rem;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .logo-container img {
+            height: 100px;
+            width: auto;
+            object-fit: contain;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2.5rem 0;
+            margin-top: 3rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+         /* --- Utility --- */
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="assets/logo.png" alt="RecycLearner Logo">
+            <h1 class="logo-title">
+                <span class="recyc">Recyc</span><span class="learner">Learner</span>
+            </h1>
+        </div>
+        <p>Transform your waste into something useful with AI guidance</p>
+    </header>
+
+    <div class="container mt-5 text-center"> <ul class="nav nav-pills mb-4" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab"
+                    aria-controls="about" aria-selected="true">About</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="commitment-tab" data-bs-toggle="tab" data-bs-target="#commitment" type="button" role="tab"
+                    aria-controls="commitment" aria-selected="false">Our Commitment</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="how-it-works-tab" data-bs-toggle="tab" data-bs-target="#how-it-works" type="button" role="tab"
+                    aria-controls="how-it-works" aria-selected="false">How It Works</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="submit-waste-tab" data-bs-toggle="tab" data-bs-target="#submit-waste" type="button" role="tab"
+                    aria-controls="submit-waste" aria-selected="false">Submit Waste</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="subscription-plans-tab" data-bs-toggle="tab" data-bs-target="#subscription-plans"
+                   type="button" role="tab" aria-controls="subscription-plans" aria-selected="false">Plans</button>
+            </li>
+            <li class="nav-item" role="presentation" style="display: none;" id="payment-tab-li"> <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#payment" type="button" role="tab"
+                    aria-controls="payment" aria-selected="false">Payment</button>
+            </li>
+        </ul>
+
+        <div class="tab-content text-start" id="myTabContent"> <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
+                <h2>About RecycLearner</h2>
+                <p>RecycLearner is an innovative platform leveraging artificial intelligence to empower users in transforming waste into valuable resources. Our mission is to foster sustainability and minimize environmental impact by delivering accessible and effective recycling solutions for everyone, from individuals to businesses.</p>
+                <p>Join us in building a future where waste is not an endpoint, but a beginning.</p>
+            </div>
+
+            <div class="tab-pane fade" id="commitment" role="tabpanel" aria-labelledby="commitment-tab">
+                <h2>Our Commitment</h2>
+                <p>We are deeply committed to pioneering a cleaner, greener planet. RecycLearner guides you to responsibly manage and repurpose waste materials, turning potential pollutants into positive assets. We strive to champion sustainability, drastically cut down landfill contributions, and inspire a global shift towards eco-conscious living. Every action counts, and together, we can drive significant change for our environment.</p>
+            </div>
+
+            <div class="tab-pane fade" id="how-it-works" role="tabpanel" aria-labelledby="how-it-works-tab">
+                <h2>How It Works</h2>
+                <p>RecycLearner harnesses cutting-edge AI and image recognition. Simply snap a photo of your item or describe the material. Our intelligent system instantly analyzes it and provides clear, step-by-step instructions for recycling or upcycling.</p>
+                 <ul>
+                    <li><strong>Upload/Describe:</strong> Share an image or text description of your waste.</li>
+                    <li><strong>AI Analysis:</strong> Our system identifies the materials and potential uses.</li>
+                    <li><strong>Get Guidance:</strong> Receive tailored instructions for recycling or creative reuse.</li>
+                </ul>
+                <p>From plastics to electronics, RecycLearner makes sustainable choices simple and impactful.</p>
+            </div>
+
+            <div class="tab-pane fade" id="submit-waste" role="tabpanel" aria-labelledby="submit-waste-tab">
+                <h2>Submit Your Waste</h2>
+                <form id="waste-form">
+                    <div class="mb-4">
+                        <label for="waste-image" class="form-label">Upload an image (Preferred):</label>
+                        <input type="file" class="form-control" id="waste-image" name="waste-image" accept="image/*" />
+                         <div class="form-text">Our AI works best with clear images!</div>
+                    </div>
+                    <div class="mb-4 text-center fw-bold">OR</div>
+                    <div class="mb-4">
+                        <label for="waste-description" class="form-label">Describe your waste material:</label>
+                        <input type="text" class="form-control" id="waste-description" name="waste-description"
+                            placeholder="e.g., Plastic milk jug, old phone, cardboard" />
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn-custom">Get Recycling Instructions</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="tab-pane fade" id="subscription-plans" role="tabpanel"
+                aria-labelledby="subscription-plans-tab">
+                <h2>Choose Your Plan</h2>
+                <p class="text-center mb-5">Unlock premium features with our plans. Start with a <strong>7-day free trial!</strong></p>
+                <div class="row">
+                    <div class="col-md-4 d-flex align-items-stretch">
+                        <div class="subscription-plan">
+                            <h3>Basic</h3>
+                             <p>Access essential recycling guides and track your impact.</p>
+                            <h4>$9.99<small>/month</small></h4>
+                            <button onclick="showPaymentPage('Basic', '$9.99/month')">Select Basic</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-stretch">
+                        <div class="subscription-plan" style="border: 2px solid var(--primary-blue); transform: scale(1.05);">
+                            <span class="badge bg-primary mb-2">Popular</span>
+                            <h3>Premium</h3>
+                            <p>Advanced techniques, AI-powered sorting, and priority support.</p>
+                            <h4>$19.99<small>/month</small></h4>
+                            <button onclick="showPaymentPage('Premium', '$19.99/month')">Select Premium</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-stretch">
+                        <div class="subscription-plan">
+                            <h3>Enterprise</h3>
+                            <p>Custom AI solutions, bulk analysis, and reporting for businesses.</p>
+                            <h4>Contact Us</h4>
+                            <button class="btn-contact" onclick="alert('Please contact us at enterprise@recyclearner.com for tailored solutions.')">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
+                <h2>Payment Details for <span id="selected-plan-name">Plan</span> (<span id="selected-plan-price">Price</span>)</h2>
+                <form id="payment-form">
+                    <div class="mb-3">
+                        <label for="cardholder-name" class="form-label">Cardholder Name</label>
+                        <input type="text" class="form-control" id="cardholder-name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="card-number" class="form-label">Card Number</label>
+                        <input type="text" class="form-control" id="card-number" placeholder="•••• •••• •••• ••••" required>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="expiry-date" class="form-label">Expiry Date</label>
+                            <input type="text" class="form-control" id="expiry-date" placeholder="MM / YY" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cvv" class="form-label">CVV</label>
+                            <input type="text" class="form-control" id="cvv" placeholder="•••" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="billing-email" class="form-label">Billing Email</label>
+                        <input type="email" class="form-control" id="billing-email" placeholder="you@example.com" required>
+                    </div>
+                     <div class="form-check mb-4">
+                        <input class="form-check-input" type="checkbox" value="" id="termsCheck" required>
+                        <label class="form-check-label" for="termsCheck">
+                            I agree to the <a href="#">Terms and Conditions</a> and the 7-day free trial.
+                        </label>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn-custom">Start My Trial</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 <span style="color: #007bff;">Recyc</span><span style="color: #28a745;">Learner</span>. All rights reserved. | Making Sustainability Smarter.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const paymentTabLi = document.getElementById('payment-tab-li');
+        const paymentTabButton = document.getElementById('payment-tab');
+        const myTab = new bootstrap.Tab(paymentTabButton); // Create a Bootstrap Tab instance
+
+        function showPaymentPage(planName, planPrice) {
+            // Update payment page details
+            document.getElementById('selected-plan-name').textContent = planName;
+            document.getElementById('selected-plan-price').textContent = planPrice;
+
+            // Show the payment tab link
+            paymentTabLi.style.display = 'list-item';
+
+            // Programmatically switch to the payment tab
+             myTab.show();
+        }
+
+        // Add event listeners to hide the payment tab when other tabs are clicked
+        document.querySelectorAll('.nav-pills .nav-link').forEach(tab => {
+            tab.addEventListener('click', (event) => {
+                // Check if the clicked tab is NOT the payment tab itself
+                // and also check if the payment tab is currently visible
+                if (event.target.id !== 'payment-tab' && paymentTabLi.style.display !== 'none') {
+                   // Don't hide it immediately, only hide if another *main* tab is selected.
+                   // The Bootstrap tab system handles switching, we just need to manage visibility.
+                   // Let's reconsider: We SHOULD hide it if *any* other tab *except* payment is clicked.
+                   paymentTabLi.style.display = 'none';
+                }
+            });
+        });
+
+        // Add an event listener for form submission (example)
+        document.getElementById('waste-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+            alert('Thank you! Our AI is analyzing your submission and will provide instructions shortly.');
+            // Here you would typically send data to a server/AI
+        });
+
+         document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+            alert('Payment successful! Welcome to RecycLearner.');
+            // Here you would handle payment processing
+             window.location.reload(); // Go back to home or refresh
+        });
+
+    </script>
+</body>
+
+</html>
