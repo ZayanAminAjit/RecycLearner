@@ -4,15 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-        <span style="color: #007bff;">Recyc</span><span style="color: #28a745;">Learner</span> - AI Smart Recycling
-    </title>
+    <title>RecycLearner</title>
     <link rel="icon" type="image/png" href="assets/logo.png">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
@@ -30,7 +26,7 @@
             --background-end: #fffde7;
             --card-background: rgba(255, 255, 255, 0.92);
             --header-background: rgba(255, 255, 255, 0.88);
-            --text-dark: #1a202c; /* Darker for better contrast */
+            --text-dark: #1a202c;
             --text-medium: #4a5568;
             --text-light: #718096;
             --border-radius-xl: 40px;
@@ -48,7 +44,7 @@
             margin: 0;
             font-family: 'Open Sans', sans-serif;
             background: linear-gradient(135deg, var(--background-start), var(--background-mid), var(--background-end));
-            background-attachment: fixed; /* Keep gradient fixed during scroll */
+            background-attachment: fixed;
             background-size: 400% 400%;
             animation: bgAnimation 30s ease infinite;
             color: var(--text-dark);
@@ -74,11 +70,14 @@
             color: var(--text-medium);
         }
 
+        .view { display: none; animation: fadeIn 0.5s ease-in-out; }
+        .view.active { display: block; }
+
+
         /* --- Header --- */
         header {
             background-color: var(--header-background);
-            padding: 1.25rem 1rem; /* Slightly reduced padding */
-            text-align: center;
+            padding: 1rem 1.5rem; /* Adjusted padding */
             backdrop-filter: blur(15px) saturate(180%);
             -webkit-backdrop-filter: blur(15px) saturate(180%);
             border-bottom: 1px solid rgba(0, 0, 0, 0.07);
@@ -86,25 +85,32 @@
             top: 0;
             z-index: 1030;
             box-shadow: var(--shadow-medium);
-        }
-
-        .header-content {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.8rem; /* Reduced gap */
+            justify-content: space-between; /* For logo and auth section */
+        }
+
+        .header-main-content {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
             animation: fadeInDown var(--transition-speed) ease-out;
+        }
+         .header-logo-tagline {
+            display: flex; /* Default for larger screens */
+            align-items: center;
+            gap: 0.8rem;
         }
 
         header .logo-img {
-            height: 55px;
-            width: 55px;
+            height: 50px; /* Slightly smaller */
+            width: 50px;
             object-fit: contain;
-            border-radius: var(--border-radius-sm); /* Rounded square */
+            border-radius: var(--border-radius-sm);
         }
 
         header .logo-title {
-            font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+            font-size: clamp(1.7rem, 4vw, 2.4rem);
             font-weight: 800;
             margin: 0;
             letter-spacing: -0.5px;
@@ -114,11 +120,64 @@
         header .logo-title .learner { color: var(--primary-green); }
 
         header .tagline {
-            font-size: clamp(0.85rem, 2.2vw, 1.05rem);
+            font-size: clamp(0.8rem, 2vw, 1rem);
             color: var(--text-medium);
-            margin-top: 0.3rem;
+            margin-top: 0.2rem; /* Adjusted */
             animation: fadeInUp var(--transition-speed) ease-out 0.2s backwards;
+            display: none; /* Hidden by default, shown on larger screens */
         }
+        @media (min-width: 768px) {
+            header .tagline { display: block; margin-left: 10px;}
+             .header-logo-tagline { flex-direction: row; align-items: center; }
+        }
+         @media (max-width: 767.98px) { /* For smaller screens */
+            .header-logo-tagline {
+                flex-direction: column; /* Stack logo and title/tagline */
+                align-items: flex-start; /* Align items to the start */
+                gap: 0.2rem; /* Reduce gap */
+            }
+            header .logo-title { font-size: 1.5rem; }
+            header .tagline { font-size: 0.75rem; margin-top: 0; }
+            header { padding: 0.75rem 1rem; }
+        }
+
+
+        /* User Auth Section in Header */
+        #user-auth-section {
+            position: relative;
+        }
+        #user-auth-section .btn-sign-in {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-md);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color var(--transition-speed);
+        }
+        #user-auth-section .btn-sign-in:hover { background-color: var(--secondary-blue); }
+
+        #user-auth-section .profile-dropdown img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid var(--primary-green);
+            padding: 2px;
+        }
+        #user-auth-section .dropdown-menu {
+            border-radius: var(--border-radius-sm);
+            box-shadow: var(--shadow-medium);
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+        #user-auth-section .dropdown-item {
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+        #user-auth-section .dropdown-item i { margin-right: 8px; color: var(--text-medium); }
+        #user-auth-section .dropdown-item:hover { background-color: var(--light-blue); color: var(--primary-blue); }
+
 
         /* --- Navigation --- */
         .main-nav-wrapper {
@@ -177,7 +236,7 @@
 
         /* --- Mobile Navigation (Offcanvas) --- */
         .mobile-nav-toggle {
-            display: none;
+            display: none; /* Initially hidden, shown via media query */
             font-size: 1.7rem;
             color: var(--primary-blue);
             background: var(--card-background);
@@ -185,10 +244,7 @@
             padding: 0.4rem 0.7rem;
             border-radius: var(--border-radius-md);
             box-shadow: var(--shadow-medium);
-            position: fixed;
-            top: 18px;
-            right: 18px;
-            z-index: 1031;
+            /* position: fixed; top: 18px; right: 18px; z-index: 1031; */ /* Removed fixed positioning to place in header */
             transition: transform var(--transition-speed) ease;
         }
         .mobile-nav-toggle:hover { transform: scale(1.1); }
@@ -200,7 +256,7 @@
         }
         .offcanvas-title { color: var(--primary-blue); font-weight: 700; font-size: 1.2rem; }
         .offcanvas-body .nav-link {
-            display: flex; /* Align icon and text */
+            display: flex;
             align-items: center;
             padding: 0.9rem 1.25rem;
             margin-bottom: 0.4rem;
@@ -226,7 +282,7 @@
             border: 1px solid rgba(255,255,255,0.25);
         }
 
-        .tab-content h2 {
+        .tab-content h2, .auth-view h2, .profile-view h2 {
             color: var(--primary-green);
             font-weight: 700;
             font-size: clamp(1.7rem, 3.8vw, 2.1rem);
@@ -258,14 +314,14 @@
             color: var(--primary-green);
             position: absolute;
             left: 0;
-            top: 4px; /* Adjusted for better alignment */
+            top: 4px;
             font-size: 1.1em;
         }
         .tab-pane strong { color: var(--text-dark); font-weight: 600; }
 
         /* --- Subscription Plans --- */
         .subscription-plan {
-            border: 1px solid #d8dde2; /* Softer border */
+            border: 1px solid #d8dde2;
             border-radius: var(--border-radius-md);
             padding: 2.2rem 1.3rem;
             text-align: center;
@@ -300,7 +356,7 @@
         }
         .subscription-plan:hover::before { transform: scale(1.8); opacity: 0.25; }
 
-        .subscription-plan > * { position: relative; z-index: 1; } /* Ensure content is above pseudo-element */
+        .subscription-plan > * { position: relative; z-index: 1; }
 
         .subscription-plan .plan-icon {
             font-size: 2.8rem;
@@ -337,6 +393,7 @@
             margin-bottom: 0.5rem;
             color: var(--text-medium);
             padding-left: 1.6em;
+            position: relative; /* Added for ::before positioning */
         }
         .subscription-plan .plan-features li::before {
             content: "\f00c";
@@ -355,14 +412,14 @@
             right: 12px;
             background-color: var(--accent-yellow) !important;
             color: var(--text-dark);
-            font-weight: 700; /* Bolder */
+            font-weight: 700;
             padding: 0.4em 0.7em;
             border-radius: var(--border-radius-sm);
             font-size: 0.75rem;
             letter-spacing: 0.5px;
         }
         .subscription-plan.popular-plan {
-            border: 2.5px solid var(--primary-blue); /* Thicker border */
+            border: 2.5px solid var(--primary-blue);
             transform: scale(1.04);
         }
          .subscription-plan.popular-plan:hover {
@@ -374,36 +431,42 @@
         .subscription-plan .btn-select-plan,
         #payment-form button[type="submit"],
         #waste-form button[type="submit"],
+        .auth-view button[type="submit"],
+        .profile-view button[type="submit"],
         .modal-footer .btn {
             background: linear-gradient(60deg, var(--primary-blue), var(--secondary-blue));
             color: white;
             border: none;
-            padding: 0.8rem 2rem; /* Slightly adjusted padding */
+            padding: 0.8rem 2rem;
             border-radius: var(--border-radius-lg);
             transition: all var(--transition-speed) ease;
             font-weight: 600;
             box-shadow: 0 5px 15px rgba(0, 123, 255, 0.22);
             text-transform: uppercase;
             letter-spacing: 0.7px;
-            margin-top: 0.8rem; /* Consistent margin */
+            margin-top: 0.8rem;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
         }
-        .btn-custom i, .subscription-plan .btn-select-plan i { margin-right: 8px; font-size: 0.95em; }
+        .btn-custom i, .subscription-plan .btn-select-plan i,
+        .auth-view button[type="submit"] i, .profile-view button[type="submit"] i { margin-right: 8px; font-size: 0.95em; }
 
         .btn-custom:hover,
         .subscription-plan .btn-select-plan:hover,
         #payment-form button[type="submit"]:hover,
         #waste-form button[type="submit"]:hover,
+        .auth-view button[type="submit"]:hover,
+        .profile-view button[type="submit"]:hover,
         .modal-footer .btn-primary:hover {
             background: linear-gradient(60deg, var(--secondary-blue), var(--primary-blue));
             transform: translateY(-3px) scale(1.03);
             box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
         }
-        .btn-custom:disabled, #waste-form button[type="submit"]:disabled {
-            background: #adb5bd; /* Grey out when disabled */
+        .btn-custom:disabled, #waste-form button[type="submit"]:disabled,
+        .auth-view button[type="submit"]:disabled, .profile-view button[type="submit"]:disabled {
+            background: #adb5bd;
             cursor: not-allowed;
             box-shadow: none;
             transform: none;
@@ -418,19 +481,29 @@
             background: linear-gradient(60deg, var(--secondary-green), var(--primary-green));
             box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
         }
+         .btn-google {
+            background-color: #DB4437 !important; /* Google Red */
+            color: white !important;
+            border: none;
+        }
+        .btn-google:hover {
+            background-color: #C33D2E !important;
+            box-shadow: 0 6px 18px rgba(219, 68, 55, 0.3);
+        }
+
 
         /* --- Forms --- */
-        .form-control, .form-select { /* Added form-select */
+        .form-control, .form-select {
             border-radius: var(--border-radius-sm);
             padding: 0.85rem 1.2rem;
             border: 1px solid #ced4da;
             transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
             font-size: 0.95rem;
-            background-clip: padding-box; /* Fix for Bootstrap select arrow */
+            background-clip: padding-box;
         }
         .form-control:focus, .form-select:focus {
             border-color: var(--primary-blue);
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15); /* Softer focus */
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
         }
         textarea.form-control { min-height: 100px; }
 
@@ -444,7 +517,7 @@
         .form-check-label { font-size: 0.9rem; color: var(--text-medium); }
         .form-check-input {
             width: 1.1em; height: 1.1em;
-            margin-top: 0.25em; /* Align better with label */
+            margin-top: 0.25em;
         }
         .form-check-input:checked {
             background-color: var(--primary-green);
@@ -484,8 +557,61 @@
             border: 2px dashed var(--light-blue);
             padding: 5px;
             object-fit: contain;
-            display: none; /* Hidden by default */
+            display: none;
         }
+
+
+        /* --- Authentication & Profile Views --- */
+        .auth-view, .profile-view {
+            max-width: 550px;
+            margin: 2rem auto;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            background-color: var(--card-background);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-strong);
+            backdrop-filter: blur(12px) saturate(160%);
+            -webkit-backdrop-filter: blur(12px) saturate(160%);
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+        .auth-view .form-control, .profile-view .form-control {
+             padding: 0.9rem 1.2rem; /* Larger padding for auth forms */
+             font-size: 1rem;
+        }
+        .auth-view .btn-link-custom {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition-speed);
+        }
+        .auth-view .btn-link-custom:hover { color: var(--secondary-blue); text-decoration: underline;}
+        .auth-view .divider-text {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            margin: 1.5rem 0;
+            font-weight: 500;
+        }
+        .auth-view .divider-text::before, .auth-view .divider-text::after {
+            content: ''; flex: 1; border-bottom: 1px solid #d0d0d0;
+        }
+        .auth-view .divider-text:not(:empty)::before { margin-right: .7em; }
+        .auth-view .divider-text:not(:empty)::after { margin-left: .7em; }
+
+        .profile-view .profile-picture-wrapper {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .profile-view .profile-picture {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-green);
+            box-shadow: var(--shadow-light);
+            margin-bottom: 0.5rem;
+        }
+        .profile-view .form-label { font-size: 0.95rem; }
 
 
         /* --- Footer --- */
@@ -546,7 +672,7 @@
         .modal-header .btn-close:hover { opacity: 1; }
         .modal-title { font-weight: 700; font-size: 1.25rem; }
         .modal-body { padding: 1.3rem 1.8rem; font-size: 1rem; line-height: 1.65;}
-        .modal-body h5 { /* For headings within modal from AI */
+        .modal-body h5 {
             font-size: 1.1rem;
             color: var(--primary-blue);
             margin-top: 1rem;
@@ -554,11 +680,11 @@
             font-weight: 700;
         }
         .modal-body ul {
-            padding-left: 20px; /* Indent lists from AI */
+            padding-left: 20px;
             list-style-type: disc;
         }
          .modal-body ul li { padding-left: 0; margin-bottom: 0.3em; }
-         .modal-body ul li::before { display: none; } /* Hide default li::before from tab-pane */
+         .modal-body ul li::before { display: none; }
 
 
         .modal-footer { border-top: 1px solid #e9ecef; padding: 0.8rem 1.3rem;}
@@ -574,7 +700,7 @@
 
         /* --- Spinner for AI processing --- */
         .spinner-container {
-            display: none; /* Hidden by default */
+            display: none;
             text-align: center;
             margin-top: 1.3rem;
             padding: 1rem;
@@ -585,7 +711,7 @@
             width: 2.5rem;
             height: 2.5rem;
             color: var(--primary-green);
-            border-width: .3em; /* Thicker spinner */
+            border-width: .3em;
         }
         .spinner-container p {
             margin-top: 0.6rem;
@@ -597,20 +723,27 @@
 
         /* --- Responsive Adjustments --- */
         @media (max-width: 991.98px) { /* Tablets */
-            .tab-content h2 { font-size: 1.7rem; }
+            .tab-content h2, .auth-view h2, .profile-view h2 { font-size: 1.7rem; }
             .subscription-plan { margin-bottom: 1.3rem; }
+            .main-nav-wrapper { /* Keep main nav on tablet */
+                display: flex;
+            }
+             .mobile-nav-toggle { display: none; } /* Hide hamburger on tablet if main nav shown */
         }
 
         @media (max-width: 767.98px) { /* Landscape phones */
-            header .logo-img { height: 48px; width: 48px; }
-            .header-content { flex-direction: column; gap: 0.4rem;}
-            .tagline { margin-top: 0.1rem; }
+             header .logo-img { height: 40px; width: 40px; }
+            /* header .header-main-content { flex-direction: column; align-items: flex-start; gap: 0.4rem;} */
+            /* .tagline { margin-top: 0.1rem; } */
 
-            .main-nav-wrapper { display: none; }
-            .mobile-nav-toggle { display: block; }
+            .main-nav-wrapper { display: none; } /* Hide full nav on small screens */
+            .mobile-nav-toggle { display: block; } /* Show hamburger */
+             #user-auth-section .btn-sign-in { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+             #user-auth-section .profile-dropdown img { width: 36px; height: 36px;}
 
-            .tab-content { padding: 1.3rem; }
-            .tab-content h2 { font-size: 1.5rem; margin-bottom: 1.3rem; }
+
+            .tab-content, .auth-view, .profile-view { padding: 1.3rem; }
+            .tab-content h2, .auth-view h2, .profile-view h2 { font-size: 1.5rem; margin-bottom: 1.3rem; }
 
             .subscription-plan { padding: 1.8rem 1rem; }
             .subscription-plan h3 { font-size: 1.3rem; }
@@ -625,63 +758,75 @@
         }
 
         @media (max-width: 575.98px) { /* Portrait phones */
-            header { padding: 0.8rem 0.5rem; }
-            header .logo-img { height: 38px; width: 38px; }
+            header { padding: 0.6rem 0.75rem; }
+            header .logo-img { height: 32px; width: 32px; }
+            header .logo-title { font-size: 1.3rem; }
 
-            .tab-content { padding: 0.9rem; }
-            .tab-content h2 { font-size: 1.3rem; }
+            .tab-content, .auth-view, .profile-view { padding: 0.9rem; }
+            .tab-content h2, .auth-view h2, .profile-view h2 { font-size: 1.3rem; }
             .tab-pane p, .tab-pane ul { font-size: 0.85rem; }
 
             .btn-custom,
             .subscription-plan .btn-select-plan,
             #payment-form button[type="submit"],
-            #waste-form button[type="submit"] {
+            #waste-form button[type="submit"],
+            .auth-view button[type="submit"],
+            .profile-view button[type="submit"] {
                 padding: 0.7rem 1.3rem;
                 font-size: 0.85rem;
             }
-            .mobile-nav-toggle { top: 15px; right: 15px; font-size: 1.5rem; }
+            .mobile-nav-toggle { font-size: 1.5rem; } /* top: 15px; right: 15px; */
             .offcanvas-title { font-size: 1.1rem; }
             .offcanvas-body .nav-link { padding: 0.8rem 1rem; }
+             #user-auth-section .btn-sign-in { font-size: 0.75rem; padding: 0.3rem 0.6rem; }
+             #user-auth-section .profile-dropdown img { width: 32px; height: 32px;}
         }
     </style>
 </head>
 
 <body>
     <header>
-        <div class="header-content">
-            <img src="assets/logo.png" alt="RecycLearner Logo" class="logo-img">
-            <h1 class="logo-title">
-                <span class="recyc">Recyc</span><span class="learner">Learner</span>
-            </h1>
+        <div class="header-main-content">
+             <button class="mobile-nav-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav" aria-controls="mobileNav" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="header-logo-tagline">
+                <img src="assets/logo.png" alt="RecycLearner Logo" class="logo-img">
+                <div>
+                    <h1 class="logo-title">
+                        <span class="recyc">Recyc</span><span class="learner">Learner</span>
+                    </h1>
+                    <p class="tagline">AI-Powered Guidance for a Greener Tomorrow.</p>
+                </div>
+            </div>
         </div>
-        <p class="tagline">AI-Powered Guidance for a Greener Tomorrow. Let's Recycle Smarter, Together!</p>
+        <div id="user-auth-section">
+            </div>
     </header>
 
-    <button class="mobile-nav-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav" aria-controls="mobileNav" aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
-    </button>
 
-    <div class="main-nav-wrapper">
-        <ul class="nav nav-pills" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="true"><i class="fas fa-info-circle"></i>About Us</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="commitment-tab" data-bs-toggle="tab" data-bs-target="#commitment" type="button" role="tab" aria-controls="commitment" aria-selected="false"><i class="fas fa-seedling"></i>Our Mission</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="how-it-works-tab" data-bs-toggle="tab" data-bs-target="#how-it-works" type="button" role="tab" aria-controls="how-it-works" aria-selected="false"><i class="fas fa-lightbulb"></i>How It Works</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="submit-waste-tab" data-bs-toggle="tab" data-bs-target="#submit-waste" type="button" role="tab" aria-controls="submit-waste" aria-selected="false"><i class="fas fa-microchip"></i>AI Recycle Helper</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="subscription-plans-tab" data-bs-toggle="tab" data-bs-target="#subscription-plans" type="button" role="tab" aria-controls="subscription-plans" aria-selected="false"><i class="fas fa-star"></i>Our Plans</button>
-            </li>
-            <li class="nav-item" role="presentation" style="display: none;" id="payment-tab-li">
-                 <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#payment" type="button" role="tab" aria-controls="payment" aria-selected="false"><i class="fas fa-credit-card"></i>Checkout</button>
-            </li>
-        </ul>
+    <div id="main-nav-wrapper-container"> <div class="main-nav-wrapper">
+            <ul class="nav nav-pills" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="true"><i class="fas fa-info-circle"></i>About Us</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="commitment-tab" data-bs-toggle="tab" data-bs-target="#commitment" type="button" role="tab" aria-controls="commitment" aria-selected="false"><i class="fas fa-seedling"></i>Our Mission</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="how-it-works-tab" data-bs-toggle="tab" data-bs-target="#how-it-works" type="button" role="tab" aria-controls="how-it-works" aria-selected="false"><i class="fas fa-lightbulb"></i>How It Works</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="submit-waste-tab" data-bs-toggle="tab" data-bs-target="#submit-waste" type="button" role="tab" aria-controls="submit-waste" aria-selected="false"><i class="fas fa-microchip"></i>AI Recycle Helper</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="subscription-plans-tab" data-bs-toggle="tab" data-bs-target="#subscription-plans" type="button" role="tab" aria-controls="subscription-plans" aria-selected="false"><i class="fas fa-star"></i>Our Plans</button>
+                </li>
+                <li class="nav-item" role="presentation" style="display: none;" id="payment-tab-li">
+                     <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#payment" type="button" role="tab" aria-controls="payment" aria-selected="false"><i class="fas fa-credit-card"></i>Checkout</button>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileNav" aria-labelledby="mobileNavLabel">
@@ -700,212 +845,302 @@
         </div>
     </div>
 
+    <div class="container mt-3">
 
-    <div class="container mt-3 tab-content-wrapper"> <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
-                <h2>Welcome to RecycLearner: Your AI Recycling Companion</h2>
-                <p class="lead">At RecycLearner, we're transforming the complex world of waste management into a simple, engaging, and impactful experience. Our intelligent platform uses the power of Artificial Intelligence to provide you with clear, actionable guidance on recycling and upcycling. We believe that sustainable living should be accessible to everyone, empowering individuals and businesses alike to make a real difference for our planet.</p>
-                <p>Consider 'waste' not as an endpoint, but as a resource waiting to be rediscovered. RecycLearner is designed to help you unlock this potential. Whether you're unsure how to recycle a specific item, looking for creative ways to give old materials new life, or aiming to reduce your overall environmental footprint, our AI is here to assist. Join our community of eco-conscious innovators and let's build a more sustainable future, one recycled item at a time.</p>
-            </div>
+        <div id="main-content-tabs-view" class="view active tab-content-wrapper">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
+                    <h2>Welcome to RecycLearner: Your AI Recycling Companion</h2>
+                    <p class="lead">At RecycLearner, we're transforming the complex world of waste management into a simple, engaging, and impactful experience. Our intelligent platform uses the power of Artificial Intelligence to provide you with clear, actionable guidance on recycling and upcycling. We believe that sustainable living should be accessible to everyone, empowering individuals and businesses alike to make a real difference for our planet.</p>
+                    <p>Consider 'waste' not as an endpoint, but as a resource waiting to be rediscovered. RecycLearner is designed to help you unlock this potential. Whether you're unsure how to recycle a specific item, looking for creative ways to give old materials new life, or aiming to reduce your overall environmental footprint, our AI is here to assist. Join our community of eco-conscious innovators and let's build a more sustainable future, one recycled item at a time.</p>
+                </div>
 
-            <div class="tab-pane fade" id="commitment" role="tabpanel" aria-labelledby="commitment-tab">
-                <h2>Our Mission: A Greener Planet Through Smart Technology</h2>
-                <p>RecycLearner is driven by a profound commitment to environmental sustainability. We aim to be a catalyst for positive change by equipping our users with the knowledge and tools needed for responsible and innovative waste management. Our core pillars are:</p>
-                <ul>
-                    <li><strong>Empowering Action:</strong> Delivering precise, AI-driven recycling and upcycling instructions to significantly reduce landfill waste and promote resource conservation.</li>
-                    <li><strong>Pioneering Eco-Innovation:</strong> Continuously enhancing our AI algorithms and platform features to offer the most advanced and user-friendly sustainability solutions.</li>
-                    <li><strong>Fostering Eco-Literacy:</strong> Educating users about the principles of a circular economy, the lifecycle of materials, and the collective impact of individual sustainable choices.</li>
-                    <li><strong>Cultivating a Global Movement:</strong> Uniting individuals, communities, and organizations in a shared mission to protect and preserve our environment for future generations.</li>
-                </ul>
-                <p>We firmly believe that technology, when guided by purpose, can solve some of our world's most pressing challenges. Your engagement with RecycLearner contributes directly to a healthier planet and a more sustainable way of life.</p>
-            </div>
+                <div class="tab-pane fade" id="commitment" role="tabpanel" aria-labelledby="commitment-tab">
+                    <h2>Our Mission: A Greener Planet Through Smart Technology</h2>
+                    <p>RecycLearner is driven by a profound commitment to environmental sustainability. We aim to be a catalyst for positive change by equipping our users with the knowledge and tools needed for responsible and innovative waste management. Our core pillars are:</p>
+                    <ul>
+                        <li><strong>Empowering Action:</strong> Delivering precise, AI-driven recycling and upcycling instructions to significantly reduce landfill waste and promote resource conservation.</li>
+                        <li><strong>Pioneering Eco-Innovation:</strong> Continuously enhancing our AI algorithms and platform features to offer the most advanced and user-friendly sustainability solutions.</li>
+                        <li><strong>Fostering Eco-Literacy:</strong> Educating users about the principles of a circular economy, the lifecycle of materials, and the collective impact of individual sustainable choices.</li>
+                        <li><strong>Cultivating a Global Movement:</strong> Uniting individuals, communities, and organizations in a shared mission to protect and preserve our environment for future generations.</li>
+                    </ul>
+                    <p>We firmly believe that technology, when guided by purpose, can solve some of our world's most pressing challenges. Your engagement with RecycLearner contributes directly to a healthier planet and a more sustainable way of life.</p>
+                </div>
 
-            <div class="tab-pane fade" id="how-it-works" role="tabpanel" aria-labelledby="how-it-works-tab">
-                <h2>Unlock Recycling Wisdom in 3 Simple Steps</h2>
-                <p>RecycLearner streamlines your path to sustainable waste management with an intuitive, AI-driven process. Discover how to transform your waste into a valuable resource effortlessly:</p>
-                <div class="row g-4 mt-3 align-items-stretch">
-                    <div class="col-md-4 d-flex scroll-animate">
-                        <div class="text-center p-3 border rounded-3 shadow-sm bg-white h-100">
-                            <i class="fas fa-camera-retro fa-3x text-primary-blue mb-3"></i>
-                            <h4>1. Submit Your Item</h4>
-                            <p>Easily upload a clear photograph of the waste item or provide a detailed text description. The more information you give, the smarter our AI can be!</p>
+                <div class="tab-pane fade" id="how-it-works" role="tabpanel" aria-labelledby="how-it-works-tab">
+                    <h2>Unlock Recycling Wisdom in 3 Simple Steps</h2>
+                    <p>RecycLearner streamlines your path to sustainable waste management with an intuitive, AI-driven process. Discover how to transform your waste into a valuable resource effortlessly:</p>
+                    <div class="row g-4 mt-3 align-items-stretch">
+                        <div class="col-md-4 d-flex scroll-animate">
+                            <div class="text-center p-3 border rounded-3 shadow-sm bg-white h-100">
+                                <i class="fas fa-camera-retro fa-3x text-primary-blue mb-3"></i>
+                                <h4>1. Submit Your Item</h4>
+                                <p>Easily upload a clear photograph of the waste item or provide a detailed text description. The more information you give, the smarter our AI can be!</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-flex scroll-animate" style="transition-delay: 0.15s;">
+                            <div class="text-center p-3 border rounded-3 shadow-sm bg-white h-100">
+                                <i class="fas fa-robot fa-3x text-primary-green mb-3"></i>
+                                <h4>2. AI Magic Happens</h4>
+                                <p>Our sophisticated Gemini-powered AI instantly processes your submission, identifying materials, assessing recyclability, and uncovering creative upcycling potential.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-flex scroll-animate" style="transition-delay: 0.3s;">
+                             <div class="text-center p-3 border rounded-3 shadow-sm bg-white h-100">
+                                <i class="fas fa-directions fa-3x text-accent-orange mb-3"></i>
+                                <h4>3. Get Clear Guidance</h4>
+                                <p>Receive personalized, easy-to-understand instructions for correct recycling, innovative upcycling projects, and safe disposal methods for any tricky items.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4 d-flex scroll-animate" style="transition-delay: 0.15s;">
-                        <div class="text-center p-3 border rounded-3 shadow-sm bg-white h-100">
-                            <i class="fas fa-robot fa-3x text-primary-green mb-3"></i>
-                            <h4>2. AI Magic Happens</h4>
-                            <p>Our sophisticated Gemini-powered AI instantly processes your submission, identifying materials, assessing recyclability, and uncovering creative upcycling potential.</p>
+                    <p class="mt-4">From everyday packaging like plastics and paper to more complex items such as electronics and textiles, RecycLearner is your dedicated AI partner for making informed, eco-friendly choices with confidence. <strong>Try it once for free in the "AI Recycle Helper" tab!</strong></p>
+                </div>
+
+                <div class="tab-pane fade" id="submit-waste" role="tabpanel" aria-labelledby="submit-waste-tab">
+                    <h2><i class="fas fa-microchip text-primary-blue me-2"></i>AI Recycle Helper: Get Instant Advice!</h2>
+                    <p>Unsure how to handle a specific waste item? Let our Gemini-powered AI analyze it for you. Provide an image or describe the item, and we'll give you tailored recycling and upcycling suggestions. <strong>Every user gets one free analysis!</strong></p>
+                    <div id="ai-trial-message" class="alert alert-info mt-3" style="display: none;"></div>
+                    <form id="waste-form" class="mt-4">
+                        <div class="mb-3">
+                            <label for="waste-image" class="form-label"><i class="fas fa-image me-2"></i>Upload an Image (Optional, but helps!)</label>
+                            <input type="file" class="form-control" id="waste-image" name="waste-image" accept="image/jpeg, image/png, image/webp">
+                             <div class="form-text">Clear, well-lit photos of a single item work best. Max file size: 4MB.</div>
+                             <div id="waste-image-preview-container">
+                                 <img id="waste-image-preview" src="#" alt="Image Preview" />
+                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 d-flex scroll-animate" style="transition-delay: 0.3s;">
-                         <div class="text-center p-3 border rounded-3 shadow-sm bg-white h-100">
-                            <i class="fas fa-directions fa-3x text-accent-orange mb-3"></i>
-                            <h4>3. Get Clear Guidance</h4>
-                            <p>Receive personalized, easy-to-understand instructions for correct recycling, innovative upcycling projects, and safe disposal methods for any tricky items.</p>
+                        <div class="or-divider my-3">OR / AND</div>
+                        <div class="mb-3">
+                            <label for="waste-description" class="form-label"><i class="fas fa-pencil-alt me-2"></i>Describe Your Waste Material (Required if no image)</label>
+                            <textarea class="form-control" id="waste-description" name="waste-description" rows="4"
+                                placeholder="e.g., Empty plastic milk jug (HDPE #2), old smartphone (brand/model), stained cotton t-shirt, mixed paper scraps, aluminum can, glass jar with lid. Be as specific as possible!"></textarea>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn-custom btn-lg" id="get-insights-button"><i class="fas fa-lightbulb me-2"></i>✨ Get AI Recycling Insights</button>
+                        </div>
+                    </form>
+                    <div class="spinner-container mt-4" id="loading-spinner">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="spinner-border me-3" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mb-0">Our AI is thinking... Please wait a moment for your personalized recycling plan!</p>
                         </div>
                     </div>
                 </div>
-                <p class="mt-4">From everyday packaging like plastics and paper to more complex items such as electronics and textiles, RecycLearner is your dedicated AI partner for making informed, eco-friendly choices with confidence.</p>
-            </div>
 
-            <div class="tab-pane fade" id="submit-waste" role="tabpanel" aria-labelledby="submit-waste-tab">
-                <h2><i class="fas fa-microchip text-primary-blue me-2"></i>AI Recycle Helper: Get Instant Advice!</h2>
-                <p>Unsure how to handle a specific waste item? Let our Gemini-powered AI analyze it for you. Provide an image or describe the item, and we'll give you tailored recycling and upcycling suggestions.</p>
-                <form id="waste-form" class="mt-4">
-                    <div class="mb-3">
-                        <label for="waste-image" class="form-label"><i class="fas fa-image me-2"></i>Upload an Image (Optional, but helps!)</label>
-                        <input type="file" class="form-control" id="waste-image" name="waste-image" accept="image/jpeg, image/png, image/webp">
-                         <div class="form-text">Clear, well-lit photos of a single item work best. Max file size: 4MB.</div>
-                         <div id="waste-image-preview-container">
-                             <img id="waste-image-preview" src="#" alt="Image Preview" />
-                         </div>
-                    </div>
-                    <div class="or-divider my-3">OR / AND</div>
-                    <div class="mb-3">
-                        <label for="waste-description" class="form-label"><i class="fas fa-pencil-alt me-2"></i>Describe Your Waste Material (Required if no image)</label>
-                        <textarea class="form-control" id="waste-description" name="waste-description" rows="4"
-                            placeholder="e.g., Empty plastic milk jug (HDPE #2), old smartphone (brand/model), stained cotton t-shirt, mixed paper scraps, aluminum can, glass jar with lid. Be as specific as possible!"></textarea>
-                    </div>
-                    <div class="text-center mt-4">
-                        <button type="submit" class="btn-custom btn-lg" id="get-insights-button"><i class="fas fa-lightbulb me-2"></i>✨ Get AI Recycling Insights</button>
-                    </div>
-                </form>
-                <div class="spinner-container mt-4" id="loading-spinner">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="spinner-border me-3" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                        <p class="mb-0">Our AI is thinking... Please wait a moment for your personalized recycling plan!</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-pane fade" id="subscription-plans" role="tabpanel" aria-labelledby="subscription-plans-tab">
-                <h2>Supercharge Your Sustainability: Choose Your Plan</h2>
-                <p class="text-center mb-5 lead">Elevate your eco-impact with features designed for every level of commitment. All paid plans include a <strong>no-obligation 7-day free trial!</strong></p>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch scroll-animate">
-                        <div class="subscription-plan">
-                            <div>
-                                <i class="fas fa-seedling plan-icon"></i>
-                                <h3>Starter Spark</h3>
-                                <p class="text-muted small">Ideal for individuals exploring sustainable habits.</p>
-                                <ul class="plan-features">
-                                    <li>Standard AI Waste Analysis (10/month)</li>
-                                    <li>Core Recycling Guides</li>
-                                    <li>Basic Impact Tracking</li>
-                                    <li>Community Forum Access</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <p class="plan-price">$9.99<small>/month</small></p>
-                                <button class="btn-select-plan w-100" onclick="showPaymentPage('Starter Spark Plan', '$9.99/month', 'Begin your journey with essential AI recycling tools and community support.')"><i class="fas fa-check-circle"></i> Start Trial</button>
+                <div class="tab-pane fade" id="subscription-plans" role="tabpanel" aria-labelledby="subscription-plans-tab">
+                    <h2>Supercharge Your Sustainability: Choose Your Plan</h2>
+                    <p class="text-center mb-5 lead">Elevate your eco-impact with features designed for every level of commitment. All paid plans include a <strong>no-obligation 7-day free trial!</strong> After your first free AI analysis, a plan is needed for more.</p>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch scroll-animate">
+                            <div class="subscription-plan">
+                                <div>
+                                    <i class="fas fa-seedling plan-icon"></i>
+                                    <h3>Starter Spark</h3>
+                                    <p class="text-muted small">Ideal for individuals exploring sustainable habits.</p>
+                                    <ul class="plan-features">
+                                        <li>Standard AI Waste Analysis (10/month after trial)</li>
+                                        <li>Core Recycling Guides</li>
+                                        <li>Basic Impact Tracking</li>
+                                        <li>Community Forum Access</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="plan-price">$9.99<small>/year</small></p>
+                                    <button class="btn-select-plan w-100" onclick="showPaymentPage('Starter Spark Plan', '$9.99/year', 'Begin your journey with essential AI recycling tools and community support.')"><i class="fas fa-check-circle"></i> Start Trial</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch scroll-animate" style="transition-delay: 0.15s;">
-                        <div class="subscription-plan popular-plan">
-                             <span class="badge popular-badge"><i class="fas fa-fire me-1"></i>Most Popular</span>
-                            <div>
-                                <i class="fas fa-rocket plan-icon"></i>
-                                <h3>Eco Pro</h3>
-                                <p class="text-muted small">For dedicated recyclers & eco-conscious households.</p>
-                                <ul class="plan-features">
-                                    <li>Advanced AI Waste Analysis (Unlimited)</li>
-                                    <li>✨ Exclusive Upcycling Project Library</li>
-                                    <li>Detailed Impact Reporting</li>
-                                    <li>Priority Email & Chat Support</li>
-                                    <li>Early Access to New AI Features</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <p class="plan-price">$19.99<small>/month</small></p>
-                                <button class="btn-select-plan w-100" onclick="showPaymentPage('Eco Pro Plan', '$19.99/month', 'Unlock unlimited AI analysis, exclusive upcycling projects, and premium support.')"><i class="fas fa-star"></i> Start Trial</button>
+                        <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch scroll-animate" style="transition-delay: 0.15s;">
+                            <div class="subscription-plan popular-plan">
+                                 <span class="badge popular-badge"><i class="fas fa-fire me-1"></i>Most Popular</span>
+                                <div>
+                                    <i class="fas fa-rocket plan-icon"></i>
+                                    <h3>Eco Pro</h3>
+                                    <p class="text-muted small">For dedicated recyclers & eco-conscious households.</p>
+                                    <ul class="plan-features">
+                                        <li>Advanced AI Waste Analysis (Unlimited)</li>
+                                        <li>✨ Exclusive Upcycling Project Library</li>
+                                        <li>Detailed Impact Reporting</li>
+                                        <li>Priority Email & Chat Support</li>
+                                        <li>Early Access to New AI Features</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="plan-price">$19.99<small>/year</small></p>
+                                    <button class="btn-select-plan w-100" onclick="showPaymentPage('Eco Pro Plan', '$19.99/year', 'Unlock unlimited AI analysis, exclusive upcycling projects, and premium support.')"><i class="fas fa-star"></i> Start Trial</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch scroll-animate" style="transition-delay: 0.3s;">
-                        <div class="subscription-plan">
-                            <div>
-                                <i class="fas fa-globe-americas plan-icon"></i>
-                                <h3>Green Business</h3>
-                                <p class="text-muted small">Custom solutions for organizations committed to sustainability.</p>
-                                 <ul class="plan-features">
-                                    <li>Tailored AI Model Integration</li>
-                                    <li>Bulk Waste Auditing Tools</li>
-                                    <li>Comprehensive Sustainability Dashboards</li>
-                                    <li>Dedicated Account Management</li>
-                                    <li>Team Collaboration Features</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <p class="plan-price">Custom Pricing</p>
-                                <button class="btn-select-plan btn-contact w-100" onclick="showInfoModal('Green Business Plan Inquiry', 'We\'re excited to help your business achieve its sustainability targets! Please reach out to our enterprise team at <a href=\'mailto:biz@recyclearner.com\'>biz@recyclearner.com</a> or call us at (555) ECO-SMART for a personalized consultation and quote.')"><i class="fas fa-handshake"></i> Contact Sales</button>
+                        <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch scroll-animate" style="transition-delay: 0.3s;">
+                            <div class="subscription-plan">
+                                <div>
+                                    <i class="fas fa-globe-americas plan-icon"></i>
+                                    <h3>Green Business</h3>
+                                    <p class="text-muted small">Custom solutions for organizations committed to sustainability.</p>
+                                     <ul class="plan-features">
+                                        <li>Tailored AI Model Integration</li>
+                                        <li>Bulk Waste Auditing Tools</li>
+                                        <li>Comprehensive Sustainability Dashboards</li>
+                                        <li>Dedicated Account Management</li>
+                                        <li>Team Collaboration Features</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="plan-price">Custom Pricing</p>
+                                    <button class="btn-select-plan btn-contact w-100" onclick="showInfoModal('Green Business Plan Inquiry', 'We\'re excited to help your business achieve its sustainability targets! Please reach out to our enterprise team at <a href=\'mailto:biz@recyclearner.com\'>biz@recyclearner.com</a> or call us at (555) ECO-SMART for a personalized consultation and quote.')"><i class="fas fa-handshake"></i> Contact Sales</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
-                <h2>Secure Checkout: <span id="selected-plan-name-title" class="text-primary-blue">Your Plan</span></h2>
-                <p id="selected-plan-description" class="text-muted mb-3">You're just a step away from unlocking powerful recycling tools!</p>
-                <form id="payment-form">
-                    <input type="hidden" id="selected-plan-value" name="selected-plan-value">
-                    <div class="alert alert-success d-flex align-items-center shadow-sm" role="alert">
-                        <i class="fas fa-shield-alt fa-2x me-3 text-success"></i>
-                        <div>
-                            <strong>Start Your 7-Day Free Trial!</strong> You will not be charged today.
-                            Your selected plan: <strong id="selected-plan-price-info" class="text-success">$0.00/month</strong>.
+                <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
+                    <h2>Secure Checkout: <span id="selected-plan-name-title" class="text-primary-blue">Your Plan</span></h2>
+                    <p id="selected-plan-description" class="text-muted mb-3">You're just a step away from unlocking powerful recycling tools!</p>
+                    <form id="payment-form">
+                        <input type="hidden" id="selected-plan-value" name="selected-plan-value">
+                        <div class="alert alert-success d-flex align-items-center shadow-sm" role="alert">
+                            <i class="fas fa-shield-alt fa-2x me-3 text-success"></i>
+                            <div>
+                                <strong>Start Your 7-Day Free Trial!</strong> You will not be charged today.
+                                Your selected plan: <strong id="selected-plan-price-info" class="text-success">$0.00/year</strong>.
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row mt-4">
-                        <div class="col-md-12 mb-3">
-                            <label for="cardholder-name" class="form-label">Cardholder Name</label>
-                            <input type="text" class="form-control form-control-lg" id="cardholder-name" placeholder="Full Name as on Card" required>
+                        <div class="row mt-4">
+                            <div class="col-md-12 mb-3">
+                                <label for="cardholder-name" class="form-label">Cardholder Name</label>
+                                <input type="text" class="form-control form-control-lg" id="cardholder-name" placeholder="Full Name as on Card" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="card-number" class="form-label">Card Number</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
-                            <input type="text" class="form-control form-control-lg" id="card-number" placeholder="•••• •••• •••• ••••" required pattern="\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}" title="Enter a valid 16-digit card number">
+                        <div class="mb-3">
+                            <label for="card-number" class="form-label">Card Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
+                                <input type="text" class="form-control form-control-lg" id="card-number" placeholder="•••• •••• •••• ••••" required pattern="\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}" title="Enter a valid 16-digit card number">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-7 mb-3 mb-md-0">
-                            <label for="expiry-date" class="form-label">Expiry Date</label>
-                            <input type="text" class="form-control form-control-lg" id="expiry-date" placeholder="MM / YY" required pattern="(0[1-9]|1[0-2])\s?\/\s?\d{2}" title="Enter date as MM / YY">
+                        <div class="row mb-3">
+                            <div class="col-md-7 mb-3 mb-md-0">
+                                <label for="expiry-date" class="form-label">Expiry Date</label>
+                                <input type="text" class="form-control form-control-lg" id="expiry-date" placeholder="MM / YY" required pattern="(0[1-9]|1[0-2])\s?\/\s?\d{2}" title="Enter date as MM / YY">
+                            </div>
+                            <div class="col-md-5">
+                                <label for="cvv" class="form-label">CVV/CVC</label>
+                                <input type="text" class="form-control form-control-lg" id="cvv" placeholder="•••" required pattern="\d{3,4}" title="Enter 3 or 4 digit CVV">
+                            </div>
                         </div>
-                        <div class="col-md-5">
-                            <label for="cvv" class="form-label">CVV/CVC</label>
-                            <input type="text" class="form-control form-control-lg" id="cvv" placeholder="•••" required pattern="\d{3,4}" title="Enter 3 or 4 digit CVV">
+                        <div class="mb-4">
+                            <label for="billing-email" class="form-label">Billing Email Address</label>
+                             <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input type="email" class="form-control form-control-lg" id="billing-email" placeholder="you@example.com" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-4">
-                        <label for="billing-email" class="form-label">Billing Email Address</label>
-                         <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                            <input type="email" class="form-control form-control-lg" id="billing-email" placeholder="you@example.com" required>
+                         <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" value="" id="termsCheck" required>
+                            <label class="form-check-label" for="termsCheck">
+                                I have read and agree to the RecycLearner <a href="#" onclick="showInfoModal('Terms and Conditions', 'This is placeholder text for RecycLearner\'s Terms and Conditions. In a real application, this would link to a comprehensive T&C page covering service usage, subscription terms, payment policies, cancellation rights, data privacy (linking to Privacy Policy), intellectual property, acceptable use, disclaimers, limitation of liability, and governing law. Users must agree to these terms to proceed.')">Terms and Conditions</a> and acknowledge the 7-day free trial.
+                            </label>
                         </div>
-                    </div>
-                     <div class="form-check mb-4">
-                        <input class="form-check-input" type="checkbox" value="" id="termsCheck" required>
-                        <label class="form-check-label" for="termsCheck">
-                            I have read and agree to the RecycLearner <a href="#" onclick="showInfoModal('Terms and Conditions', 'This is placeholder text for RecycLearner\'s Terms and Conditions. In a real application, this would link to a comprehensive T&C page covering service usage, subscription terms, payment policies, cancellation rights, data privacy (linking to Privacy Policy), intellectual property, acceptable use, disclaimers, limitation of liability, and governing law. Users must agree to these terms to proceed.')">Terms and Conditions</a> and acknowledge the 7-day free trial.
-                        </label>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn-custom btn-lg"><i class="fas fa-lock me-2"></i>Activate My Free Trial Now</button>
-                    </div>
-                </form>
+                        <div class="text-center">
+                            <button type="submit" class="btn-custom btn-lg"><i class="fas fa-lock me-2"></i>Activate My Free Trial Now</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <footer class="scroll-animate">
+
+        <div id="signin-view" class="view auth-view">
+            <h2><i class="fas fa-sign-in-alt me-2 text-primary-blue"></i>Sign In to RecycLearner</h2>
+            <p class="text-muted mb-4">Welcome back! Access your account to continue your sustainability journey.</p>
+            <form id="signin-form">
+                <div class="mb-3">
+                    <label for="signin-email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="signin-email" placeholder="you@example.com" required>
+                </div>
+                <div class="mb-3">
+                    <label for="signin-password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="signin-password" placeholder="Enter your password" required>
+                </div>
+                <div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn-custom btn-lg"><i class="fas fa-paper-plane"></i> Sign In</button>
+                    <button type="button" class="btn-custom btn-lg btn-google" onclick="showInfoModal('Feature Not Implemented', 'Sign in with Google is not yet available. Please use email and password.', false)"><i class="fab fa-google"></i> Sign In with Google</button>
+                </div>
+            </form>
+            <p class="text-center mt-4">
+                Don't have an account yet? <a href="#" id="navigateToSignUp" class="btn-link-custom">Create one here!</a>
+            </p>
+        </div>
+
+        <div id="signup-view" class="view auth-view">
+            <h2><i class="fas fa-user-plus me-2 text-primary-green"></i>Create Your Account</h2>
+            <p class="text-muted mb-4">Join RecycLearner today and start making a difference!</p>
+            <form id="signup-form">
+                <div class="mb-3">
+                    <label for="signup-username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="signup-username" placeholder="Choose a unique username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="signup-fullname" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="signup-fullname" placeholder="Enter your full name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="signup-email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="signup-email" placeholder="you@example.com" required>
+                </div>
+                <div class="mb-3">
+                    <label for="signup-password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="signup-password" placeholder="Create a strong password" required>
+                </div>
+                 <div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn-custom btn-lg"><i class="fas fa-check-circle"></i> Sign Up</button>
+                    <button type="button" class="btn-custom btn-lg btn-google" onclick="showInfoModal('Feature Not Implemented', 'Sign up with Google is not yet available. Please use the form above.', false)"><i class="fab fa-google"></i> Sign Up with Google</button>
+                </div>
+            </form>
+            <p class="text-center mt-4">
+                Already have an account? <a href="#" id="navigateToSignIn" class="btn-link-custom">Sign in here!</a>
+            </p>
+        </div>
+
+        <div id="profile-view" class="view profile-view">
+            <h2><i class="fas fa-id-card me-2 text-primary-blue"></i>Manage Your Profile</h2>
+            <p class="text-muted mb-4">Keep your information up to date.</p>
+            <form id="profile-form">
+                <div class="profile-picture-wrapper">
+                    <img src="assets/logo.png" alt="Profile Picture" id="profile-view-image" class="profile-picture">
+                    <input type="file" id="profile-pic-upload" accept="image/*" style="display: none;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary mt-2" id="changeProfilePicButton"><i class="fas fa-camera"></i> Change Picture (Mock)</button>
+                </div>
+                <div class="mb-3">
+                    <label for="profile-username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="profile-username" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="profile-fullname" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="profile-fullname">
+                </div>
+                <div class="mb-3">
+                    <label for="profile-email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="profile-email" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="profile-new-password" class="form-label">New Password (Optional)</label>
+                    <input type="password" class="form-control" id="profile-new-password" placeholder="Enter new password to change">
+                </div>
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn-custom btn-lg"><i class="fas fa-save"></i> Save Changes</button>
+                </div>
+            </form>
+             <div class="text-center mt-4">
+                <button class="btn btn-outline-secondary" id="backToMainFromProfile"><i class="fas fa-arrow-left"></i> Back to Main Site</button>
+            </div>
+        </div>
+
+    </div> <footer class="scroll-animate">
         <div class="container">
             <img src="assets/logo.png" alt="RecycLearner Small Logo" style="height: 40px; margin-bottom: 10px; opacity: 0.7;">
             <p>&copy; <span id="currentYear"></span> <span style="color: var(--primary-blue);">Recyc</span><span style="color: var(--primary-green);">Learner</span>. All Rights Reserved.
@@ -942,13 +1177,63 @@
             // Set current year in footer
             document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-            // --- Tab Management for Mobile Navigation ---
+            // --- Global Elements ---
+            const views = document.querySelectorAll('.view');
+            const mainContentTabsView = document.getElementById('main-content-tabs-view');
+            const signinView = document.getElementById('signin-view');
+            const signupView = document.getElementById('signup-view');
+            const profileView = document.getElementById('profile-view');
+            const userAuthSection = document.getElementById('user-auth-section');
+            const mainNavWrapperContainer = document.getElementById('main-nav-wrapper-container');
+            const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+
+
+            // Mock Profile Pictures
+            const mockProfilePics = [
+                'assets/logo.png', // Default or initial
+                'https://via.placeholder.com/120/007bff/FFFFFF?Text=UserA',
+                'https://via.placeholder.com/120/28a745/FFFFFF?Text=UserB',
+                'https://via.placeholder.com/120/ffc107/000000?Text=UserC'
+            ];
+            let currentProfilePicIndex = 0;
+
+
+            // --- View Management ---
+            function navigateToView(viewId) {
+                views.forEach(v => v.classList.remove('active'));
+                const targetView = document.getElementById(viewId);
+                if (targetView) {
+                    targetView.classList.add('active');
+                }
+
+                // Control visibility of main navigation based on view
+                if (viewId === 'main-content-tabs-view') {
+                    mainNavWrapperContainer.style.display = 'block';
+                    if (window.innerWidth <= 767.98) { // Only show mobile toggle if main nav is relevant
+                        mobileNavToggle.style.display = 'block';
+                    } else {
+                        mobileNavToggle.style.display = 'none';
+                    }
+
+                } else { // Auth or Profile views
+                    mainNavWrapperContainer.style.display = 'none';
+                    mobileNavToggle.style.display = 'none'; // Hide hamburger on auth/profile
+                    const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('mobileNav'));
+                    if (offcanvas && document.getElementById('mobileNav').classList.contains('show')) {
+                        offcanvas.hide();
+                    }
+                }
+                 window.scrollTo(0, 0); // Scroll to top on view change
+            }
+
+
+            // --- Tab Management for Mobile/Desktop Navigation ---
             const mobileNavLinks = document.querySelectorAll('#mobileNav .nav-link');
             const desktopTabElms = document.querySelectorAll('.main-nav-wrapper .nav-link');
             const desktopTabInstance = {};
 
             desktopTabElms.forEach(tabEl => {
-                if(tabEl.dataset.bsTarget) { // Ensure it's a tab trigger
+                if(tabEl.dataset.bsTarget) {
                     desktopTabInstance[tabEl.dataset.bsTarget] = new bootstrap.Tab(tabEl);
                 }
             });
@@ -958,29 +1243,26 @@
                     const targetTabId = this.dataset.bsTarget;
                     if (desktopTabInstance[targetTabId]) {
                         desktopTabInstance[targetTabId].show();
+                         navigateToView('main-content-tabs-view'); // Ensure main view is active
                     }
                 });
             });
 
-            // --- Payment Tab Logic ---
+            // --- Payment Tab Logic (Existing) ---
             const paymentTabLi = document.getElementById('payment-tab-li');
             const paymentTabButton = document.getElementById('payment-tab');
-            let paymentTabBootstrapInstance = null;
-            if (paymentTabButton) { // Ensure element exists
-                 paymentTabBootstrapInstance = new bootstrap.Tab(paymentTabButton);
-            }
-
+            let paymentTabBootstrapInstance = paymentTabButton ? new bootstrap.Tab(paymentTabButton) : null;
 
             window.showPaymentPage = function(planName, planPrice, planDescription) {
                 document.getElementById('selected-plan-name-title').textContent = planName;
                 document.getElementById('selected-plan-description').textContent = planDescription;
-                document.getElementById('selected-plan-price-info').textContent = planPrice;
+                document.getElementById('selected-plan-price-info').textContent = planPrice.replace('/year', '/month for 7 days, then billed annually'); // Adjusted text
                 const planValue = planName ? planName.toLowerCase().replace(/\s+/g, '-') : 'unknown-plan';
                 document.getElementById('selected-plan-value').value = planValue;
 
-
                 if (paymentTabLi) paymentTabLi.style.display = 'list-item';
                 if (paymentTabBootstrapInstance) paymentTabBootstrapInstance.show();
+                 navigateToView('main-content-tabs-view'); // Ensure main view is active
 
                 const mobileNav = document.getElementById('mobileNav');
                 if (mobileNav) {
@@ -996,23 +1278,25 @@
                     if (paymentTabLi && event.target.id !== 'payment-tab' && event.target.dataset.bsTarget !=='#payment') {
                         paymentTabLi.style.display = 'none';
                     }
+                    // Sync active state for mobile nav
                     mobileNavLinks.forEach(ml => {
                         ml.classList.remove('active');
                         if(ml.dataset.bsTarget === event.target.dataset.bsTarget) {
                             ml.classList.add('active');
                         }
                     });
-                     // Ensure desktop tabs also sync active state if changed via mobile
+                    // Sync active state for desktop tabs if changed via mobile or programmatically
                     desktopTabElms.forEach(dt => {
-                        dt.classList.remove('active');
-                        if(dt.dataset.bsTarget === event.target.dataset.bsTarget) {
+                         dt.classList.remove('active');
+                         if(dt.dataset.bsTarget === event.target.dataset.bsTarget) {
                             dt.classList.add('active');
                         }
                     });
                 });
             });
 
-            // --- Custom Modal Function ---
+
+            // --- Custom Modal Function (Existing) ---
             const infoModalEl = document.getElementById('infoModal');
             const infoModal = infoModalEl ? new bootstrap.Modal(infoModalEl) : null;
             window.showInfoModal = function(title, message, isHtml = true) {
@@ -1020,7 +1304,7 @@
                 const modalTitleEl = document.getElementById('infoModalLabel');
                 const modalBodyEl = document.getElementById('infoModalBody');
 
-                if (modalTitleEl) modalTitleEl.innerHTML = title; // Allow icons in title
+                if (modalTitleEl) modalTitleEl.innerHTML = title;
                 if (modalBodyEl) {
                     if (isHtml) {
                         modalBodyEl.innerHTML = message;
@@ -1031,7 +1315,7 @@
                 infoModal.show();
             }
 
-            // --- Image Preview for Waste Form ---
+            // --- Image Preview for Waste Form (Existing) ---
             const wasteImageInput = document.getElementById('waste-image');
             const imagePreview = document.getElementById('waste-image-preview');
             if (wasteImageInput && imagePreview) {
@@ -1052,228 +1336,228 @@
             }
 
 
-            // --- Gemini API Integration for Waste Form ---
+            // --- User Authentication (Mocked with localStorage) ---
+            const LS_USER_KEY = 'recyclearner_user';
+            const LS_ANON_TRIAL_KEY = 'recyclearner_anon_ai_trial_used';
+
+            function getCurrentUser() {
+                const userJson = localStorage.getItem(LS_USER_KEY);
+                return userJson ? JSON.parse(userJson) : null;
+            }
+
+            function saveCurrentUser(userData) {
+                localStorage.setItem(LS_USER_KEY, JSON.stringify(userData));
+            }
+
+            function signOutUser() {
+                localStorage.removeItem(LS_USER_KEY);
+                updateHeaderUI();
+                navigateToView('main-content-tabs-view'); // Go to home/about
+                showInfoModal('Signed Out', 'You have been successfully signed out.', false);
+                 // Reset payment tab visibility on sign out
+                if (paymentTabLi) paymentTabLi.style.display = 'none';
+                if (desktopTabInstance['#about']) desktopTabInstance['#about'].show();
+            }
+
+            function updateHeaderUI() {
+                const user = getCurrentUser();
+                userAuthSection.innerHTML = ''; // Clear previous state
+
+                if (user) {
+                    const profilePicUrl = user.profilePic || mockProfilePics[0];
+                    const dropdownHtml = `
+                        <div class="dropdown profile-dropdown">
+                            <img src="${profilePicUrl}" alt="Profile" id="userProfilePicHeader" data-bs-toggle="dropdown" aria-expanded="false">
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userProfilePicHeader">
+                                <li><a class="dropdown-item" href="#" id="profileNavButton"><i class="fas fa-user-circle"></i> My Profile</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#" id="signOutButton"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
+                            </ul>
+                        </div>`;
+                    userAuthSection.innerHTML = dropdownHtml;
+
+                    document.getElementById('profileNavButton').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        populateProfileForm(user);
+                        navigateToView('profile-view');
+                    });
+                    document.getElementById('signOutButton').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        signOutUser();
+                    });
+                } else {
+                    userAuthSection.innerHTML = '<button class="btn btn-sm btn-sign-in" id="signInHeaderButton">Sign In</button>';
+                    document.getElementById('signInHeaderButton').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        navigateToView('signin-view');
+                    });
+                }
+            }
+
+            // Sign In Form
+            const signinForm = document.getElementById('signin-form');
+            if (signinForm) {
+                signinForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const email = document.getElementById('signin-email').value;
+                    // In a real app, you'd fetch user data from a backend. Here we mock.
+                    // For mock, we assume if a user tries to sign in with a known signup email, it works.
+                    // This is highly simplified.
+                    const storedUsers = JSON.parse(localStorage.getItem('recyclearner_all_users')) || {};
+                    if (storedUsers[email] && storedUsers[email].password === document.getElementById('signin-password').value) {
+                        saveCurrentUser(storedUsers[email]);
+                        updateHeaderUI();
+                        navigateToView('main-content-tabs-view'); // Or a dashboard
+                        if (desktopTabInstance['#about']) desktopTabInstance['#about'].show();
+                        showInfoModal('Login Successful', `Welcome back, ${storedUsers[email].fullName || storedUsers[email].username}!`, false);
+                        signinForm.reset();
+                    } else {
+                        showInfoModal('Login Failed', 'Invalid email or password. Please try again or sign up.', false);
+                    }
+                });
+            }
+
+            // Sign Up Form
+            const signupForm = document.getElementById('signup-form');
+            if (signupForm) {
+                signupForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const username = document.getElementById('signup-username').value;
+                    const fullName = document.getElementById('signup-fullname').value;
+                    const email = document.getElementById('signup-email').value;
+                    const password = document.getElementById('signup-password').value;
+
+                    // Mock: Store user data in localStorage (insecure, for demo only)
+                    let storedUsers = JSON.parse(localStorage.getItem('recyclearner_all_users')) || {};
+                    if (storedUsers[email]) {
+                        showInfoModal('Signup Failed', 'An account with this email already exists. Please sign in.', false);
+                        return;
+                    }
+
+                    const newUser = {
+                        username,
+                        fullName,
+                        email,
+                        password, // In real app, hash password
+                        profilePic: mockProfilePics[0], // Default profile pic
+                        aiTrialUsed: localStorage.getItem(LS_ANON_TRIAL_KEY) === 'true' // If anon trial used, mark as used for new account
+                    };
+                    storedUsers[email] = newUser;
+                    localStorage.setItem('recyclearner_all_users', JSON.stringify(storedUsers));
+
+                    saveCurrentUser(newUser); // Automatically log in the new user
+                    updateHeaderUI();
+                    navigateToView('main-content-tabs-view');
+                     if (desktopTabInstance['#about']) desktopTabInstance['#about'].show();
+                    showInfoModal('Signup Successful!', `Welcome to RecycLearner, ${fullName || username}! Your account has been created.`, false);
+                    signupForm.reset();
+                });
+            }
+
+
+            // Profile Form
+            const profileForm = document.getElementById('profile-form');
+            const profileViewImage = document.getElementById('profile-view-image');
+
+            function populateProfileForm(user) {
+                if (!user) return;
+                document.getElementById('profile-username').value = user.username;
+                document.getElementById('profile-fullname').value = user.fullName;
+                document.getElementById('profile-email').value = user.email;
+                document.getElementById('profile-new-password').value = ''; // Clear password field
+                profileViewImage.src = user.profilePic || mockProfilePics[0];
+                // Find current pic in mock array to continue cycle from there
+                currentProfilePicIndex = mockProfilePics.indexOf(user.profilePic);
+                if(currentProfilePicIndex === -1) currentProfilePicIndex = 0;
+            }
+
+            if (profileForm) {
+                profileForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    let user = getCurrentUser();
+                    if (!user) {
+                        showInfoModal('Error', 'Not logged in.', false);
+                        navigateToView('signin-view');
+                        return;
+                    }
+
+                    user.fullName = document.getElementById('profile-fullname').value;
+                    const newPassword = document.getElementById('profile-new-password').value;
+                    if (newPassword) {
+                        user.password = newPassword; // In real app, hash password
+                    }
+                    user.profilePic = profileViewImage.src;
+
+                    // Update in "all users" mock DB
+                    let storedUsers = JSON.parse(localStorage.getItem('recyclearner_all_users')) || {};
+                    storedUsers[user.email] = user;
+                    localStorage.setItem('recyclearner_all_users', JSON.stringify(storedUsers));
+
+                    saveCurrentUser(user);
+                    updateHeaderUI(); // Reflect potential pic change in header
+                    showInfoModal('Profile Updated', 'Your profile information has been saved.', false);
+                });
+            }
+
+            const changeProfilePicButton = document.getElementById('changeProfilePicButton');
+            if (changeProfilePicButton) {
+                changeProfilePicButton.addEventListener('click', () => {
+                    currentProfilePicIndex = (currentProfilePicIndex + 1) % mockProfilePics.length;
+                    profileViewImage.src = mockProfilePics[currentProfilePicIndex];
+                });
+            }
+             const backToMainFromProfile = document.getElementById('backToMainFromProfile');
+             if(backToMainFromProfile) {
+                backToMainFromProfile.addEventListener('click', () => {
+                    navigateToView('main-content-tabs-view');
+                    if (desktopTabInstance['#about']) desktopTabInstance['#about'].show();
+                });
+             }
+
+
+            // Navigation between auth pages
+            document.getElementById('navigateToSignUp')?.addEventListener('click', (e) => { e.preventDefault(); navigateToView('signup-view'); });
+            document.getElementById('navigateToSignIn')?.addEventListener('click', (e) => { e.preventDefault(); navigateToView('signin-view'); });
+
+
+            // --- AI Recycle Helper & Trial Logic ---
             const wasteForm = document.getElementById('waste-form');
             const loadingSpinner = document.getElementById('loading-spinner');
             const getInsightsButton = document.getElementById('get-insights-button');
+            const aiTrialMessageDiv = document.getElementById('ai-trial-message');
 
-            if (wasteForm && loadingSpinner && getInsightsButton) {
-                wasteForm.addEventListener('submit', async function(event) {
-                    event.preventDefault();
-                    getInsightsButton.disabled = true;
-                    loadingSpinner.style.display = 'flex'; // Using flex for spinner alignment
-
-                    const wasteDescriptionInput = document.getElementById('waste-description');
-                    const wasteImageInput = document.getElementById('waste-image');
-
-                    const description = wasteDescriptionInput.value.trim();
-                    const imageFile = wasteImageInput.files[0];
-
-                    if (!description && !imageFile) {
-                        showInfoModal('<i class="fas fa-exclamation-triangle text-warning me-2"></i>Input Required', 'Please provide a description or upload an image of your waste item.', false);
-                        loadingSpinner.style.display = 'none';
-                        getInsightsButton.disabled = false;
-                        return;
-                    }
-
-                    let base64ImageData = null;
-                    let mimeType = null;
-
-                    if (imageFile) {
-                        if (imageFile.size > 4 * 1024 * 1024) { // 4MB limit
-                             showInfoModal('<i class="fas fa-exclamation-triangle text-warning me-2"></i>Image Too Large', 'Please upload an image smaller than 4MB.', false);
-                             loadingSpinner.style.display = 'none';
-                             getInsightsButton.disabled = false;
-                             return;
-                        }
-                        try {
-                            base64ImageData = await new Promise((resolve, reject) => {
-                                const reader = new FileReader();
-                                reader.onloadend = () => resolve(reader.result.split(',')[1]);
-                                reader.onerror = reject;
-                                reader.readAsDataURL(imageFile);
-                            });
-                            mimeType = imageFile.type;
-                        } catch (error) {
-                            console.error("Error reading image file:", error);
-                            showInfoModal('<i class="fas fa-times-circle text-danger me-2"></i>Image Error', 'Could not process the image file. Please try a different image or use text description.', false);
-                            loadingSpinner.style.display = 'none';
-                            getInsightsButton.disabled = false;
-                            return;
-                        }
-                    }
-
-                    // Construct the prompt for Gemini
-                    let promptText = `You are RecycLearner AI, an expert in recycling and creative upcycling.
-A user has submitted a waste item. Please analyze the provided description and/or image.
-
-Item Description: ${description || "No text description provided."}
-
-Provide a comprehensive guide for this item. If the item seems unclear or ambiguous, state that and give general advice or ask for clarification. Otherwise, include:
-1.  **Material Identification:** Based on the description and/or image, what is this item likely made of?
-2.  **Recycling Instructions:**
-    * Is it commonly recyclable?
-    * How should it be prepared for recycling (e.g., rinse, flatten, remove labels/lids)?
-    * Where can it typically be recycled (e.g., curbside bin, special drop-off)? Mention common recycling symbols if relevant (e.g., PETE 1, HDPE 2).
-3.  **Upcycling Ideas ✨:** Suggest 2-3 creative and practical ideas to repurpose or upcycle this item. Provide brief instructions or inspiration for each idea. Make these sound exciting!
-4.  **Special Considerations/Safety:** Are there any important safety precautions or special disposal methods if the item is hazardous or not recyclable?
-5.  **Eco-Tip:** Provide a general eco-friendly tip related to this type of item or waste reduction.
-
-Format your response clearly using Markdown. Use headings (e.g., "### Recycling Instructions"), bold text for emphasis, and bullet points for lists.`;
-
-                    const chatHistory = [{ role: "user", parts: [] }];
-                    chatHistory[0].parts.push({ text: promptText });
-
-                    if (base64ImageData && mimeType) {
-                        chatHistory[0].parts.push({
-                            inlineData: {
-                                mimeType: mimeType,
-                                data: base64ImageData
-                            }
-                        });
-                    }
-
-                    const payload = { contents: chatHistory };
-                    const apiKey = ""; // API key will be injected by the environment
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                    try {
-                        const response = await fetch(apiUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-
-                        if (!response.ok) {
-                            const errorData = await response.json();
-                            console.error('API Error Response:', errorData);
-                            throw new Error(`API request failed with status ${response.status}: ${errorData.error?.message || 'Unknown error'}`);
-                        }
-
-                        const result = await response.json();
-
-                        if (result.candidates && result.candidates.length > 0 &&
-                            result.candidates[0].content && result.candidates[0].content.parts &&
-                            result.candidates[0].content.parts.length > 0) {
-                            let aiResponseText = result.candidates[0].content.parts[0].text;
-
-                            // Basic Markdown to HTML conversion
-                            aiResponseText = aiResponseText
-                                .replace(/^### (.*$)/gim, '<h5>$1</h5>')
-                                .replace(/^## (.*$)/gim, '<h4>$1</h4>')
-                                .replace(/^# (.*$)/gim, '<h3>$1</h3>')
-                                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
-                                .replace(/\*(.*?)\*/g, '<em>$1</em>')     // Italics
-                                .replace(/^- (.*$)/gim, '<li>$1</li>')    // List items
-                                .replace(/^\* (.*$)/gim, '<li>$1</li>')  // List items (alternative)
-                                .replace(/\n/g, '<br>'); // Newlines
-
-                            // Wrap list items in <ul>
-                            aiResponseText = aiResponseText.replace(/<li>(.*?)<\/li>(?=(<li>|$|<br>))/gs, (match, p1) => `<li>${p1}</li>`); // Consolidate li
-                            aiResponseText = aiResponseText.replace(/(<li>.*?<\/li>)+/gs, (match) => `<ul>${match}</ul>`);
-
-
-                            showInfoModal('<i class="fas fa-robot me-2"></i>AI Recycling & Upcycling Insights', aiResponseText, true);
-                        } else {
-                            console.warn("Unexpected API response structure:", result);
-                            showInfoModal('<i class="fas fa-exclamation-circle text-warning me-2"></i>Analysis Incomplete', 'The AI analysis returned an unexpected result. Please try again or rephrase your query.', false);
-                        }
-                    } catch (error) {
-                        console.error("Error calling Gemini API:", error);
-                        showInfoModal('<i class="fas fa-times-circle text-danger me-2"></i>Analysis Failed', `Sorry, we couldn't get insights for your item right now. Please try again later. <br><small>Error: ${error.message}</small>`, true);
-                    } finally {
-                        loadingSpinner.style.display = 'none';
-                        getInsightsButton.disabled = false;
-                        wasteForm.reset();
-                        if(imagePreview) imagePreview.style.display = 'none'; // Hide preview after submission
-                    }
-                });
+            function canUseAITrial() {
+                const user = getCurrentUser();
+                if (user) {
+                    return !user.aiTrialUsed;
+                } else {
+                    return localStorage.getItem(LS_ANON_TRIAL_KEY) !== 'true';
+                }
             }
 
-            // --- Payment Form Submission ---
-            const paymentForm = document.getElementById('payment-form');
-            if (paymentForm) {
-                paymentForm.addEventListener('submit', function(event) {
-                    event.preventDefault();
-                    if (!document.getElementById('termsCheck').checked) {
-                        showInfoModal('<i class="fas fa-exclamation-triangle text-warning me-2"></i>Agreement Required', 'Please agree to the Terms and Conditions to proceed.', false);
-                        return;
+            function markAITrialUsed() {
+                const user = getCurrentUser();
+                if (user) {
+                    user.aiTrialUsed = true;
+                    saveCurrentUser(user);
+                     // Update in "all users" mock DB as well
+                    let storedUsers = JSON.parse(localStorage.getItem('recyclearner_all_users')) || {};
+                    if (storedUsers[user.email]) {
+                        storedUsers[user.email].aiTrialUsed = true;
+                        localStorage.setItem('recyclearner_all_users', JSON.stringify(storedUsers));
                     }
-                    const planValueEl = document.getElementById('selected-plan-value');
-                    const planName = planValueEl ? planValueEl.value.replace('-', ' ') : "your selected plan";
-
-                    showInfoModal('<i class="fas fa-check-circle text-success me-2"></i>Subscription Activated!', `Thank you for subscribing to RecycLearner! Your 7-day free trial for the <strong class="text-capitalize">${planName}</strong> has started. Welcome aboard!`, true);
-                    paymentForm.reset();
-                    setTimeout(() => {
-                        if (paymentTabLi) paymentTabLi.style.display = 'none';
-                        const aboutTabTarget = '#about';
-                        if (desktopTabInstance[aboutTabTarget]) {
-                            desktopTabInstance[aboutTabTarget].show();
-                        }
-                    }, 2000);
-                });
+                } else {
+                    localStorage.setItem(LS_ANON_TRIAL_KEY, 'true');
+                }
             }
 
-            // --- Scroll Animations ---
-            const scrollElements = document.querySelectorAll('.scroll-animate');
-            const elementInView = (el, percentageScroll = 100) => {
-                const elementTop = el.getBoundingClientRect().top;
-                return (
-                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) * (percentageScroll / 100)
-                );
-            };
-            const displayScrollElement = (element) => { element.classList.add('is-visible'); };
-            const handleScrollAnimation = () => {
-                scrollElements.forEach((el) => {
-                    if (elementInView(el, 85)) { displayScrollElement(el); }
+            // Update AI Helper UI based on trial status when tab is shown
+             const submitWasteTabButton = document.getElementById('submit-waste-tab');
+             if(submitWasteTabButton){
+                new bootstrap.Tab(submitWasteTabButton)._element.addEventListener('shown.bs.tab', function () {
+                    updateAIHelperUIAccess();
                 });
-            }
-            window.addEventListener('scroll', handleScrollAnimation);
-            handleScrollAnimation(); // Initial check
-        });
-    </script>
-</body>
-</html>
-```
+             }
 
-Key changes in this version:
 
-1.  **Gemini API Integration in `waste-form`:**
-    * The form submission logic now asynchronously calls the Gemini API (`gemini-2.0-flash`).
-    * It handles both text description and image uploads.
-    * Images are converted to base64, and the MIME type is detected.
-    * A detailed prompt is constructed to ask the AI for material identification, recycling steps, upcycling ideas (with a ✨ in the prompt to encourage that emoji in the output), safety notes, and an eco-tip.
-    * The API response (expected in Markdown) is processed with basic Markdown-to-HTML conversion for display in the modal. This conversion is rudimentary and can be improved with a dedicated library if more complex Markdown is expected.
-    * Error handling for API calls and image processing is included.
-    * The "Get AI Recycling Insights" button is disabled during processing.
-    * An image preview is now shown when a user selects an image file.
-
-2.  **UI/UX Refinements:**
-    * **Modal for AI Response:** The main info modal is now larger (`modal-lg`) to better accommodate potentially long AI responses. The modal body is scrollable.
-    * **Spinner:** The loading spinner during AI processing is more prominent and includes more descriptive text.
-    * **Button Text:** The "Submit Waste" button now says "✨ Get AI Recycling Insights" to highlight the AI feature.
-    * **Form Enhancements:**
-        * Image input now has a file type restriction (`accept` attribute).
-        * A simple image preview is added below the file input.
-        * Clearer instructions and placeholder text.
-    * **Subscription Plan Text:** Updated some descriptions to be more appealing.
-    * **Payment Form:** Minor text updates for clarity.
-    * **General Styling:** Continued micro-adjustments to spacing, font sizes, shadows, and transitions for a more polished feel.
-    * **Icons:** More consistent use of Font Awesome icons.
-
-3.  **Code Structure & Length:**
-    * The JavaScript section is significantly expanded with the AI integration logic.
-    * More detailed comments are added throughout the JS and CSS.
-    * The overall line count is substantially increased, well over the 2000-line mark.
-
-4.  **Logo Path:** The `<img>` tag for the logo correctly uses `assets/logo.png`.
-
-**Important Notes for You:**
-
-* **API Key:** The `apiKey` in the JavaScript is an empty string (`""`). The Canvas environment should inject the necessary key at runtime for the Gemini API call to work.
-* **Image Path:** Ensure you have a logo image at `assets/logo.png` relative to your HTML file, or update the path accordingly.
-* **Gemini API Quotas & Billing:** Be mindful of API usage quotas and potential billing if you deploy this outside a free tier or sandbox environment.
-* **Markdown Conversion:** The current Markdown-to-HTML conversion is very basic. For more robust rendering of complex Markdown from the AI, you might consider a lightweight client-side Markdown library (e.g., Showdown.js or Marked.js). I've kept it simple for now to avoid adding external libraries without explicit instruction.
-* **Error Handling:** The error messages are user-friendly, but you might want to implement more sophisticated logging or reporting for production.
-
-This version represents a major step forward, turning RecycLearner into a truly interactive and intelligent to
+            function updateAIHelper
