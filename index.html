@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RecycLearner</title>
+    <title>
+        <span style="color: #007bff;">Recyc</span><span style="color: #28a745;">Learner</span> - AI Smart Recycling
+    </title>
     <link rel="icon" type="image/png" href="assets/logo.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -17,128 +19,128 @@
             --secondary-blue: #0056b3;
             --primary-green: #28a745;
             --secondary-green: #1e7e34;
-            --light-green: #e6f7ea;
-            --light-blue: #e0f3ff;
+            --light-green: #e6f7ea; 
+            --light-blue: #e0f3ff;  
             --accent-yellow: #ffc107;
             --accent-orange: #fd7e14;
-            --background-start: #f0f9ff;
-            --background-mid: #e6fff0;
-            --background-end: #fffde7;
-            --card-background: rgba(255, 255, 255, 0.92);
-            --header-background: rgba(255, 255, 255, 0.88);
-            --text-dark: #1a202c;
-            --text-medium: #4a5568;
-            --text-light: #718096;
-            --border-radius-xl: 40px;
-            --border-radius-lg: 30px;
-            --border-radius-md: 20px;
-            --border-radius-sm: 12px;
-            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.06);
-            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.1);
-            --shadow-strong: 0 12px 35px rgba(0, 0, 0, 0.12);
-            --transition-speed: 0.35s;
+            --background-start: #edf2f7; 
+            --background-mid: #e2e8f0;   
+            --background-end: #d4dde7;   
+            --card-background: rgba(255, 255, 255, 0.97); 
+            --header-background: rgba(255, 255, 255, 0.92); 
+            --text-dark: #1a202c;    
+            --text-medium: #4a5568; 
+            --text-light: #718096;  
+            --border-color: #cbd5e0; 
+            --border-radius-xl: 45px; 
+            --border-radius-lg: 35px;
+            --border-radius-md: 25px;
+            --border-radius-sm: 15px;
+            --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.06); 
+            --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.1); 
+            --shadow-strong: 0 15px 40px rgba(0, 0, 0, 0.12); 
+            --transition-speed: 0.4s; 
+            --transition-speed-fast: 0.25s;
         }
 
         /* --- Base Styles --- */
         body {
             margin: 0;
             font-family: 'Open Sans', sans-serif;
-            background: linear-gradient(135deg, var(--background-start), var(--background-mid), var(--background-end));
+            background: linear-gradient(140deg, var(--background-start), var(--background-mid), var(--background-end));
             background-attachment: fixed;
-            background-size: 400% 400%;
-            animation: bgAnimation 30s ease infinite;
+            background-size: 300% 300%; 
+            animation: bgAnimation 30s ease infinite alternate; 
             color: var(--text-dark);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.7; 
+            -webkit-font-smoothing: antialiased; 
+            -moz-osx-font-smoothing: grayscale; 
         }
 
         @keyframes bgAnimation {
             0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
             color: var(--text-dark);
+            line-height: 1.3; 
         }
         
         .lead {
-            font-size: 1.15rem;
-            font-weight: 400;
+            font-size: 1.25rem; 
+            font-weight: 300; 
             color: var(--text-medium);
+            margin-bottom: 1.5rem; 
         }
 
-        .view { display: none; animation: fadeIn 0.5s ease-in-out; }
+        .view { display: none; animation: viewFadeIn 0.7s cubic-bezier(0.25, 0.8, 0.25, 1); }
         .view.active { display: block; }
+
+        @keyframes viewFadeIn {
+            from { opacity: 0; transform: translateY(15px) scale(0.99); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
 
 
         /* --- Header --- */
         header {
             background-color: var(--header-background);
-            padding: 1rem 1.5rem; /* Adjusted padding */
-            backdrop-filter: blur(15px) saturate(180%);
-            -webkit-backdrop-filter: blur(15px) saturate(180%);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+            padding: 1rem 1.8rem; 
+            backdrop-filter: blur(20px) saturate(200%); 
+            -webkit-backdrop-filter: blur(20px) saturate(200%);
+            border-bottom: 1px solid var(--border-color); 
             position: sticky;
             top: 0;
             z-index: 1030;
             box-shadow: var(--shadow-medium);
             display: flex;
             align-items: center;
-            justify-content: space-between; /* For logo and auth section */
+            justify-content: space-between;
+            transition: padding var(--transition-speed-fast) ease-out;
         }
 
         .header-main-content {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 0.8rem; 
             animation: fadeInDown var(--transition-speed) ease-out;
         }
-         .header-logo-tagline {
-            display: flex; /* Default for larger screens */
+         .header-logo-container { 
+            display: flex; 
             align-items: center;
             gap: 0.8rem;
         }
 
         header .logo-img {
-            height: 50px; /* Slightly smaller */
+            height: 50px; 
             width: 50px;
             object-fit: contain;
             border-radius: var(--border-radius-sm);
+            transition: transform var(--transition-speed-fast) ease-out, filter 0.3s ease;
+        }
+        header .logo-img:hover {
+            transform: scale(1.1) rotate(-5deg); 
+            filter: drop-shadow(0 0 8px rgba(40, 167, 69, 0.3));
         }
 
         header .logo-title {
-            font-size: clamp(1.7rem, 4vw, 2.4rem);
+            font-size: clamp(1.7rem, 4vw, 2.4rem); 
             font-weight: 800;
             margin: 0;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.8px; 
         }
 
         header .logo-title .recyc { color: var(--primary-blue); }
         header .logo-title .learner { color: var(--primary-green); }
 
-        header .tagline {
-            font-size: clamp(0.8rem, 2vw, 1rem);
-            color: var(--text-medium);
-            margin-top: 0.2rem; /* Adjusted */
-            animation: fadeInUp var(--transition-speed) ease-out 0.2s backwards;
-            display: none; /* Hidden by default, shown on larger screens */
-        }
-        @media (min-width: 768px) {
-            header .tagline { display: block; margin-left: 10px;}
-             .header-logo-tagline { flex-direction: row; align-items: center; }
-        }
-         @media (max-width: 767.98px) { /* For smaller screens */
-            .header-logo-tagline {
-                flex-direction: column; /* Stack logo and title/tagline */
-                align-items: flex-start; /* Align items to the start */
-                gap: 0.2rem; /* Reduce gap */
-            }
+
+        @media (max-width: 819.98px) { 
             header .logo-title { font-size: 1.5rem; }
-            header .tagline { font-size: 0.75rem; margin-top: 0; }
-            header { padding: 0.75rem 1rem; }
+            header { padding: 0.7rem 1.2rem; }
         }
 
 
@@ -147,188 +149,283 @@
             position: relative;
         }
         #user-auth-section .btn-sign-in {
-            background-color: var(--primary-blue);
+            background: linear-gradient(50deg, var(--primary-blue), var(--secondary-blue)); 
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem; 
             border-radius: var(--border-radius-md);
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: background-color var(--transition-speed);
+            font-size: 0.88rem; 
+            transition: all var(--transition-speed-fast);
+            box-shadow: var(--shadow-light);
+            border:none;
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
         }
-        #user-auth-section .btn-sign-in:hover { background-color: var(--secondary-blue); }
+        #user-auth-section .btn-sign-in:hover { 
+            background: linear-gradient(50deg, var(--secondary-blue), var(--primary-blue));
+            transform: translateY(-2.5px) scale(1.04); 
+            box-shadow: var(--shadow-medium);
+        }
 
         #user-auth-section .profile-dropdown img {
-            width: 40px;
-            height: 40px;
+            width: 44px; 
+            height: 44px;
             border-radius: 50%;
             cursor: pointer;
-            border: 2px solid var(--primary-green);
-            padding: 2px;
+            border: 2.5px solid var(--primary-green); 
+            padding: 2.5px;
+            object-fit: cover; 
+            transition: transform var(--transition-speed-fast), box-shadow var(--transition-speed-fast), border-color 0.3s ease;
         }
+         #user-auth-section .profile-dropdown img:hover {
+            transform: scale(1.12); 
+            box-shadow: 0 0 18px rgba(40, 167, 69, 0.45); 
+            border-color: var(--accent-yellow);
+         }
         #user-auth-section .dropdown-menu {
-            border-radius: var(--border-radius-sm);
-            box-shadow: var(--shadow-medium);
-            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: var(--border-radius-md); 
+            box-shadow: var(--shadow-strong); 
+            border: none; 
+            padding: 0.35rem 0; 
+            animation: fadeInDropdown 0.25s ease-out;
+            min-width: 180px; 
+        }
+        @keyframes fadeInDropdown {
+            from { opacity: 0; transform: translateY(-12px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
         #user-auth-section .dropdown-item {
             font-weight: 500;
-            font-size: 0.9rem;
-            padding: 0.5rem 1rem;
+            font-size: 0.92rem; 
+            padding: 0.65rem 1.3rem; 
+            transition: background-color var(--transition-speed-fast), color var(--transition-speed-fast), padding-left 0.2s ease;
         }
-        #user-auth-section .dropdown-item i { margin-right: 8px; color: var(--text-medium); }
-        #user-auth-section .dropdown-item:hover { background-color: var(--light-blue); color: var(--primary-blue); }
+        #user-auth-section .dropdown-item i { margin-right: 12px; color: var(--text-medium); width: 18px; text-align: center;}
+        #user-auth-section .dropdown-item:hover { 
+            background-color: var(--light-blue); 
+            color: var(--primary-blue); 
+            padding-left: 1.5rem; 
+        }
+        #user-auth-section .dropdown-divider { margin: 0.35rem 0;}
 
 
         /* --- Navigation --- */
-        .main-nav-wrapper {
-            display: flex;
+        .main-nav-wrapper-container { 
+             transition: opacity 0.35s ease-out, max-height 0.45s cubic-bezier(0.25, 0.1, 0.25, 1), margin-bottom 0.45s cubic-bezier(0.25, 0.1, 0.25, 1), padding 0.45s cubic-bezier(0.25, 0.1, 0.25, 1);
+             max-height: 200px; /* Default max-height, can be anything larger than actual height */
+        }
+        .main-nav-wrapper-container.hidden-for-auth {
+            opacity: 0;
+            max-height: 0 !important; 
+            overflow: hidden;
+            margin-bottom: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            pointer-events: none;
+            /* display: none !important; /* Hard hide if max-height trick is not enough */
+        }
+        .main-nav-wrapper { /* This is the desktop tabs container */
+            display: flex; /* Will be overridden on mobile by media query */
             justify-content: center;
-            padding: 0.8rem 0;
-            margin-bottom: 1.8rem;
+            padding: 0.8rem 0; 
+            margin-bottom: 2.2rem; 
         }
 
+
         .nav-pills {
-            background-color: rgba(255, 255, 255, 0.75);
-            padding: 0.6rem;
+            background-color: rgba(255, 255, 255, 0.85); 
+            padding: 0.55rem; 
             border-radius: var(--border-radius-xl);
             display: inline-flex;
             flex-wrap: nowrap;
             overflow-x: auto;
-            box-shadow: var(--shadow-light);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-medium); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
             -ms-overflow-style: none;
             scrollbar-width: none;
+            border: 1px solid rgba(0,0,0,0.05); 
         }
         .nav-pills::-webkit-scrollbar { display: none; }
 
-        .nav-pills .nav-item { margin: 0 3px; flex-shrink: 0; }
+        .nav-pills .nav-item { margin: 0 4.5px; flex-shrink: 0; }
 
         .nav-pills .nav-link {
             border-radius: var(--border-radius-lg);
             color: var(--text-dark);
             font-weight: 600;
-            font-size: 0.9rem;
-            padding: 0.7rem 1.4rem;
+            font-size: 0.9rem; 
+            padding: 0.8rem 1.6rem; 
             transition: all var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1);
-            border: 2px solid transparent;
+            border: 2.5px solid transparent; 
             white-space: nowrap;
+            letter-spacing: 0.3px; 
         }
-        .nav-pills .nav-link i { margin-right: 7px; font-size: 0.9em; }
+        .nav-pills .nav-link i { margin-right: 9px; font-size: 1em; }
 
         .nav-pills .nav-link:hover, .nav-pills .nav-link:focus {
-            background-color: rgba(0, 0, 0, 0.05);
-            transform: translateY(-2px);
+            background-color: rgba(0, 0, 0, 0.07); 
+            transform: translateY(-3.5px); 
             color: var(--primary-blue);
             border-color: var(--light-blue);
         }
 
         .nav-pills .nav-link.active {
-            background: linear-gradient(60deg, var(--primary-blue), var(--primary-green));
+            background: linear-gradient(70deg, var(--primary-blue), var(--primary-green)); 
             color: white;
-            box-shadow: 0 6px 15px rgba(0, 100, 200, 0.2);
-            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 100, 200, 0.28); 
+            transform: translateY(-3.5px) scale(1.05); 
             border-color: transparent;
         }
         .nav-pills .nav-link.active:hover {
-             box-shadow: 0 8px 20px rgba(0, 100, 200, 0.3);
+             box-shadow: 0 10px 25px rgba(0, 100, 200, 0.38); 
         }
 
         /* --- Mobile Navigation (Offcanvas) --- */
         .mobile-nav-toggle {
-            display: none; /* Initially hidden, shown via media query */
-            font-size: 1.7rem;
+            /* display: none;  Will be controlled by JS/CSS media queries */
+            font-size: 1.65rem; 
             color: var(--primary-blue);
             background: var(--card-background);
-            border: 1px solid rgba(0,0,0,0.1);
-            padding: 0.4rem 0.7rem;
+            border: 1.5px solid rgba(0,0,0,0.09); 
+            padding: 0.38rem 0.7rem;
             border-radius: var(--border-radius-md);
             box-shadow: var(--shadow-medium);
-            /* position: fixed; top: 18px; right: 18px; z-index: 1031; */ /* Removed fixed positioning to place in header */
-            transition: transform var(--transition-speed) ease;
+            transition: transform var(--transition-speed-fast) ease, background-color var(--transition-speed-fast) ease,
+                        opacity 0.3s ease-out, visibility 0.3s ease-out, display 0.1s; 
         }
-        .mobile-nav-toggle:hover { transform: scale(1.1); }
+        .mobile-nav-toggle:hover { transform: scale(1.13) rotate(5deg); background-color: var(--light-blue); } 
+        .mobile-nav-toggle.hidden-for-auth {
+            opacity: 0 !important; 
+            visibility: hidden !important; 
+            pointer-events: none !important;
+            display: none !important; /* Hard hide */
+        }
+
 
         .offcanvas-header {
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1.5px solid #d3dce6; 
             background-color: var(--light-blue);
-            padding: 1rem 1.25rem;
+            padding: 1.15rem 1.35rem; 
         }
-        .offcanvas-title { color: var(--primary-blue); font-weight: 700; font-size: 1.2rem; }
+        .offcanvas-title { color: var(--primary-blue); font-weight: 700; font-size: 1.3rem; } 
         .offcanvas-body .nav-link {
             display: flex;
             align-items: center;
-            padding: 0.9rem 1.25rem;
-            margin-bottom: 0.4rem;
+            padding: 1rem 1.35rem; 
+            margin-bottom: 0.5rem;
             border-radius: var(--border-radius-md);
             color: var(--text-dark);
             font-weight: 600;
-            transition: background-color var(--transition-speed), color var(--transition-speed);
+            font-size: 0.95rem; 
+            transition: background-color var(--transition-speed-fast), color var(--transition-speed-fast), transform var(--transition-speed-fast), box-shadow 0.2s ease;
         }
-        .offcanvas-body .nav-link i { margin-right: 12px; font-size: 1.1em; width: 20px; text-align: center;}
-        .offcanvas-body .nav-link:hover { background-color: var(--light-green); color: var(--primary-green); }
-        .offcanvas-body .nav-link.active { background-color: var(--primary-green); color: white; }
+        .offcanvas-body .nav-link i { margin-right: 15px; font-size: 1.2em; width: 24px; text-align: center;}
+        .offcanvas-body .nav-link:hover { 
+            background-color: var(--light-green); 
+            color: var(--primary-green); 
+            transform: translateX(6px) scale(1.02); 
+            box-shadow: var(--shadow-light);
+        }
+        .offcanvas-body .nav-link.active { 
+            background-color: var(--primary-green); 
+            color: white; 
+            transform: translateX(6px) scale(1.02); 
+            box-shadow: var(--shadow-medium);
+        }
 
-        /* --- Tab Content --- */
-        .tab-content-wrapper { padding: 0 0.8rem; }
-        .tab-content {
+        /* --- Tab Content (within #home view) --- */
+        .tab-content-wrapper { /* This is the #main-content-tabs-view */
             background-color: var(--card-background);
-            padding: clamp(1.2rem, 3.5vw, 2.8rem);
+            padding: clamp(1.5rem, 4vw, 3.2rem); 
             border-radius: var(--border-radius-lg);
             box-shadow: var(--shadow-strong);
-            min-height: 480px;
-            backdrop-filter: blur(12px) saturate(160%);
-            -webkit-backdrop-filter: blur(12px) saturate(160%);
-            border: 1px solid rgba(255,255,255,0.25);
+            min-height: 520px; 
+            backdrop-filter: blur(18px) saturate(180%); 
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.35); 
+            margin-top: 0; 
         }
 
-        .tab-content h2, .auth-view h2, .profile-view h2 {
+        .tab-content-wrapper h2, .auth-view h2, .profile-view h2, #payment-view h2 { 
             color: var(--primary-green);
             font-weight: 700;
-            font-size: clamp(1.7rem, 3.8vw, 2.1rem);
-            margin-bottom: 1.8rem;
-            border-bottom: 3px solid var(--primary-blue);
-            padding-bottom: 0.6rem;
+            font-size: clamp(1.9rem, 4.2vw, 2.5rem); 
+            margin-bottom: 2.2rem; 
+            border-bottom: 4px solid var(--primary-blue); 
+            padding-bottom: 0.8rem; 
             display: inline-block;
-            animation: slideInFromLeft 0.7s ease-out;
+            animation: slideInFromLeft 0.8s ease-out; 
+        }
+        .tab-pane h3 {
+             font-size: clamp(1.6rem, 3.6vw, 2.1rem);
+             color: var(--primary-blue);
+             margin-top: 2.8rem; 
+             margin-bottom: 1.4rem;
+             padding-bottom: 0.6rem;
+             border-bottom: 2.5px dotted var(--light-blue); 
+        }
+        .tab-pane h3:first-of-type { 
+            margin-top: 0.5rem;
         }
 
-        .tab-pane { animation: fadeIn 0.6s ease-in-out; }
+
+        .tab-pane { animation: contentFadeIn 0.7s ease-in-out; }
+        @keyframes contentFadeIn {
+            from { opacity: 0; transform: scale(0.97) translateY(10px); } 
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
 
         .tab-pane p, .tab-pane ul {
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            line-height: 1.75;
+            font-size: clamp(0.98rem, 2.2vw, 1.08rem); 
+            line-height: 1.85; 
             color: var(--text-medium);
-            margin-bottom: 1.1rem;
+            margin-bottom: 1.3rem; 
         }
-        .tab-pane ul { list-style-type: none; padding-left: 0.5rem; }
+        .tab-pane ul { list-style-type: none; padding-left: 0.7rem; }
         .tab-pane ul li {
-            padding-left: 2em;
+            padding-left: 2.3em; 
             position: relative;
-            margin-bottom: 0.7em;
+            margin-bottom: 0.8rem; 
         }
         .tab-pane ul li::before {
-            content: "\f058";
+            content: "\f058"; 
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             color: var(--primary-green);
             position: absolute;
             left: 0;
-            top: 4px;
-            font-size: 1.1em;
+            top: 6px; 
+            font-size: 1.18em; 
+            transition: transform var(--transition-speed-fast) ease-out, color 0.2s ease;
+        }
+        .tab-pane ul li:hover::before {
+            transform: scale(1.25) rotate(12deg); 
+            color: var(--secondary-green);
         }
         .tab-pane strong { color: var(--text-dark); font-weight: 600; }
 
-        /* --- Subscription Plans --- */
+        /* --- Subscription Plans (within #plans-tab-pane) --- */
+        #plans-tab-pane h2 { 
+             text-align: center;
+             border-bottom: none; 
+             margin-bottom: 1.2rem;
+        }
+         #plans-tab-pane .lead {
+            text-align: center;
+            margin-bottom: 2.8rem; 
+         }
+
         .subscription-plan {
-            border: 1px solid #d8dde2;
+            border: 1.8px solid #c8d2db; 
             border-radius: var(--border-radius-md);
-            padding: 2.2rem 1.3rem;
+            padding: 2.5rem 1.5rem; 
             text-align: center;
             background-color: #ffffff;
             box-shadow: var(--shadow-medium);
-            margin-bottom: 1.8rem;
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            margin-bottom: 2.2rem; 
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -336,122 +433,128 @@
             position: relative;
             overflow: hidden;
         }
-        .subscription-plan::before {
+        .subscription-plan::before { 
             content: '';
             position: absolute;
-            top: -60px;
-            left: -60px;
-            width: 120px;
-            height: 120px;
+            top: -75px;
+            left: -75px;
+            width: 150px;
+            height: 150px;
             background: linear-gradient(45deg, var(--light-blue), var(--light-green));
             border-radius: 50%;
-            opacity: 0.15;
-            transition: transform 0.6s ease, opacity 0.6s ease;
+            opacity: 0.1; 
+            transition: transform 0.8s ease, opacity 0.8s ease; 
             z-index: 0;
         }
 
         .subscription-plan:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-14px) scale(1.035); 
             box-shadow: var(--shadow-strong);
+            border-color: var(--primary-blue); 
         }
-        .subscription-plan:hover::before { transform: scale(1.8); opacity: 0.25; }
+        .subscription-plan:hover::before { transform: scale(2.2); opacity: 0.18; }
 
         .subscription-plan > * { position: relative; z-index: 1; }
 
         .subscription-plan .plan-icon {
-            font-size: 2.8rem;
-            margin-bottom: 0.8rem;
+            font-size: 3.2rem; 
+            margin-bottom: 1rem;
             color: var(--primary-blue);
             transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
         }
-        .subscription-plan:hover .plan-icon { color: var(--primary-green); transform: rotateY(15deg); }
+        .subscription-plan:hover .plan-icon { color: var(--primary-green); transform: rotateY(20deg) scale(1.12) translateY(-5px); } 
 
         .subscription-plan h3 {
             color: var(--primary-blue);
             font-weight: 700;
-            font-size: 1.5rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.65rem; 
+            margin-bottom: 1rem;
         }
 
         .subscription-plan .plan-price {
-            font-size: 2rem;
+            font-size: 2.3rem; 
             font-weight: 800;
             color: var(--text-dark);
-            margin: 1.3rem 0;
+            margin: 1.5rem 0; 
         }
-        .subscription-plan .plan-price small { font-size: 0.9rem; color: var(--text-light); font-weight: 400;}
+        .subscription-plan .plan-price small { font-size: 0.98rem; color: var(--text-light); font-weight: 400;}
 
         .subscription-plan .plan-features {
             list-style: none;
             padding: 0;
-            margin: 0.8rem 0 1.3rem;
+            margin: 1rem 0 1.5rem;
             text-align: left;
             flex-grow: 1;
-            font-size: 0.9rem;
+            font-size: 0.94rem; 
         }
         .subscription-plan .plan-features li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem; 
             color: var(--text-medium);
-            padding-left: 1.6em;
-            position: relative; /* Added for ::before positioning */
+            padding-left: 1.8em; 
+            position: relative; 
         }
         .subscription-plan .plan-features li::before {
-            content: "\f00c";
+            content: "\f00c"; 
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             color: var(--primary-green);
             position: absolute;
             left: 0;
-            top: 4px;
-            font-size: 0.9em;
+            top: 5px; 
+            font-size: 0.98em; 
         }
 
         .subscription-plan .badge.popular-badge {
             position: absolute;
-            top: 12px;
-            right: 12px;
+            top: 15px; 
+            right: 15px;
             background-color: var(--accent-yellow) !important;
             color: var(--text-dark);
-            font-weight: 700;
-            padding: 0.4em 0.7em;
+            font-weight: 700; 
+            padding: 0.48em 0.78em; 
             border-radius: var(--border-radius-sm);
-            font-size: 0.75rem;
-            letter-spacing: 0.5px;
+            font-size: 0.8rem; 
+            letter-spacing: 0.65px;
+            transform: rotate(3.5deg); 
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1); 
         }
         .subscription-plan.popular-plan {
-            border: 2.5px solid var(--primary-blue);
-            transform: scale(1.04);
+            border: 3.5px solid var(--primary-blue); 
+            transform: scale(1.06); 
         }
          .subscription-plan.popular-plan:hover {
-             transform: translateY(-10px) scale(1.07);
+             transform: translateY(-14px) scale(1.09); 
          }
 
         /* --- Buttons --- */
         .btn-custom,
         .subscription-plan .btn-select-plan,
-        #payment-form button[type="submit"],
+        #payment-form button[type="submit"], 
         #waste-form button[type="submit"],
         .auth-view button[type="submit"],
         .profile-view button[type="submit"],
         .modal-footer .btn {
-            background: linear-gradient(60deg, var(--primary-blue), var(--secondary-blue));
+            background: linear-gradient(70deg, var(--primary-blue), var(--secondary-blue)); 
             color: white;
             border: none;
-            padding: 0.8rem 2rem;
+            padding: 0.9rem 2.3rem; 
             border-radius: var(--border-radius-lg);
             transition: all var(--transition-speed) ease;
             font-weight: 600;
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.22);
+            box-shadow: 0 7px 20px rgba(0, 123, 255, 0.28); 
             text-transform: uppercase;
-            letter-spacing: 0.7px;
-            margin-top: 0.8rem;
+            letter-spacing: 0.85px; 
+            margin-top: 1rem; 
             display: inline-flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            outline: none; 
+            position: relative; 
+            overflow: hidden; 
         }
         .btn-custom i, .subscription-plan .btn-select-plan i,
-        .auth-view button[type="submit"] i, .profile-view button[type="submit"] i { margin-right: 8px; font-size: 0.95em; }
+        .auth-view button[type="submit"] i, .profile-view button[type="submit"] i { margin-right: 10px; font-size: 1.05em; } 
 
         .btn-custom:hover,
         .subscription-plan .btn-select-plan:hover,
@@ -460,194 +563,239 @@
         .auth-view button[type="submit"]:hover,
         .profile-view button[type="submit"]:hover,
         .modal-footer .btn-primary:hover {
-            background: linear-gradient(60deg, var(--secondary-blue), var(--primary-blue));
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+            background: linear-gradient(70deg, var(--secondary-blue), var(--primary-blue));
+            transform: translateY(-4.5px) scale(1.045); 
+            box-shadow: 0 10px 25px rgba(0, 123, 255, 0.38); 
         }
+        .btn-custom:active, .subscription-plan .btn-select-plan:active { 
+            transform: translateY(-1.5px) scale(0.97); 
+            box-shadow: 0 4px 12px rgba(0,123,255,0.22);
+        }
+
+
         .btn-custom:disabled, #waste-form button[type="submit"]:disabled,
         .auth-view button[type="submit"]:disabled, .profile-view button[type="submit"]:disabled {
-            background: #adb5bd;
+            background: #bac3ca; 
             cursor: not-allowed;
             box-shadow: none;
             transform: none;
+            color: #788693; 
         }
 
 
         .subscription-plan .btn-contact {
-            background: linear-gradient(60deg, var(--primary-green), var(--secondary-green));
-            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.22);
+            background: linear-gradient(70deg, var(--primary-green), var(--secondary-green));
+            box-shadow: 0 7px 20px rgba(40, 167, 69, 0.28);
         }
         .subscription-plan .btn-contact:hover {
-            background: linear-gradient(60deg, var(--secondary-green), var(--primary-green));
-            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+            background: linear-gradient(70deg, var(--secondary-green), var(--primary-green));
+            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.38);
         }
          .btn-google {
-            background-color: #DB4437 !important; /* Google Red */
+            background-color: #DB4437 !important; 
             color: white !important;
             border: none;
+            box-shadow: 0 7px 20px rgba(219, 68, 55, 0.25);
         }
         .btn-google:hover {
             background-color: #C33D2E !important;
-            box-shadow: 0 6px 18px rgba(219, 68, 55, 0.3);
+            box-shadow: 0 9px 22px rgba(219, 68, 55, 0.33);
+            transform: translateY(-3.5px) scale(1.035);
         }
 
 
         /* --- Forms --- */
-        .form-control, .form-select {
+        .form-control, .form-select { 
             border-radius: var(--border-radius-sm);
-            padding: 0.85rem 1.2rem;
-            border: 1px solid #ced4da;
-            transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-            font-size: 0.95rem;
-            background-clip: padding-box;
+            padding: 0.95rem 1.3rem; 
+            border: 1.8px solid var(--border-color); 
+            transition: border-color var(--transition-speed-fast) ease, box-shadow var(--transition-speed-fast) ease, background-color 0.2s ease;
+            font-size: 1rem; 
+            background-clip: padding-box; 
+            color: var(--text-dark); 
         }
         .form-control:focus, .form-select:focus {
             border-color: var(--primary-blue);
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
+            box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.2); 
+            background-color: #fff; 
         }
-        textarea.form-control { min-height: 100px; }
+        textarea.form-control { min-height: 120px;  }
 
         .form-label {
             font-weight: 600;
             color: var(--text-dark);
-            margin-bottom: 0.4rem;
-            font-size: 0.9rem;
+            margin-bottom: 0.5rem; 
+            font-size: 0.94rem; 
         }
-        .form-text { color: var(--text-light); font-size: 0.8rem; }
-        .form-check-label { font-size: 0.9rem; color: var(--text-medium); }
+        .form-text { color: var(--text-light); font-size: 0.84rem; } 
+        .form-check-label { font-size: 0.94rem; color: var(--text-medium); cursor: pointer; }
         .form-check-input {
-            width: 1.1em; height: 1.1em;
-            margin-top: 0.25em;
+            width: 1.18em; height: 1.18em; 
+            margin-top: 0.3em; 
+            cursor: pointer;
+            border: 1.5px solid #adb5bd; 
         }
         .form-check-input:checked {
             background-color: var(--primary-green);
             border-color: var(--primary-green);
         }
         .form-check-input:focus {
-            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.2);
+            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25); 
         }
 
-        /* --- Waste Form Specific --- */
+        /* --- Waste Form Specific (Part of #ai-helper-tab-pane) --- */
         #waste-form .or-divider {
             display: flex;
             align-items: center;
             text-align: center;
             color: var(--text-light);
-            margin: 1.3rem 0;
+            margin: 1.5rem 0; 
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.94rem;
         }
         #waste-form .or-divider::before,
         #waste-form .or-divider::after {
             content: '';
             flex: 1;
-            border-bottom: 1px solid #d0d0d0;
+            border-bottom: 1.8px solid #d1d9e2; 
         }
-        #waste-form .or-divider:not(:empty)::before { margin-right: .7em; }
-        #waste-form .or-divider:not(:empty)::after { margin-left: .7em; }
+        #waste-form .or-divider:not(:empty)::before { margin-right: .8rem; }
+        #waste-form .or-divider:not(:empty)::after { margin-left: .8rem; }
 
         #waste-image-preview-container {
-            margin-top: 1rem;
+            margin-top: 1.2rem; 
             text-align: center;
+            min-height: 60px; 
+            padding: 10px; 
+            background-color: #f8f9fa; 
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--border-color);
         }
         #waste-image-preview {
             max-width: 100%;
-            max-height: 200px;
-            border-radius: var(--border-radius-sm);
-            border: 2px dashed var(--light-blue);
-            padding: 5px;
+            max-height: 230px; 
+            border-radius: var(--border-radius-sm); 
+            border: 2.5px dashed var(--light-blue); 
+            padding: 7px; 
             object-fit: contain;
             display: none;
+            background-color: #fff; 
         }
 
 
-        /* --- Authentication & Profile Views --- */
-        .auth-view, .profile-view {
-            max-width: 550px;
-            margin: 2rem auto;
-            padding: clamp(1.5rem, 4vw, 3rem);
+        /* --- Authentication & Profile Views & Payment View --- */
+        .auth-view, .profile-view, #payment-view {
+            max-width: 600px; 
+            margin: 2.8rem auto; 
+            padding: clamp(2rem, 5vw, 3.5rem); 
             background-color: var(--card-background);
             border-radius: var(--border-radius-lg);
             box-shadow: var(--shadow-strong);
-            backdrop-filter: blur(12px) saturate(160%);
-            -webkit-backdrop-filter: blur(12px) saturate(160%);
-            border: 1px solid rgba(255,255,255,0.25);
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.35);
         }
-        .auth-view .form-control, .profile-view .form-control {
-             padding: 0.9rem 1.2rem; /* Larger padding for auth forms */
-             font-size: 1rem;
+        #payment-view { max-width: 720px; } 
+        
+        .auth-view .form-control, .profile-view .form-control, #payment-view .form-control {
+             padding: 1rem 1.3rem; 
+             font-size: 1.05rem; 
         }
         .auth-view .btn-link-custom {
             color: var(--primary-blue);
             text-decoration: none;
             font-weight: 600;
-            transition: color var(--transition-speed);
+            transition: color var(--transition-speed-fast), letter-spacing var(--transition-speed-fast), text-shadow 0.2s ease;
         }
-        .auth-view .btn-link-custom:hover { color: var(--secondary-blue); text-decoration: underline;}
+        .auth-view .btn-link-custom:hover { 
+            color: var(--secondary-blue); 
+            text-decoration: underline; 
+            letter-spacing: 0.35px; 
+            text-shadow: 0 0 5px rgba(0,123,255,0.2); 
+        }
+        
         .auth-view .divider-text {
             display: flex;
             align-items: center;
             text-align: center;
             color: var(--text-light);
-            margin: 1.5rem 0;
+            margin: 1.8rem 0; 
             font-weight: 500;
+            font-size: 0.9rem; 
         }
         .auth-view .divider-text::before, .auth-view .divider-text::after {
-            content: ''; flex: 1; border-bottom: 1px solid #d0d0d0;
+            content: ''; flex: 1; border-bottom: 1.8px solid #d8dde2;
         }
-        .auth-view .divider-text:not(:empty)::before { margin-right: .7em; }
-        .auth-view .divider-text:not(:empty)::after { margin-left: .7em; }
+        .auth-view .divider-text:not(:empty)::before { margin-right: .85em; }
+        .auth-view .divider-text:not(:empty)::after { margin-left: .85em; }
 
         .profile-view .profile-picture-wrapper {
             text-align: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem; 
+            position: relative; 
         }
         .profile-view .profile-picture {
-            width: 120px;
-            height: 120px;
+            width: 135px; 
+            height: 135px;
             border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--primary-green);
-            box-shadow: var(--shadow-light);
-            margin-bottom: 0.5rem;
+            object-fit: cover; 
+            border: 5px solid var(--primary-green); 
+            box-shadow: var(--shadow-medium); 
+            margin-bottom: 0.7rem; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .profile-view .form-label { font-size: 0.95rem; }
+        .profile-view .profile-picture:hover {
+            transform: scale(1.06); 
+            box-shadow: 0 0 20px rgba(40,167,69,0.3); 
+        }
+        .profile-view .form-label { font-size: 1rem; } 
+        .profile-view #uploadProfilePicButton { 
+            font-size: 0.88rem; 
+            padding: 0.45rem 0.9rem;
+            background-color: var(--light-blue); 
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+        }
+        .profile-view #uploadProfilePicButton:hover {
+            background-color: var(--primary-blue);
+            color: white;
+        }
 
 
         /* --- Footer --- */
         footer {
             text-align: center;
-            padding: 2.5rem 1rem;
-            margin-top: 3.5rem;
-            background-color: rgba(0,0,0,0.03);
-            border-top: 1px solid rgba(0,0,0,0.06);
+            padding: 3rem 1.2rem; 
+            margin-top: 4.5rem; 
+            background-color: rgba(0,0,0,0.04); 
+            border-top: 2px solid rgba(0,0,0,0.08); 
         }
         footer p {
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
             color: var(--text-medium);
-            font-size: 0.9rem;
+            font-size: 0.94rem; 
         }
         footer .social-icons a {
             color: var(--text-light);
-            font-size: 1.4rem;
-            margin: 0 0.6rem;
-            transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
+            font-size: 1.5rem; 
+            margin: 0 0.7rem; 
+            transition: color var(--transition-speed-fast) ease, transform var(--transition-speed-fast) ease, text-shadow 0.2s ease;
         }
         footer .social-icons a:hover {
             color: var(--primary-blue);
-            transform: translateY(-3px) scale(1.15);
+            transform: translateY(-5px) scale(1.2); 
+            text-shadow: 0 0 10px rgba(0,123,255,0.3); 
         }
 
         /* --- Animations --- */
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideInFromLeft { from { opacity: 0; transform: translateX(-25px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-28px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInFromLeft { from { opacity: 0; transform: translateX(-35px); } to { opacity: 1; transform: translateX(0); } }
 
         .scroll-animate {
             opacity: 0;
-            transform: translateY(35px);
-            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+            transform: translateY(45px); 
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
         }
         .scroll-animate.is-visible {
             opacity: 1;
@@ -656,115 +804,124 @@
 
         /* --- Custom Modal --- */
         .modal-content {
-            border-radius: var(--border-radius-md);
+            border-radius: var(--border-radius-lg); 
             box-shadow: var(--shadow-strong);
             border: none;
         }
         .modal-header {
-            background: linear-gradient(60deg, var(--primary-blue), var(--primary-green));
+            background: linear-gradient(70deg, var(--primary-blue), var(--primary-green)); 
             color: white;
-            border-top-left-radius: var(--border-radius-md);
-            border-top-right-radius: var(--border-radius-md);
+            border-top-left-radius: var(--border-radius-lg);
+            border-top-right-radius: var(--border-radius-lg);
             border-bottom: none;
-            padding: 1rem 1.3rem;
+            padding: 1.2rem 1.5rem; 
         }
-        .modal-header .btn-close { filter: brightness(0) invert(1); opacity: 0.8; }
-        .modal-header .btn-close:hover { opacity: 1; }
-        .modal-title { font-weight: 700; font-size: 1.25rem; }
-        .modal-body { padding: 1.3rem 1.8rem; font-size: 1rem; line-height: 1.65;}
+        .modal-header .btn-close { filter: brightness(0) invert(1); opacity: 0.9; } 
+        .modal-header .btn-close:hover { opacity: 1; transform: rotate(90deg) scale(1.1); transition: transform 0.25s ease-in-out;} 
+        .modal-title { font-weight: 700; font-size: 1.35rem; } 
+        .modal-body { padding: 1.5rem 2rem; font-size: 1.05rem; line-height: 1.75;} 
         .modal-body h5 {
-            font-size: 1.1rem;
+            font-size: 1.2rem; 
             color: var(--primary-blue);
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
             font-weight: 700;
         }
         .modal-body ul {
-            padding-left: 20px;
+            padding-left: 24px; 
             list-style-type: disc;
         }
-         .modal-body ul li { padding-left: 0; margin-bottom: 0.3em; }
+         .modal-body ul li { padding-left: 0; margin-bottom: 0.4rem; } 
          .modal-body ul li::before { display: none; }
 
 
-        .modal-footer { border-top: 1px solid #e9ecef; padding: 0.8rem 1.3rem;}
+        .modal-footer { border-top: 1.8px solid #dbe3ed; padding: 1rem 1.5rem;} 
         .modal-footer .btn-secondary {
             background-color: #6c757d;
             border-color: #6c757d;
-            padding: 0.6rem 1.5rem;
+            padding: 0.7rem 1.7rem; 
+            font-weight: 500; 
         }
          .modal-footer .btn-secondary:hover {
             background-color: #5a6268;
             border-color: #545b62;
+            transform: translateY(-2.5px); 
          }
 
         /* --- Spinner for AI processing --- */
         .spinner-container {
-            display: none;
+            display: none; 
             text-align: center;
-            margin-top: 1.3rem;
-            padding: 1rem;
+            margin-top: 1.5rem; 
+            padding: 1.2rem; 
             background-color: var(--light-blue);
-            border-radius: var(--border-radius-sm);
+            border-radius: var(--border-radius-md); 
         }
         .spinner-border {
-            width: 2.5rem;
-            height: 2.5rem;
+            width: 3rem; 
+            height: 3rem;
             color: var(--primary-green);
-            border-width: .3em;
+            border-width: .35em; 
         }
         .spinner-container p {
-            margin-top: 0.6rem;
+            margin-top: 0.7rem; 
             color: var(--text-medium);
             font-style: italic;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1rem; 
         }
 
-        /* --- Responsive Adjustments --- */
-        @media (max-width: 991.98px) { /* Tablets */
-            .tab-content h2, .auth-view h2, .profile-view h2 { font-size: 1.7rem; }
-            .subscription-plan { margin-bottom: 1.3rem; }
-            .main-nav-wrapper { /* Keep main nav on tablet */
-                display: flex;
+        /* --- Responsive Adjustments for Navigation --- */
+        @media (max-width: 991.98px) { /* Tablet and mobile breakpoint */
+            .main-nav-wrapper-container:not(.hidden-for-auth) .main-nav-wrapper {
+                display: none !important; /* Hide desktop tabs */
             }
-             .mobile-nav-toggle { display: none; } /* Hide hamburger on tablet if main nav shown */
+            .mobile-nav-toggle:not(.hidden-for-auth) {
+                display: block !important; /* Show mobile toggle */
+            }
+        }
+        @media (min-width: 992px) { /* Desktop */
+             .main-nav-wrapper-container:not(.hidden-for-auth) .main-nav-wrapper {
+                display: flex !important; /* Ensure desktop tabs are shown */
+            }
+            .mobile-nav-toggle {
+                display: none !important; /* Hide mobile toggle */
+            }
         }
 
-        @media (max-width: 767.98px) { /* Landscape phones */
-             header .logo-img { height: 40px; width: 40px; }
-            /* header .header-main-content { flex-direction: column; align-items: flex-start; gap: 0.4rem;} */
-            /* .tagline { margin-top: 0.1rem; } */
 
-            .main-nav-wrapper { display: none; } /* Hide full nav on small screens */
-            .mobile-nav-toggle { display: block; } /* Show hamburger */
-             #user-auth-section .btn-sign-in { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
-             #user-auth-section .profile-dropdown img { width: 36px; height: 36px;}
+        @media (max-width: 991.98px) { 
+            .main-content-area h2, .auth-view h2, .profile-view h2, #payment-view h2 { font-size: 1.8rem; }
+            .subscription-plan { margin-bottom: 1.5rem; }
+        }
 
+        @media (max-width: 767.98px) { 
+             #user-auth-section .btn-sign-in { font-size: 0.82rem; padding: 0.5rem 1rem; }
+             #user-auth-section .profile-dropdown img { width: 40px; height: 40px;}
 
-            .tab-content, .auth-view, .profile-view { padding: 1.3rem; }
-            .tab-content h2, .auth-view h2, .profile-view h2 { font-size: 1.5rem; margin-bottom: 1.3rem; }
+            .main-content-area, .auth-view, .profile-view, #payment-view { padding: 1.5rem; }
+            .main-content-area h2, .auth-view h2, .profile-view h2, #payment-view h2 { font-size: 1.6rem; margin-bottom: 1.5rem; }
 
-            .subscription-plan { padding: 1.8rem 1rem; }
-            .subscription-plan h3 { font-size: 1.3rem; }
-            .subscription-plan .plan-price { font-size: 1.7rem; }
-            .subscription-plan.popular-plan { transform: scale(1); }
-            .subscription-plan.popular-plan:hover { transform: translateY(-7px) scale(1.02); }
+            .subscription-plan { padding: 2rem 1.2rem; }
+            .subscription-plan h3 { font-size: 1.4rem; }
+            .subscription-plan .plan-price { font-size: 1.8rem; }
+            .subscription-plan.popular-plan { transform: scale(1); } 
+            .subscription-plan.popular-plan:hover { transform: translateY(-9px) scale(1.035); }
 
-            #payment-form .row .col-md-6 { margin-bottom: 0.8rem; }
+            #payment-form .row .col-md-6 { margin-bottom: 1rem; }
             #payment-form .row .col-md-6:last-child { margin-bottom: 0; }
 
-            footer { padding: 1.8rem 0.8rem; }
+            footer { padding: 2rem 1rem; }
         }
 
-        @media (max-width: 575.98px) { /* Portrait phones */
-            header { padding: 0.6rem 0.75rem; }
-            header .logo-img { height: 32px; width: 32px; }
-            header .logo-title { font-size: 1.3rem; }
+        @media (max-width: 575.98px) { 
+            header { padding: 0.7rem 0.9rem; }
+            header .logo-img { height: 36px; width: 36px; }
+            header .logo-title { font-size: 1.4rem; }
 
-            .tab-content, .auth-view, .profile-view { padding: 0.9rem; }
-            .tab-content h2, .auth-view h2, .profile-view h2 { font-size: 1.3rem; }
-            .tab-pane p, .tab-pane ul { font-size: 0.85rem; }
+            .main-content-area, .auth-view, .profile-view, #payment-view { padding: 1.1rem; }
+            .main-content-area h2, .auth-view h2, .profile-view h2, #payment-view h2 { font-size: 1.4rem; }
+            .main-content-area p, .main-content-area ul { font-size: 0.9rem; }
 
             .btn-custom,
             .subscription-plan .btn-select-plan,
@@ -772,14 +929,12 @@
             #waste-form button[type="submit"],
             .auth-view button[type="submit"],
             .profile-view button[type="submit"] {
-                padding: 0.7rem 1.3rem;
-                font-size: 0.85rem;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
             }
-            .mobile-nav-toggle { font-size: 1.5rem; } /* top: 15px; right: 15px; */
-            .offcanvas-title { font-size: 1.1rem; }
-            .offcanvas-body .nav-link { padding: 0.8rem 1rem; }
-             #user-auth-section .btn-sign-in { font-size: 0.75rem; padding: 0.3rem 0.6rem; }
-             #user-auth-section .profile-dropdown img { width: 32px; height: 32px;}
+            .offcanvas-title { font-size: 1.2rem; }
+             #user-auth-section .btn-sign-in { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+             #user-auth-section .profile-dropdown img { width: 36px; height: 36px;}
         }
     </style>
 </head>
@@ -787,284 +942,301 @@
 <body>
     <header>
         <div class="header-main-content">
-             <button class="mobile-nav-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav" aria-controls="mobileNav" aria-label="Toggle navigation">
+            <button class="mobile-nav-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav" aria-controls="mobileNav" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
-            <div class="header-logo-tagline">
-                <img src="assets/logo.png" alt="RecycLearner Logo" class="logo-img">
-                <div>
-                    <h1 class="logo-title">
-                        <span class="recyc">Recyc</span><span class="learner">Learner</span>
-                    </h1>
-                    <p class="tagline">AI-Powered Guidance for a Greener Tomorrow.</p>
-                </div>
+            <div class="header-logo-container">
+                <a href="#home" id="logoLinkToHome" style="text-decoration: none; display: flex; align-items: center; gap: 0.7rem;">
+                    <img src="assets/logo.png" alt="RecycLearner Logo" class="logo-img">
+                    <div>
+                        <h1 class="logo-title">
+                            <span class="recyc">Recyc</span><span class="learner">Learner</span>
+                        </h1>
+                    </div>
+                </a>
             </div>
         </div>
         <div id="user-auth-section">
             </div>
     </header>
 
-
-    <div id="main-nav-wrapper-container"> <div class="main-nav-wrapper">
+    <div id="main-nav-wrapper-container"> 
+        <nav class="main-nav-wrapper" aria-label="Main navigation">
             <ul class="nav nav-pills" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="true"><i class="fas fa-info-circle"></i>About Us</button>
+                    <button class="nav-link active" id="about-tab-btn" data-bs-toggle="tab" data-bs-target="#about-tab-pane" type="button" role="tab" aria-controls="about-tab-pane" aria-selected="true"><i class="fas fa-info-circle"></i>About Us</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="commitment-tab" data-bs-toggle="tab" data-bs-target="#commitment" type="button" role="tab" aria-controls="commitment" aria-selected="false"><i class="fas fa-seedling"></i>Our Mission</button>
+                    <button class="nav-link" id="mission-tab-btn" data-bs-toggle="tab" data-bs-target="#mission-tab-pane" type="button" role="tab" aria-controls="mission-tab-pane" aria-selected="false"><i class="fas fa-seedling"></i>Our Mission</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="how-it-works-tab" data-bs-toggle="tab" data-bs-target="#how-it-works" type="button" role="tab" aria-controls="how-it-works" aria-selected="false"><i class="fas fa-lightbulb"></i>How It Works</button>
+                    <button class="nav-link" id="how-it-works-tab-btn" data-bs-toggle="tab" data-bs-target="#how-it-works-tab-pane" type="button" role="tab" aria-controls="how-it-works-tab-pane" aria-selected="false"><i class="fas fa-lightbulb"></i>How It Works</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="submit-waste-tab" data-bs-toggle="tab" data-bs-target="#submit-waste" type="button" role="tab" aria-controls="submit-waste" aria-selected="false"><i class="fas fa-microchip"></i>AI Recycle Helper</button>
+                    <button class="nav-link" id="ai-helper-tab-btn" data-bs-toggle="tab" data-bs-target="#ai-helper-tab-pane" type="button" role="tab" aria-controls="ai-helper-tab-pane" aria-selected="false"><i class="fas fa-microchip"></i>AI Recycle Helper</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="subscription-plans-tab" data-bs-toggle="tab" data-bs-target="#subscription-plans" type="button" role="tab" aria-controls="subscription-plans" aria-selected="false"><i class="fas fa-star"></i>Our Plans</button>
+                    <button class="nav-link" id="plans-tab-btn" data-bs-toggle="tab" data-bs-target="#plans-tab-pane" type="button" role="tab" aria-controls="plans-tab-pane" aria-selected="false"><i class="fas fa-star"></i>Our Plans</button>
                 </li>
-                <li class="nav-item" role="presentation" style="display: none;" id="payment-tab-li">
-                     <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#payment" type="button" role="tab" aria-controls="payment" aria-selected="false"><i class="fas fa-credit-card"></i>Checkout</button>
-                </li>
-            </ul>
-        </div>
+                </ul>
+        </nav>
     </div>
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileNav" aria-labelledby="mobileNavLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="mobileNavLabel"><img src="assets/logo.png" alt="RecycLearner" style="height: 24px; margin-right: 8px; vertical-align: middle;"><span class="recyc">Recyc</span><span class="learner">Learner</span></h5>
+            <h5 class="offcanvas-title" id="mobileNavLabel"><img src="assets/logo.png" alt="RecycLearner" style="height: 28px; margin-right: 10px; vertical-align: middle;"><span class="recyc">Recyc</span><span class="learner">Learner</span></h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body">
+        <nav class="offcanvas-body" aria-label="Mobile navigation">
             <ul class="nav flex-column">
-                <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#about" data-bs-dismiss="offcanvas"><i class="fas fa-info-circle"></i>About Us</button></li>
-                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#commitment" data-bs-dismiss="offcanvas"><i class="fas fa-seedling"></i>Our Mission</button></li>
-                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#how-it-works" data-bs-dismiss="offcanvas"><i class="fas fa-lightbulb"></i>How It Works</button></li>
-                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#submit-waste" data-bs-dismiss="offcanvas"><i class="fas fa-microchip"></i>AI Recycle Helper</button></li>
-                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#subscription-plans" data-bs-dismiss="offcanvas"><i class="fas fa-star"></i>Our Plans</button></li>
+                <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#about-tab-pane" data-bs-dismiss="offcanvas" type="button" role="tab"><i class="fas fa-info-circle"></i>About Us</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#mission-tab-pane" data-bs-dismiss="offcanvas" type="button" role="tab"><i class="fas fa-seedling"></i>Our Mission</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#how-it-works-tab-pane" data-bs-dismiss="offcanvas" type="button" role="tab"><i class="fas fa-lightbulb"></i>How It Works</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#ai-helper-tab-pane" data-bs-dismiss="offcanvas" type="button" role="tab"><i class="fas fa-microchip"></i>AI Recycle Helper</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#plans-tab-pane" data-bs-dismiss="offcanvas" type="button" role="tab"><i class="fas fa-star"></i>Our Plans</button></li>
             </ul>
-        </div>
+        </nav>
     </div>
 
     <div class="container mt-3">
-
         <div id="main-content-tabs-view" class="view active tab-content-wrapper">
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
-                    <h2>Welcome to RecycLearner: Your AI Recycling Companion</h2>
-                    <p class="lead">At RecycLearner, we're transforming the complex world of waste management into a simple, engaging, and impactful experience. Our intelligent platform uses the power of Artificial Intelligence to provide you with clear, actionable guidance on recycling and upcycling. We believe that sustainable living should be accessible to everyone, empowering individuals and businesses alike to make a real difference for our planet.</p>
-                    <p>Consider 'waste' not as an endpoint, but as a resource waiting to be rediscovered. RecycLearner is designed to help you unlock this potential. Whether you're unsure how to recycle a specific item, looking for creative ways to give old materials new life, or aiming to reduce your overall environmental footprint, our AI is here to assist. Join our community of eco-conscious innovators and let's build a more sustainable future, one recycled item at a time.</p>
+                <div class="tab-pane fade show active" id="about-tab-pane" role="tabpanel" aria-labelledby="about-tab-btn">
+                    <article>
+                        <h2>Welcome to RecycLearner: Your AI Recycling Companion</h2>
+                        <p class="lead">At RecycLearner, we're passionately simplifying the often-confusing world of waste management, transforming it into an engaging, educational, and impactful journey towards sustainability. Our state-of-the-art intelligent platform masterfully leverages cutting-edge Artificial Intelligence to furnish you with exceptionally clear, actionable, and personalized guidance on both recycling best practices and innovative upcycling projects. We champion the fundamental belief that sustainable living should be an accessible and empowering endeavor for everyone, enabling individuals, families, and businesses alike to forge a tangible, positive difference for our precious planet.</p>
+                        <p>We invite you to reimagine 'waste' not as a finality, but as a dormant resource brimming with untapped potential, eagerly awaiting its renaissance. RecycLearner is meticulously engineered and continuously refined to assist you in unlocking this vast, often overlooked, potential. Whether you find yourself puzzling over the correct disposal method for a specific item, seeking ingenious and creative ways to breathe vibrant new life into old materials, or are resolutely striving to minimize your overall environmental footprint, our sophisticated AI is your dedicated, ever-learning assistant. Become an integral part of our rapidly growing, vibrant community of eco-conscious innovators, forward-thinkers, and proactive change-makers. Let's collaboratively and enthusiastically build a more sustainable, resilient, and verdant future, one thoughtfully recycled or creatively upcycled item at a time. Your actions, amplified by knowledge, create ripples of positive change.</p>
+                    </article>
                 </div>
-
-                <div class="tab-pane fade" id="commitment" role="tabpanel" aria-labelledby="commitment-tab">
-                    <h2>Our Mission: A Greener Planet Through Smart Technology</h2>
-                    <p>RecycLearner is driven by a profound commitment to environmental sustainability. We aim to be a catalyst for positive change by equipping our users with the knowledge and tools needed for responsible and innovative waste management. Our core pillars are:</p>
-                    <ul>
-                        <li><strong>Empowering Action:</strong> Delivering precise, AI-driven recycling and upcycling instructions to significantly reduce landfill waste and promote resource conservation.</li>
-                        <li><strong>Pioneering Eco-Innovation:</strong> Continuously enhancing our AI algorithms and platform features to offer the most advanced and user-friendly sustainability solutions.</li>
-                        <li><strong>Fostering Eco-Literacy:</strong> Educating users about the principles of a circular economy, the lifecycle of materials, and the collective impact of individual sustainable choices.</li>
-                        <li><strong>Cultivating a Global Movement:</strong> Uniting individuals, communities, and organizations in a shared mission to protect and preserve our environment for future generations.</li>
-                    </ul>
-                    <p>We firmly believe that technology, when guided by purpose, can solve some of our world's most pressing challenges. Your engagement with RecycLearner contributes directly to a healthier planet and a more sustainable way of life.</p>
+                <div class="tab-pane fade" id="mission-tab-pane" role="tabpanel" aria-labelledby="mission-tab-btn">
+                    <article>
+                        <h2>Our Mission: A Greener Planet Through Smart Technology & Shared Knowledge</h2>
+                        <p class="lead">RecycLearner is propelled by a profound and unwavering commitment to comprehensive environmental stewardship and the promotion of a truly circular economy. We aspire to be a dynamic and influential catalyst for positive, sustainable change by equipping our users worldwide with the critical knowledge, practical tools, and inspiring ideas necessary for responsible, innovative, and effective waste management. Our foundational pillars are built upon:</p>
+                        <ul>
+                            <li><strong>Empowering Informed Action:</strong> Delivering exceptionally precise, AI-driven recycling and upcycling instructions tailored to your specific items and location (where available), designed to dramatically reduce landfill burdens, conserve valuable natural resources, and minimize pollution.</li>
+                            <li><strong>Pioneering Eco-Innovation & Continuous Learning:</strong> Relentlessly enhancing our AI algorithms, expanding our material database, and refining our platform features to consistently offer the most advanced, intuitive, and user-friendly sustainability solutions. We are committed to learning and evolving alongside the ever-changing landscape of recycling technologies and sustainable practices.</li>
+                            <li><strong>Fostering Comprehensive Eco-Literacy:</strong> Passionately educating users on the core principles of the circular economy, the intricate lifecycle of diverse materials, the environmental impact of various waste streams, and the profound, cumulative power of individual and collective sustainable choices. We aim to cultivate a deeper understanding and appreciation for resource management.</li>
+                            <li><strong>Cultivating a Global Collaborative Movement:</strong> Actively uniting individuals, households, educational institutions, community groups, and forward-thinking organizations in a shared, passionate, and urgent mission to protect, preserve, and restore our precious global environment for current and future generations. We believe in the power of collective effort.</li>
+                        </ul>
+                        <p>We ardently believe that technology, when thoughtfully designed and ethically guided by a clear, altruistic purpose, possesses the extraordinary power to address some of our world's most pressing and complex environmental challenges. Your active engagement with RecycLearner is not merely a personal act but a direct and meaningful contribution to a healthier, more vibrant planet and a more sustainable, equitable, and fulfilling way of life for all. Together, we can learn, adapt, and innovate for a brighter, greener tomorrow.</p>
+                    </article>
                 </div>
+                 <div class="tab-pane fade" id="how-it-works-tab-pane" role="tabpanel" aria-labelledby="how-it-works-tab-btn">
+                    <article>
+                        <h2>Unlock Recycling Wisdom in 3 Simple Steps</h2>
+                        <p class="lead">RecycLearner demystifies your journey to effective sustainable waste management through an elegant, intuitive, and AI-powered process. Discover how to effortlessly transform your everyday waste items from potential pollutants into valuable resources, contributing to a healthier planet with every informed decision:</p>
+                        <div class="row g-4 g-lg-5 mt-4 align-items-stretch"> 
+                            <div class="col-md-4 d-flex scroll-animate">
+                                <div class="text-center p-4 p-lg-5 border rounded-3 shadow-sm bg-white h-100" style="transition: all 0.3s ease-in-out;">
+                                    <i class="fas fa-camera-retro fa-3x text-primary-blue mb-3" style="transition: transform 0.3s ease;"></i>
+                                    <h4>1. Submit Your Item</h4>
+                                    <p>Simply upload a clear, well-lit photograph of the waste item in question, or provide a concise yet detailed text description. The more specific information you can share with our AI, the more accurate and helpful its guidance will be!</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 d-flex scroll-animate" style="transition-delay: 0.15s;">
+                                <div class="text-center p-4 p-lg-5 border rounded-3 shadow-sm bg-white h-100" style="transition: all 0.3s ease-in-out;">
+                                    <i class="fas fa-robot fa-3x text-primary-green mb-3" style="transition: transform 0.3s ease;"></i>
+                                    <h4>2. AI Magic Happens</h4>
+                                    <p>Our sophisticated, custom-trained Gemini-powered AI instantly springs into action, meticulously processing your submission. It identifies materials, cross-references vast databases for recyclability, and uncovers exciting, creative upcycling potential you might not have considered.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 d-flex scroll-animate" style="transition-delay: 0.3s;">
+                                 <div class="text-center p-4 p-lg-5 border rounded-3 shadow-sm bg-white h-100" style="transition: all 0.3s ease-in-out;">
+                                    <i class="fas fa-directions fa-3x text-accent-orange mb-3" style="transition: transform 0.3s ease;"></i>
+                                    <h4>3. Get Clear Guidance</h4>
+                                    <p>Within moments, you'll receive personalized, easy-to-understand, and actionable instructions. This includes steps for correct recycling preparation, innovative upcycling project ideas, and crucial safe disposal methods for any hazardous or non-recyclable items.</p>
+                                </div>
+                            </div>
+                        </div>
+                         <style> 
+                            #how-it-works-tab-pane .col-md-4 > div:hover { transform: translateY(-10px) scale(1.02); box-shadow: var(--shadow-strong); }
+                            #how-it-works-tab-pane .col-md-4 > div:hover i { transform: scale(1.2) rotate(3deg); }
+                        </style>
+                        <p class="mt-4 pt-3 border-top">From common everyday packaging like plastics, paper, and glass, to more complex and often confusing items such as electronics, textiles, and mixed materials, RecycLearner is your dedicated, intelligent AI partner. We empower you to make informed, eco-friendly choices with unwavering confidence, every single day. <strong>Your first AI analysis is on us! Try it below.</strong></p>
+                    </article>
+                </div>
+                <div class="tab-pane fade" id="ai-helper-tab-pane" role="tabpanel" aria-labelledby="ai-helper-tab-btn">
+                    <article>
+                        <h2><i class="fas fa-microchip text-primary-blue me-2"></i>AI Recycle Helper: Get Instant Advice!</h2>
+                        <p class="lead">Unsure how to handle a specific waste item? Don't let it end up in a landfill by mistake! Let our advanced Gemini-powered AI analyze it for you. Provide an image or describe the item in detail, and our system will furnish you with tailored recycling insights, upcycling suggestions, and safe disposal alternatives where applicable. <strong>Remember, every user gets one complimentary AI analysis to experience the power of RecycLearner!</strong></p>
+                        <div id="ai-trial-message" class="alert alert-info mt-3 fs-small" style="display: none;"></div> 
+                        <form id="waste-form" class="mt-4 pt-3 border-top">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="waste-image" class="form-label"><i class="fas fa-image me-2"></i>Upload an Image (Optional, but highly recommended!)</label>
+                                    <input type="file" class="form-control form-control-lg" id="waste-image" name="waste-image" accept="image/jpeg, image/png, image/webp, image/heic">
+                                     <div class="form-text mt-1">Clear, well-lit photos of a single item work best. Max file size: 4MB. Accepted: JPG, PNG, WEBP, HEIC.</div>
+                                     <div id="waste-image-preview-container" class="mt-2">
+                                         <img id="waste-image-preview" src="#" alt="Image Preview" />
+                                     </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="waste-description" class="form-label"><i class="fas fa-pencil-alt me-2"></i>Describe Your Waste Material (Required if no image)</label>
+                                    <textarea class="form-control form-control-lg" id="waste-description" name="waste-description" rows="6"
+                                        placeholder="e.g., Empty plastic milk jug (HDPE #2, white, with cap), old iPhone 8 (cracked screen), stained cotton t-shirt (blue), mixed office paper with staples, empty aluminum soda can, clear glass jar with metal lid. The more details, the better the AI's advice!"></textarea>
+                                    <div class="form-text mt-1">Include material type, color, any labels or symbols, brand (if relevant for electronics), and condition.</div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn-custom btn-lg" id="get-insights-button"><i class="fas fa-lightbulb me-2"></i>✨ Get AI Recycling Insights</button>
+                            </div>
+                        </form>
+                        <div class="spinner-container mt-4" id="loading-spinner">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="spinner-border me-3" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="mb-0">Our AI is meticulously analyzing your item... Please wait a moment for your personalized recycling plan!</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="tab-pane fade" id="plans-tab-pane" role="tabpanel" aria-labelledby="plans-tab-btn">
+                    <article id="subscription-plans"> 
+                        <h2>Supercharge Your Sustainability: Choose Your Plan</h2>
+                        <p class="lead">Elevate your eco-impact with features designed for every level of commitment, from the curious beginner to the dedicated eco-warrior and sustainability-focused businesses. All our paid plans come with a <strong>no-obligation 7-day free trial!</strong> After your initial complimentary AI analysis, a subscription plan is required to continue accessing unlimited AI insights and premium features.</p>
+                        <div class="row justify-content-center"> 
+                            <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch scroll-animate">
+                                <div class="subscription-plan">
+                                    <div>
+                                        <i class="fas fa-leaf plan-icon"></i> 
+                                        <h3>Starter Spark</h3>
+                                        <p class="text-muted small mb-3">Perfect for individuals beginning their eco-journey and looking to build sustainable habits.</p>
+                                        <ul class="plan-features">
+                                            <li>Standard AI Waste Analysis (10 queries/month after trial)</li>
+                                            <li>Access to Core Recycling Guides & Local Tips</li>
+                                            <li>Basic Personal Impact Tracking Dashboard</li>
+                                            <li>Community Forum Access for Q&A and Sharing</li>
+                                            <li>Email Support</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="plan-price">$9.99<small>/year</small></p>
+                                        <button class="btn-select-plan w-100" id="selectStarterPlanBtn"><i class="fas fa-check-circle"></i> Start Free Trial</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch scroll-animate" style="transition-delay: 0.15s;">
+                                <div class="subscription-plan popular-plan">
+                                     <span class="badge popular-badge"><i class="fas fa-fire me-1"></i>Most Popular</span>
+                                    <div>
+                                        <i class="fas fa-recycle plan-icon"></i> 
+                                        <h3>Eco Pro</h3>
+                                        <p class="text-muted small mb-3">For dedicated recyclers, eco-conscious households, and sustainability enthusiasts.</p>
+                                        <ul class="plan-features">
+                                            <li><strong>Unlimited</strong> Advanced AI Waste Analysis</li>
+                                            <li>✨ Access to Exclusive Upcycling Project Library & DIY Guides</li>
+                                            <li>Detailed Personal & Household Impact Reporting</li>
+                                            <li>Priority Email & Live Chat Support</li>
+                                            <li>Early Access to New AI Features & Beta Programs</li>
+                                            <li>Downloadable Recycling Cheat Sheets</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="plan-price">$19.99<small>/year</small></p>
+                                        <button class="btn-select-plan w-100" id="selectEcoProPlanBtn"><i class="fas fa-star"></i> Start Free Trial</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch scroll-animate" style="transition-delay: 0.3s;">
+                                <div class="subscription-plan">
+                                    <div>
+                                        <i class="fas fa-building-shield plan-icon"></i> 
+                                        <h3>Green Business</h3>
+                                        <p class="text-muted small mb-3">Tailored solutions for small to medium businesses committed to corporate sustainability.</p>
+                                         <ul class="plan-features">
+                                            <li>Customized AI Model Integration Options</li>
+                                            <li>Bulk Waste Auditing & Analysis Tools</li>
+                                            <li>Comprehensive Sustainability Dashboards & Reporting</li>
+                                            <li>Dedicated Account Management & Onboarding</li>
+                                            <li>Team Collaboration Features & User Roles</li>
+                                            <li>API Access for Integrations (Add-on)</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="plan-price">Custom Pricing</p>
+                                        <button class="btn-select-plan btn-contact w-100" id="contactSalesPlanBtn"><i class="fas fa-handshake"></i> Contact Sales</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-center mt-4 text-muted small">All prices are in USD. Subscription automatically renews yearly after the trial period unless canceled. You can cancel anytime.</p>
+                    </article>
+                </div>
+                </div>
+        </div>
 
-                <div class="tab-pane fade" id="how-it-works" role="tabpanel" aria-labelledby="how-it-works-tab">
-                    <h2>Unlock Recycling Wisdom in 3 Simple Steps</h2>
-                    <p>RecycLearner streamlines your path to sustainable waste management with an intuitive, AI-driven process. Discover how to transform your waste into a valuable resource effortlessly:</p>
-                    <div class="row g-4 mt-3 align-items-stretch">
-                        <div class="col-md-4 d-flex scroll-animate">
-                            <div class="text-center p-3 border rounded-3 shadow-sm bg-white h-100">
-                                <i class="fas fa-camera-retro fa-3x text-primary-blue mb-3"></i>
-                                <h4>1. Submit Your Item</h4>
-                                <p>Easily upload a clear photograph of the waste item or provide a detailed text description. The more information you give, the smarter our AI can be!</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4 d-flex scroll-animate" style="transition-delay: 0.15s;">
-                            <div class="text-center p-3 border rounded-3 shadow-sm bg-white h-100">
-                                <i class="fas fa-robot fa-3x text-primary-green mb-3"></i>
-                                <h4>2. AI Magic Happens</h4>
-                                <p>Our sophisticated Gemini-powered AI instantly processes your submission, identifying materials, assessing recyclability, and uncovering creative upcycling potential.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4 d-flex scroll-animate" style="transition-delay: 0.3s;">
-                             <div class="text-center p-3 border rounded-3 shadow-sm bg-white h-100">
-                                <i class="fas fa-directions fa-3x text-accent-orange mb-3"></i>
-                                <h4>3. Get Clear Guidance</h4>
-                                <p>Receive personalized, easy-to-understand instructions for correct recycling, innovative upcycling projects, and safe disposal methods for any tricky items.</p>
-                            </div>
-                        </div>
+
+        <div id="payment-view" class="view"> 
+            <h2>Secure Checkout: <span id="selected-plan-name-title" class="text-primary-blue">Your Plan</span></h2>
+            <p id="selected-plan-description" class="text-muted mb-4">You're just a step away from unlocking powerful recycling tools and joining our mission for a greener planet!</p>
+            <form id="payment-form">
+                <input type="hidden" id="selected-plan-value" name="selected-plan-value">
+                <div class="alert alert-success d-flex align-items-center shadow-sm mb-4" role="alert">
+                    <i class="fas fa-shield-alt fa-2x me-3 text-success"></i>
+                    <div>
+                        <strong>Start Your 7-Day Free Trial!</strong> You will not be charged today.
+                        Your selected plan: <strong id="selected-plan-price-info" class="text-success">$0.00/year</strong>.
                     </div>
-                    <p class="mt-4">From everyday packaging like plastics and paper to more complex items such as electronics and textiles, RecycLearner is your dedicated AI partner for making informed, eco-friendly choices with confidence. <strong>Try it once for free in the "AI Recycle Helper" tab!</strong></p>
                 </div>
 
-                <div class="tab-pane fade" id="submit-waste" role="tabpanel" aria-labelledby="submit-waste-tab">
-                    <h2><i class="fas fa-microchip text-primary-blue me-2"></i>AI Recycle Helper: Get Instant Advice!</h2>
-                    <p>Unsure how to handle a specific waste item? Let our Gemini-powered AI analyze it for you. Provide an image or describe the item, and we'll give you tailored recycling and upcycling suggestions. <strong>Every user gets one free analysis!</strong></p>
-                    <div id="ai-trial-message" class="alert alert-info mt-3" style="display: none;"></div>
-                    <form id="waste-form" class="mt-4">
-                        <div class="mb-3">
-                            <label for="waste-image" class="form-label"><i class="fas fa-image me-2"></i>Upload an Image (Optional, but helps!)</label>
-                            <input type="file" class="form-control" id="waste-image" name="waste-image" accept="image/jpeg, image/png, image/webp">
-                             <div class="form-text">Clear, well-lit photos of a single item work best. Max file size: 4MB.</div>
-                             <div id="waste-image-preview-container">
-                                 <img id="waste-image-preview" src="#" alt="Image Preview" />
-                             </div>
-                        </div>
-                        <div class="or-divider my-3">OR / AND</div>
-                        <div class="mb-3">
-                            <label for="waste-description" class="form-label"><i class="fas fa-pencil-alt me-2"></i>Describe Your Waste Material (Required if no image)</label>
-                            <textarea class="form-control" id="waste-description" name="waste-description" rows="4"
-                                placeholder="e.g., Empty plastic milk jug (HDPE #2), old smartphone (brand/model), stained cotton t-shirt, mixed paper scraps, aluminum can, glass jar with lid. Be as specific as possible!"></textarea>
-                        </div>
-                        <div class="text-center mt-4">
-                            <button type="submit" class="btn-custom btn-lg" id="get-insights-button"><i class="fas fa-lightbulb me-2"></i>✨ Get AI Recycling Insights</button>
-                        </div>
-                    </form>
-                    <div class="spinner-container mt-4" id="loading-spinner">
-                        <div class="d-flex align-items-center justify-content-center">
-                            <div class="spinner-border me-3" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                            <p class="mb-0">Our AI is thinking... Please wait a moment for your personalized recycling plan!</p>
-                        </div>
+                <div class="row mt-4">
+                    <div class="col-md-12 mb-3">
+                        <label for="cardholder-name" class="form-label">Cardholder Name</label>
+                        <input type="text" class="form-control form-control-lg" id="cardholder-name" placeholder="Full Name as on Card" required autocomplete="cc-name">
                     </div>
                 </div>
-
-                <div class="tab-pane fade" id="subscription-plans" role="tabpanel" aria-labelledby="subscription-plans-tab">
-                    <h2>Supercharge Your Sustainability: Choose Your Plan</h2>
-                    <p class="text-center mb-5 lead">Elevate your eco-impact with features designed for every level of commitment. All paid plans include a <strong>no-obligation 7-day free trial!</strong> After your first free AI analysis, a plan is needed for more.</p>
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch scroll-animate">
-                            <div class="subscription-plan">
-                                <div>
-                                    <i class="fas fa-seedling plan-icon"></i>
-                                    <h3>Starter Spark</h3>
-                                    <p class="text-muted small">Ideal for individuals exploring sustainable habits.</p>
-                                    <ul class="plan-features">
-                                        <li>Standard AI Waste Analysis (10/month after trial)</li>
-                                        <li>Core Recycling Guides</li>
-                                        <li>Basic Impact Tracking</li>
-                                        <li>Community Forum Access</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <p class="plan-price">$9.99<small>/year</small></p>
-                                    <button class="btn-select-plan w-100" onclick="showPaymentPage('Starter Spark Plan', '$9.99/year', 'Begin your journey with essential AI recycling tools and community support.')"><i class="fas fa-check-circle"></i> Start Trial</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch scroll-animate" style="transition-delay: 0.15s;">
-                            <div class="subscription-plan popular-plan">
-                                 <span class="badge popular-badge"><i class="fas fa-fire me-1"></i>Most Popular</span>
-                                <div>
-                                    <i class="fas fa-rocket plan-icon"></i>
-                                    <h3>Eco Pro</h3>
-                                    <p class="text-muted small">For dedicated recyclers & eco-conscious households.</p>
-                                    <ul class="plan-features">
-                                        <li>Advanced AI Waste Analysis (Unlimited)</li>
-                                        <li>✨ Exclusive Upcycling Project Library</li>
-                                        <li>Detailed Impact Reporting</li>
-                                        <li>Priority Email & Chat Support</li>
-                                        <li>Early Access to New AI Features</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <p class="plan-price">$19.99<small>/year</small></p>
-                                    <button class="btn-select-plan w-100" onclick="showPaymentPage('Eco Pro Plan', '$19.99/year', 'Unlock unlimited AI analysis, exclusive upcycling projects, and premium support.')"><i class="fas fa-star"></i> Start Trial</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch scroll-animate" style="transition-delay: 0.3s;">
-                            <div class="subscription-plan">
-                                <div>
-                                    <i class="fas fa-globe-americas plan-icon"></i>
-                                    <h3>Green Business</h3>
-                                    <p class="text-muted small">Custom solutions for organizations committed to sustainability.</p>
-                                     <ul class="plan-features">
-                                        <li>Tailored AI Model Integration</li>
-                                        <li>Bulk Waste Auditing Tools</li>
-                                        <li>Comprehensive Sustainability Dashboards</li>
-                                        <li>Dedicated Account Management</li>
-                                        <li>Team Collaboration Features</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <p class="plan-price">Custom Pricing</p>
-                                    <button class="btn-select-plan btn-contact w-100" onclick="showInfoModal('Green Business Plan Inquiry', 'We\'re excited to help your business achieve its sustainability targets! Please reach out to our enterprise team at <a href=\'mailto:biz@recyclearner.com\'>biz@recyclearner.com</a> or call us at (555) ECO-SMART for a personalized consultation and quote.')"><i class="fas fa-handshake"></i> Contact Sales</button>
-                                </div>
-                            </div>
-                        </div>
+                <div class="mb-3">
+                    <label for="card-number" class="form-label">Card Number</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
+                        <input type="text" class="form-control form-control-lg" id="card-number" placeholder="•••• •••• •••• ••••" required pattern="\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}" title="Enter a valid 16-digit card number" autocomplete="cc-number">
                     </div>
                 </div>
-
-                <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
-                    <h2>Secure Checkout: <span id="selected-plan-name-title" class="text-primary-blue">Your Plan</span></h2>
-                    <p id="selected-plan-description" class="text-muted mb-3">You're just a step away from unlocking powerful recycling tools!</p>
-                    <form id="payment-form">
-                        <input type="hidden" id="selected-plan-value" name="selected-plan-value">
-                        <div class="alert alert-success d-flex align-items-center shadow-sm" role="alert">
-                            <i class="fas fa-shield-alt fa-2x me-3 text-success"></i>
-                            <div>
-                                <strong>Start Your 7-Day Free Trial!</strong> You will not be charged today.
-                                Your selected plan: <strong id="selected-plan-price-info" class="text-success">$0.00/year</strong>.
-                            </div>
-                        </div>
-
-                        <div class="row mt-4">
-                            <div class="col-md-12 mb-3">
-                                <label for="cardholder-name" class="form-label">Cardholder Name</label>
-                                <input type="text" class="form-control form-control-lg" id="cardholder-name" placeholder="Full Name as on Card" required>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="card-number" class="form-label">Card Number</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
-                                <input type="text" class="form-control form-control-lg" id="card-number" placeholder="•••• •••• •••• ••••" required pattern="\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}" title="Enter a valid 16-digit card number">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-7 mb-3 mb-md-0">
-                                <label for="expiry-date" class="form-label">Expiry Date</label>
-                                <input type="text" class="form-control form-control-lg" id="expiry-date" placeholder="MM / YY" required pattern="(0[1-9]|1[0-2])\s?\/\s?\d{2}" title="Enter date as MM / YY">
-                            </div>
-                            <div class="col-md-5">
-                                <label for="cvv" class="form-label">CVV/CVC</label>
-                                <input type="text" class="form-control form-control-lg" id="cvv" placeholder="•••" required pattern="\d{3,4}" title="Enter 3 or 4 digit CVV">
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                            <label for="billing-email" class="form-label">Billing Email Address</label>
-                             <div class="input-group">
-                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                <input type="email" class="form-control form-control-lg" id="billing-email" placeholder="you@example.com" required>
-                            </div>
-                        </div>
-                         <div class="form-check mb-4">
-                            <input class="form-check-input" type="checkbox" value="" id="termsCheck" required>
-                            <label class="form-check-label" for="termsCheck">
-                                I have read and agree to the RecycLearner <a href="#" onclick="showInfoModal('Terms and Conditions', 'This is placeholder text for RecycLearner\'s Terms and Conditions. In a real application, this would link to a comprehensive T&C page covering service usage, subscription terms, payment policies, cancellation rights, data privacy (linking to Privacy Policy), intellectual property, acceptable use, disclaimers, limitation of liability, and governing law. Users must agree to these terms to proceed.')">Terms and Conditions</a> and acknowledge the 7-day free trial.
-                            </label>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn-custom btn-lg"><i class="fas fa-lock me-2"></i>Activate My Free Trial Now</button>
-                        </div>
-                    </form>
+                <div class="row mb-3">
+                    <div class="col-md-7 mb-3 mb-md-0">
+                        <label for="expiry-date" class="form-label">Expiry Date</label>
+                        <input type="text" class="form-control form-control-lg" id="expiry-date" placeholder="MM / YY" required pattern="(0[1-9]|1[0-2])\s?\/\s?\d{2}" title="Enter date as MM / YY" autocomplete="cc-exp">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="cvv" class="form-label">CVV/CVC</label>
+                        <input type="text" class="form-control form-control-lg" id="cvv" placeholder="•••" required pattern="\d{3,4}" title="Enter 3 or 4 digit CVV" autocomplete="cc-csc">
+                    </div>
                 </div>
-            </div>
+                <div class="mb-4">
+                    <label for="billing-email" class="form-label">Billing Email Address</label>
+                     <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        <input type="email" class="form-control form-control-lg" id="billing-email" placeholder="you@example.com" required autocomplete="email">
+                    </div>
+                </div>
+                 <div class="form-check mb-4">
+                    <input class="form-check-input" type="checkbox" value="" id="termsCheck" required>
+                    <label class="form-check-label" for="termsCheck">
+                        I have read and agree to the RecycLearner <a href="#" onclick="showInfoModal('Terms and Conditions', 'This is placeholder text for RecycLearner\'s Terms and Conditions. In a real application, this would link to a comprehensive T&C page covering service usage, subscription terms, payment policies, cancellation rights, data privacy (linking to Privacy Policy), intellectual property, acceptable use, disclaimers, limitation of liability, and governing law. Users must agree to these terms to proceed.')">Terms and Conditions</a> and acknowledge the 7-day free trial.
+                    </label>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn-custom btn-lg"><i class="fas fa-lock me-2"></i>Activate My Free Trial Now</button>
+                </div>
+                 <div class="text-center mt-3">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" id="backToHomeFromPayment"><i class="fas fa-arrow-left"></i> Back to Plans</button>
+                </div>
+            </form>
         </div>
 
 
         <div id="signin-view" class="view auth-view">
             <h2><i class="fas fa-sign-in-alt me-2 text-primary-blue"></i>Sign In to RecycLearner</h2>
-            <p class="text-muted mb-4">Welcome back! Access your account to continue your sustainability journey.</p>
+            <p class="text-muted mb-4">Welcome back! Access your account to continue your sustainability journey and manage your subscription.</p>
             <form id="signin-form">
                 <div class="mb-3">
                     <label for="signin-email" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="signin-email" placeholder="you@example.com" required>
+                    <input type="email" class="form-control" id="signin-email" placeholder="you@example.com" required autocomplete="email">
                 </div>
                 <div class="mb-3">
                     <label for="signin-password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="signin-password" placeholder="Enter your password" required>
+                    <input type="password" class="form-control" id="signin-password" placeholder="Enter your password" required autocomplete="current-password">
                 </div>
                 <div class="d-grid gap-2 mt-4">
                     <button type="submit" class="btn-custom btn-lg"><i class="fas fa-paper-plane"></i> Sign In</button>
@@ -1072,48 +1244,48 @@
                 </div>
             </form>
             <p class="text-center mt-4">
-                Don't have an account yet? <a href="#" id="navigateToSignUp" class="btn-link-custom">Create one here!</a>
+                Don't have an account yet? <a href="#sign-up" id="navigateToSignUp" class="btn-link-custom">Create one here!</a>
             </p>
         </div>
 
         <div id="signup-view" class="view auth-view">
-            <h2><i class="fas fa-user-plus me-2 text-primary-green"></i>Create Your Account</h2>
-            <p class="text-muted mb-4">Join RecycLearner today and start making a difference!</p>
+            <h2><i class="fas fa-user-plus me-2 text-primary-green"></i>Create Your RecycLearner Account</h2>
+            <p class="text-muted mb-4">Join our community today, start your free AI trial, and make a positive impact on the planet!</p>
             <form id="signup-form">
                 <div class="mb-3">
                     <label for="signup-username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="signup-username" placeholder="Choose a unique username" required>
+                    <input type="text" class="form-control" id="signup-username" placeholder="Choose a unique username" required autocomplete="username">
                 </div>
                 <div class="mb-3">
                     <label for="signup-fullname" class="form-label">Full Name</label>
-                    <input type="text" class="form-control" id="signup-fullname" placeholder="Enter your full name" required>
+                    <input type="text" class="form-control" id="signup-fullname" placeholder="Enter your full name" required autocomplete="name">
                 </div>
                 <div class="mb-3">
                     <label for="signup-email" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="signup-email" placeholder="you@example.com" required>
+                    <input type="email" class="form-control" id="signup-email" placeholder="you@example.com" required autocomplete="email">
                 </div>
                 <div class="mb-3">
                     <label for="signup-password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="signup-password" placeholder="Create a strong password" required>
+                    <input type="password" class="form-control" id="signup-password" placeholder="Create a strong password (min. 6 characters)" required minlength="6" autocomplete="new-password">
                 </div>
                  <div class="d-grid gap-2 mt-4">
-                    <button type="submit" class="btn-custom btn-lg"><i class="fas fa-check-circle"></i> Sign Up</button>
+                    <button type="submit" class="btn-custom btn-lg"><i class="fas fa-check-circle"></i> Sign Up & Start Trial</button>
                     <button type="button" class="btn-custom btn-lg btn-google" onclick="showInfoModal('Feature Not Implemented', 'Sign up with Google is not yet available. Please use the form above.', false)"><i class="fab fa-google"></i> Sign Up with Google</button>
                 </div>
             </form>
             <p class="text-center mt-4">
-                Already have an account? <a href="#" id="navigateToSignIn" class="btn-link-custom">Sign in here!</a>
+                Already have an account? <a href="#sign-in" id="navigateToSignIn" class="btn-link-custom">Sign in here!</a>
             </p>
         </div>
 
         <div id="profile-view" class="view profile-view">
             <h2><i class="fas fa-id-card me-2 text-primary-blue"></i>Manage Your Profile</h2>
-            <p class="text-muted mb-4">Keep your information up to date.</p>
+            <p class="text-muted mb-4">Keep your information up to date, manage your subscription, and personalize your RecycLearner experience.</p>
             <form id="profile-form">
                 <div class="profile-picture-wrapper">
-                    <img src="assets/logo.png" alt="Profile Picture" id="profile-view-image" class="profile-picture">
-                    <input type="file" id="profile-pic-upload" accept="image/*" style="display: none;">
-                    <button type="button" class="btn btn-sm btn-outline-secondary mt-2" id="changeProfilePicButton"><i class="fas fa-camera"></i> Change Picture (Mock)</button>
+                    <img src="assets/logo.png" alt="Profile Picture" id="profile-view-image" class="profile-picture" onerror="this.src='assets/logo.png';">
+                    <input type="file" id="profile-pic-upload-input" accept="image/*" style="display: none;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary mt-2" id="uploadProfilePicButton"><i class="fas fa-camera"></i> Upload New Picture</button>
                 </div>
                 <div class="mb-3">
                     <label for="profile-username" class="form-label">Username</label>
@@ -1121,7 +1293,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="profile-fullname" class="form-label">Full Name</label>
-                    <input type="text" class="form-control" id="profile-fullname">
+                    <input type="text" class="form-control" id="profile-fullname" autocomplete="name">
                 </div>
                 <div class="mb-3">
                     <label for="profile-email" class="form-label">Email Address</label>
@@ -1129,20 +1301,21 @@
                 </div>
                 <div class="mb-3">
                     <label for="profile-new-password" class="form-label">New Password (Optional)</label>
-                    <input type="password" class="form-control" id="profile-new-password" placeholder="Enter new password to change">
+                    <input type="password" class="form-control" id="profile-new-password" placeholder="Enter new password to change (min. 6 characters)" minlength="6" autocomplete="new-password">
                 </div>
                 <div class="d-grid mt-4">
                     <button type="submit" class="btn-custom btn-lg"><i class="fas fa-save"></i> Save Changes</button>
                 </div>
             </form>
              <div class="text-center mt-4">
-                <button class="btn btn-outline-secondary" id="backToMainFromProfile"><i class="fas fa-arrow-left"></i> Back to Main Site</button>
+                <button type="button" class="btn btn-outline-secondary" id="backToMainFromProfile"><i class="fas fa-arrow-left"></i> Back to Main Site</button>
             </div>
         </div>
 
-    </div> <footer class="scroll-animate">
+    </div> 
+    <footer class="scroll-animate">
         <div class="container">
-            <img src="assets/logo.png" alt="RecycLearner Small Logo" style="height: 40px; margin-bottom: 10px; opacity: 0.7;">
+            <img src="assets/logo.png" alt="RecycLearner Small Logo" style="height: 42px; margin-bottom: 12px; opacity: 0.75;">
             <p>&copy; <span id="currentYear"></span> <span style="color: var(--primary-blue);">Recyc</span><span style="color: var(--primary-green);">Learner</span>. All Rights Reserved.
             <br>Pioneering AI for a Sustainable Planet. Dubai, UAE.</p>
             <div class="social-icons mt-3">
@@ -1179,128 +1352,162 @@
 
             // --- Global Elements ---
             const views = document.querySelectorAll('.view');
-            const mainContentTabsView = document.getElementById('main-content-tabs-view');
-            const signinView = document.getElementById('signin-view');
-            const signupView = document.getElementById('signup-view');
-            const profileView = document.getElementById('profile-view');
             const userAuthSection = document.getElementById('user-auth-section');
-            const mainNavWrapperContainer = document.getElementById('main-nav-wrapper-container');
-            const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+            const mainNavWrapperContainer = document.getElementById('main-nav-wrapper-container'); 
+            const mobileNavToggle = document.querySelector('.mobile-nav-toggle'); 
+            const logoLinkToHome = document.getElementById('logoLinkToHome');
 
-
-            // Mock Profile Pictures
-            const mockProfilePics = [
-                'assets/logo.png', // Default or initial
-                'https://via.placeholder.com/120/007bff/FFFFFF?Text=UserA',
-                'https://via.placeholder.com/120/28a745/FFFFFF?Text=UserB',
-                'https://via.placeholder.com/120/ffc107/000000?Text=UserC'
-            ];
-            let currentProfilePicIndex = 0;
+            // --- Client-Side Routing Setup ---
+            const routes = {
+                'home': 'main-content-tabs-view', 
+                'profile': 'profile-view',
+                'sign-up': 'signup-view',
+                'sign-in': 'signin-view',
+                'checkout': 'payment-view' 
+            };
+            const viewToHashMapping = Object.fromEntries(Object.entries(routes).map(([key, value]) => [value, key]));
 
 
             // --- View Management ---
-            function navigateToView(viewId) {
+            function navigateToView(viewId, updateBrowserHash = true) {
                 views.forEach(v => v.classList.remove('active'));
                 const targetView = document.getElementById(viewId);
                 if (targetView) {
                     targetView.classList.add('active');
+                } else {
+                    console.warn(`View with ID '${viewId}' not found. Defaulting to home.`);
+                    document.getElementById(routes['home'])?.classList.add('active'); // Check if routes['home'] exists
+                     if (updateBrowserHash) window.location.hash = 'home';
                 }
 
-                // Control visibility of main navigation based on view
-                if (viewId === 'main-content-tabs-view') {
-                    mainNavWrapperContainer.style.display = 'block';
-                    if (window.innerWidth <= 767.98) { // Only show mobile toggle if main nav is relevant
-                        mobileNavToggle.style.display = 'block';
-                    } else {
-                        mobileNavToggle.style.display = 'none';
-                    }
-
-                } else { // Auth or Profile views
-                    mainNavWrapperContainer.style.display = 'none';
-                    mobileNavToggle.style.display = 'none'; // Hide hamburger on auth/profile
-                    const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('mobileNav'));
-                    if (offcanvas && document.getElementById('mobileNav').classList.contains('show')) {
-                        offcanvas.hide();
+                const isAuthOrProfileOrCheckout = (viewId === routes['profile'] || viewId === routes['sign-in'] || viewId === routes['sign-up'] || viewId === routes['checkout']);
+                
+                // Manage visibility of main navigation tabs container
+                if (mainNavWrapperContainer) { 
+                    mainNavWrapperContainer.classList.toggle('hidden-for-auth', isAuthOrProfileOrCheckout);
+                }
+                // Manage visibility of mobile navigation toggle button
+                if (mobileNavToggle) {
+                    mobileNavToggle.classList.toggle('hidden-for-auth', isAuthOrProfileOrCheckout);
+                }
+                
+                // Update browser hash if needed
+                if (updateBrowserHash) {
+                    const newHash = viewToHashMapping[viewId] || 'home';
+                    if (window.location.hash !== `#${newHash}`) {
+                        window.location.hash = newHash;
                     }
                 }
-                 window.scrollTo(0, 0); // Scroll to top on view change
+                
+                // Default to "About Us" tab if navigating to home view
+                if (viewId === routes['home']) {
+                    const aboutTabButton = document.getElementById('about-tab-btn');
+                    if (aboutTabButton && (!bootstrap.Tab.getInstance(aboutTabButton) || !aboutTabButton.classList.contains('active'))) {
+                        const aboutTabInstance = bootstrap.Tab.getInstance(aboutTabButton) || new bootstrap.Tab(aboutTabButton);
+                        if (aboutTabInstance) aboutTabInstance.show();
+                    }
+                }
+                
+                // Close offcanvas if open
+                const offcanvasEl = document.getElementById('mobileNav');
+                if (offcanvasEl) {
+                    const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
+                    if (bsOffcanvas && offcanvasEl.classList.contains('show')) {
+                        bsOffcanvas.hide();
+                    }
+                }
+                 window.scrollTo(0, 0); 
+                 // After navigation, explicitly call handleResize to ensure nav elements are correctly displayed/hidden
+                 handleResize();
+            }
+
+            function handleHashChange() {
+                const hash = window.location.hash.substring(1); 
+                const targetViewId = routes[hash] || routes['home']; 
+                navigateToView(targetViewId, false); 
+
+                if (!routes[hash] && hash !== '') { 
+                    window.location.hash = 'home';
+                } else if (hash === '' && (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html'))) {
+                     window.location.hash = 'home'; 
+                }
             }
 
 
-            // --- Tab Management for Mobile/Desktop Navigation ---
+            // --- Tab Management for Desktop and Mobile Navigation ---
+            const desktopTabButtons = document.querySelectorAll('#myTab .nav-link');
             const mobileNavLinks = document.querySelectorAll('#mobileNav .nav-link');
-            const desktopTabElms = document.querySelectorAll('.main-nav-wrapper .nav-link');
-            const desktopTabInstance = {};
 
-            desktopTabElms.forEach(tabEl => {
-                if(tabEl.dataset.bsTarget) {
-                    desktopTabInstance[tabEl.dataset.bsTarget] = new bootstrap.Tab(tabEl);
+            desktopTabButtons.forEach(button => {
+                // Ensure Bootstrap Tab instances are created for desktop tabs
+                if (button && !bootstrap.Tab.getInstance(button)) {
+                    new bootstrap.Tab(button);
                 }
+                // No need for navigateToView(routes['home']) here, Bootstrap handles tab display
             });
 
             mobileNavLinks.forEach(link => {
                 link.addEventListener('click', function() {
-                    const targetTabId = this.dataset.bsTarget;
-                    if (desktopTabInstance[targetTabId]) {
-                        desktopTabInstance[targetTabId].show();
-                         navigateToView('main-content-tabs-view'); // Ensure main view is active
+                    const targetTabPaneId = this.dataset.bsTarget; 
+                    const correspondingDesktopButton = document.querySelector(`#myTab .nav-link[data-bs-target="${targetTabPaneId}"]`);
+                    
+                    navigateToView(routes['home'], true); // Navigate to home view first, which also updates hash
+
+                    if (correspondingDesktopButton) {
+                        const tabInstance = bootstrap.Tab.getInstance(correspondingDesktopButton) || new bootstrap.Tab(correspondingDesktopButton);
+                        if(tabInstance) tabInstance.show();
                     }
                 });
             });
-
-            // --- Payment Tab Logic (Existing) ---
-            const paymentTabLi = document.getElementById('payment-tab-li');
-            const paymentTabButton = document.getElementById('payment-tab');
-            let paymentTabBootstrapInstance = paymentTabButton ? new bootstrap.Tab(paymentTabButton) : null;
-
-            window.showPaymentPage = function(planName, planPrice, planDescription) {
-                document.getElementById('selected-plan-name-title').textContent = planName;
-                document.getElementById('selected-plan-description').textContent = planDescription;
-                document.getElementById('selected-plan-price-info').textContent = planPrice.replace('/year', '/month for 7 days, then billed annually'); // Adjusted text
-                const planValue = planName ? planName.toLowerCase().replace(/\s+/g, '-') : 'unknown-plan';
-                document.getElementById('selected-plan-value').value = planValue;
-
-                if (paymentTabLi) paymentTabLi.style.display = 'list-item';
-                if (paymentTabBootstrapInstance) paymentTabBootstrapInstance.show();
-                 navigateToView('main-content-tabs-view'); // Ensure main view is active
-
-                const mobileNav = document.getElementById('mobileNav');
-                if (mobileNav) {
-                    const bsOffcanvas = bootstrap.Offcanvas.getInstance(mobileNav);
-                    if (bsOffcanvas && mobileNav.classList.contains('show')) {
-                        bsOffcanvas.hide();
-                    }
-                }
+            
+            if(logoLinkToHome) {
+                logoLinkToHome.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navigateToView(routes['home']); // This will also set hash to #home by default
+                    // The navigateToView function already handles activating the 'about' tab if on #home
+                });
             }
-
-            document.querySelectorAll('.main-nav-wrapper .nav-link, #mobileNav .nav-link').forEach(tab => {
-                tab.addEventListener('shown.bs.tab', function (event) {
-                    if (paymentTabLi && event.target.id !== 'payment-tab' && event.target.dataset.bsTarget !=='#payment') {
-                        paymentTabLi.style.display = 'none';
-                    }
-                    // Sync active state for mobile nav
-                    mobileNavLinks.forEach(ml => {
-                        ml.classList.remove('active');
-                        if(ml.dataset.bsTarget === event.target.dataset.bsTarget) {
-                            ml.classList.add('active');
-                        }
-                    });
-                    // Sync active state for desktop tabs if changed via mobile or programmatically
-                    desktopTabElms.forEach(dt => {
-                         dt.classList.remove('active');
-                         if(dt.dataset.bsTarget === event.target.dataset.bsTarget) {
-                            dt.classList.add('active');
-                        }
+            
+            desktopTabButtons.forEach(button => {
+                button.addEventListener('shown.bs.tab', function(event) {
+                    const activeDesktopTarget = event.target.dataset.bsTarget;
+                    mobileNavLinks.forEach(mobileLink => {
+                        mobileLink.classList.toggle('active', mobileLink.dataset.bsTarget === activeDesktopTarget);
                     });
                 });
             });
 
 
-            // --- Custom Modal Function (Existing) ---
+            // --- Payment Page Logic ---
+            window.showPaymentPage = function(planName, planPrice, planDescription) {
+                const selectedPlanNameTitle = document.getElementById('selected-plan-name-title');
+                const selectedPlanDescription = document.getElementById('selected-plan-description');
+                const selectedPlanPriceInfo = document.getElementById('selected-plan-price-info');
+                const selectedPlanValueInput = document.getElementById('selected-plan-value');
+
+                if(selectedPlanNameTitle) selectedPlanNameTitle.textContent = planName;
+                if(selectedPlanDescription) selectedPlanDescription.textContent = planDescription;
+                if(selectedPlanPriceInfo) selectedPlanPriceInfo.textContent = planPrice.replace('/year', '/year (7-day free trial)');
+                
+                const planValue = planName ? planName.toLowerCase().replace(/\s+/g, '-') : 'unknown-plan';
+                if(selectedPlanValueInput) selectedPlanValueInput.value = planValue;
+                
+                navigateToView(routes['checkout']);
+            }
+            document.getElementById('selectStarterPlanBtn')?.addEventListener('click', () => showPaymentPage('Starter Spark Plan', '$9.99/year', 'Begin your journey with essential AI recycling tools and community support.'));
+            document.getElementById('selectEcoProPlanBtn')?.addEventListener('click', () => showPaymentPage('Eco Pro Plan', '$19.99/year', 'Unlock unlimited AI analysis, exclusive upcycling projects, and premium support.'));
+            document.getElementById('contactSalesPlanBtn')?.addEventListener('click', () => showInfoModal('Green Business Plan Inquiry', 'We\'re excited to help your business achieve its sustainability targets! Please reach out to our enterprise team at <a href=\'mailto:biz@recyclearner.com\'>biz@recyclearner.com</a> or call us at (555) ECO-SMART for a personalized consultation and quote.'));
+            document.getElementById('backToHomeFromPayment')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                navigateToView(routes['home']);
+            });
+
+
+            // --- Custom Modal Function ---
             const infoModalEl = document.getElementById('infoModal');
             const infoModal = infoModalEl ? new bootstrap.Modal(infoModalEl) : null;
             window.showInfoModal = function(title, message, isHtml = true) {
-                if (!infoModal) return;
+                if (!infoModal) { console.error("Info modal not found"); return; }
                 const modalTitleEl = document.getElementById('infoModalLabel');
                 const modalBodyEl = document.getElementById('infoModalBody');
 
@@ -1315,7 +1522,7 @@
                 infoModal.show();
             }
 
-            // --- Image Preview for Waste Form (Existing) ---
+            // --- Image Preview for Waste Form ---
             const wasteImageInput = document.getElementById('waste-image');
             const imagePreview = document.getElementById('waste-image-preview');
             if (wasteImageInput && imagePreview) {
@@ -1337,87 +1544,94 @@
 
 
             // --- User Authentication (Mocked with localStorage) ---
-            const LS_USER_KEY = 'recyclearner_user';
-            const LS_ANON_TRIAL_KEY = 'recyclearner_anon_ai_trial_used';
+            const LS_USER_KEY = 'recyclearner_user_v5_enhanced_fix'; 
+            const LS_ALL_USERS_KEY = 'recyclearner_all_users_v5_enhanced_fix';
+            const LS_ANON_TRIAL_KEY = 'recyclearner_anon_ai_trial_used_v5_enhanced_fix';
+            const DEFAULT_PROFILE_PIC = 'assets/logo.png';
+
 
             function getCurrentUser() {
                 const userJson = localStorage.getItem(LS_USER_KEY);
-                return userJson ? JSON.parse(userJson) : null;
+                try {
+                    return userJson ? JSON.parse(userJson) : null;
+                } catch (e) {
+                    console.error("Error parsing user data from localStorage", e);
+                    localStorage.removeItem(LS_USER_KEY); 
+                    return null;
+                }
             }
 
             function saveCurrentUser(userData) {
-                localStorage.setItem(LS_USER_KEY, JSON.stringify(userData));
+                try {
+                    localStorage.setItem(LS_USER_KEY, JSON.stringify(userData));
+                } catch (e) {
+                    console.error("Error saving user data to localStorage", e);
+                }
             }
 
             function signOutUser() {
                 localStorage.removeItem(LS_USER_KEY);
                 updateHeaderUI();
-                navigateToView('main-content-tabs-view'); // Go to home/about
-                showInfoModal('Signed Out', 'You have been successfully signed out.', false);
-                 // Reset payment tab visibility on sign out
-                if (paymentTabLi) paymentTabLi.style.display = 'none';
-                if (desktopTabInstance['#about']) desktopTabInstance['#about'].show();
+                navigateToView(routes['home']); 
+                showInfoModal('<i class="fas fa-door-open me-2"></i>Signed Out', 'You have been successfully signed out.', true);
             }
 
             function updateHeaderUI() {
                 const user = getCurrentUser();
-                userAuthSection.innerHTML = ''; // Clear previous state
+                if (!userAuthSection) return;
+                userAuthSection.innerHTML = ''; 
 
                 if (user) {
-                    const profilePicUrl = user.profilePic || mockProfilePics[0];
+                    const profilePicUrl = user.profilePic || DEFAULT_PROFILE_PIC;
                     const dropdownHtml = `
                         <div class="dropdown profile-dropdown">
-                            <img src="${profilePicUrl}" alt="Profile" id="userProfilePicHeader" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="${profilePicUrl}" alt="Profile" id="userProfilePicHeader" data-bs-toggle="dropdown" aria-expanded="false" onerror="this.src='${DEFAULT_PROFILE_PIC}';">
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userProfilePicHeader">
-                                <li><a class="dropdown-item" href="#" id="profileNavButton"><i class="fas fa-user-circle"></i> My Profile</a></li>
+                                <li><a class="dropdown-item" href="#profile" id="profileNavButton"><i class="fas fa-user-circle"></i> My Profile</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#" id="signOutButton"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
                             </ul>
                         </div>`;
                     userAuthSection.innerHTML = dropdownHtml;
 
-                    document.getElementById('profileNavButton').addEventListener('click', (e) => {
+                    document.getElementById('profileNavButton')?.addEventListener('click', (e) => {
                         e.preventDefault();
                         populateProfileForm(user);
-                        navigateToView('profile-view');
+                        navigateToView(routes['profile']);
                     });
-                    document.getElementById('signOutButton').addEventListener('click', (e) => {
+                    document.getElementById('signOutButton')?.addEventListener('click', (e) => {
                         e.preventDefault();
                         signOutUser();
                     });
                 } else {
-                    userAuthSection.innerHTML = '<button class="btn btn-sm btn-sign-in" id="signInHeaderButton">Sign In</button>';
-                    document.getElementById('signInHeaderButton').addEventListener('click', (e) => {
+                    userAuthSection.innerHTML = '<button class="btn btn-sm btn-sign-in" id="signInHeaderButton"><i class="fas fa-sign-in-alt me-1"></i>Sign In</button>';
+                    document.getElementById('signInHeaderButton')?.addEventListener('click', (e) => {
                         e.preventDefault();
-                        navigateToView('signin-view');
+                        navigateToView(routes['sign-in']);
                     });
                 }
             }
 
-            // Sign In Form
             const signinForm = document.getElementById('signin-form');
             if (signinForm) {
                 signinForm.addEventListener('submit', (e) => {
                     e.preventDefault();
                     const email = document.getElementById('signin-email').value;
-                    // In a real app, you'd fetch user data from a backend. Here we mock.
-                    // For mock, we assume if a user tries to sign in with a known signup email, it works.
-                    // This is highly simplified.
-                    const storedUsers = JSON.parse(localStorage.getItem('recyclearner_all_users')) || {};
-                    if (storedUsers[email] && storedUsers[email].password === document.getElementById('signin-password').value) {
+                    const password = document.getElementById('signin-password').value;
+                    
+                    const storedUsers = JSON.parse(localStorage.getItem(LS_ALL_USERS_KEY)) || {};
+                    if (storedUsers[email] && storedUsers[email].password === password) {
                         saveCurrentUser(storedUsers[email]);
                         updateHeaderUI();
-                        navigateToView('main-content-tabs-view'); // Or a dashboard
-                        if (desktopTabInstance['#about']) desktopTabInstance['#about'].show();
-                        showInfoModal('Login Successful', `Welcome back, ${storedUsers[email].fullName || storedUsers[email].username}!`, false);
+                        navigateToView(routes['home']); 
+                        showInfoModal(`<i class="fas fa-check-circle text-success me-2"></i>Login Successful`, `Welcome back, ${storedUsers[email].fullName || storedUsers[email].username}!`, true);
                         signinForm.reset();
                     } else {
-                        showInfoModal('Login Failed', 'Invalid email or password. Please try again or sign up.', false);
+                        showInfoModal('<i class="fas fa-exclamation-triangle text-warning me-2"></i>Login Failed', 'Invalid email or password. Please try again or sign up.', true);
                     }
                 });
             }
 
-            // Sign Up Form
             const signupForm = document.getElementById('signup-form');
             if (signupForm) {
                 signupForm.addEventListener('submit', (e) => {
@@ -1427,10 +1641,14 @@
                     const email = document.getElementById('signup-email').value;
                     const password = document.getElementById('signup-password').value;
 
-                    // Mock: Store user data in localStorage (insecure, for demo only)
-                    let storedUsers = JSON.parse(localStorage.getItem('recyclearner_all_users')) || {};
+                    if (password.length < 6) {
+                         showInfoModal('<i class="fas fa-exclamation-triangle text-warning me-2"></i>Password Too Short', 'Password must be at least 6 characters long.', true);
+                         return;
+                    }
+
+                    let storedUsers = JSON.parse(localStorage.getItem(LS_ALL_USERS_KEY)) || {};
                     if (storedUsers[email]) {
-                        showInfoModal('Signup Failed', 'An account with this email already exists. Please sign in.', false);
+                        showInfoModal('<i class="fas fa-exclamation-circle text-danger me-2"></i>Signup Failed', 'An account with this email already exists. Please sign in.', true);
                         return;
                     }
 
@@ -1438,89 +1656,108 @@
                         username,
                         fullName,
                         email,
-                        password, // In real app, hash password
-                        profilePic: mockProfilePics[0], // Default profile pic
-                        aiTrialUsed: localStorage.getItem(LS_ANON_TRIAL_KEY) === 'true' // If anon trial used, mark as used for new account
+                        password, 
+                        profilePic: DEFAULT_PROFILE_PIC, 
+                        aiTrialUsed: localStorage.getItem(LS_ANON_TRIAL_KEY) === 'true' 
                     };
                     storedUsers[email] = newUser;
-                    localStorage.setItem('recyclearner_all_users', JSON.stringify(storedUsers));
+                    localStorage.setItem(LS_ALL_USERS_KEY, JSON.stringify(storedUsers));
 
-                    saveCurrentUser(newUser); // Automatically log in the new user
+                    saveCurrentUser(newUser); 
                     updateHeaderUI();
-                    navigateToView('main-content-tabs-view');
-                     if (desktopTabInstance['#about']) desktopTabInstance['#about'].show();
-                    showInfoModal('Signup Successful!', `Welcome to RecycLearner, ${fullName || username}! Your account has been created.`, false);
+                    navigateToView(routes['home']);
+                    showInfoModal('<i class="fas fa-party-popper text-success me-2"></i>Signup Successful!', `Welcome to RecycLearner, ${fullName || username}! Your account has been created.`, true);
                     signupForm.reset();
                 });
             }
 
 
-            // Profile Form
             const profileForm = document.getElementById('profile-form');
             const profileViewImage = document.getElementById('profile-view-image');
+            const profilePicUploadInput = document.getElementById('profile-pic-upload-input');
+            const uploadProfilePicButton = document.getElementById('uploadProfilePicButton');
+
 
             function populateProfileForm(user) {
-                if (!user) return;
+                if (!user || !document.getElementById('profile-username')) return; // Check elements exist
                 document.getElementById('profile-username').value = user.username;
                 document.getElementById('profile-fullname').value = user.fullName;
                 document.getElementById('profile-email').value = user.email;
-                document.getElementById('profile-new-password').value = ''; // Clear password field
-                profileViewImage.src = user.profilePic || mockProfilePics[0];
-                // Find current pic in mock array to continue cycle from there
-                currentProfilePicIndex = mockProfilePics.indexOf(user.profilePic);
-                if(currentProfilePicIndex === -1) currentProfilePicIndex = 0;
+                document.getElementById('profile-new-password').value = ''; 
+                if(profileViewImage) profileViewImage.src = user.profilePic || DEFAULT_PROFILE_PIC;
             }
+
+            if (uploadProfilePicButton && profilePicUploadInput) {
+                uploadProfilePicButton.addEventListener('click', () => {
+                    profilePicUploadInput.click(); 
+                });
+
+                profilePicUploadInput.addEventListener('change', (event) => {
+                    const file = event.target.files[0];
+                    if (file && file.type.startsWith('image/')) { 
+                        if (file.size > 2 * 1024 * 1024) { 
+                            showInfoModal('<i class="fas fa-exclamation-triangle text-warning me-2"></i>Image Too Large', 'Profile picture should be less than 2MB.', true);
+                            profilePicUploadInput.value = ''; 
+                            return;
+                        }
+                        const reader = new FileReader();
+                        reader.onloadend = () => {
+                            const base64String = reader.result;
+                            if(profileViewImage) profileViewImage.src = base64String;
+                        }
+                        reader.readAsDataURL(file);
+                    } else if (file) {
+                        showInfoModal('<i class="fas fa-exclamation-circle text-danger me-2"></i>Invalid File Type', 'Please select a valid image file (e.g., JPG, PNG).', true);
+                        profilePicUploadInput.value = ''; 
+                    }
+                });
+            }
+
 
             if (profileForm) {
                 profileForm.addEventListener('submit', (e) => {
                     e.preventDefault();
                     let user = getCurrentUser();
                     if (!user) {
-                        showInfoModal('Error', 'Not logged in.', false);
-                        navigateToView('signin-view');
+                        showInfoModal('<i class="fas fa-exclamation-circle text-danger me-2"></i>Error', 'Not logged in.', true);
+                        navigateToView(routes['sign-in']);
                         return;
                     }
 
                     user.fullName = document.getElementById('profile-fullname').value;
                     const newPassword = document.getElementById('profile-new-password').value;
                     if (newPassword) {
-                        user.password = newPassword; // In real app, hash password
+                        if (newPassword.length < 6) {
+                            showInfoModal('<i class="fas fa-exclamation-triangle text-warning me-2"></i>Password Too Short', 'New password must be at least 6 characters long.', true);
+                            return;
+                        }
+                        user.password = newPassword; 
                     }
-                    user.profilePic = profileViewImage.src;
+                    if(profileViewImage) user.profilePic = profileViewImage.src; 
 
-                    // Update in "all users" mock DB
-                    let storedUsers = JSON.parse(localStorage.getItem('recyclearner_all_users')) || {};
+                    let storedUsers = JSON.parse(localStorage.getItem(LS_ALL_USERS_KEY)) || {};
                     storedUsers[user.email] = user;
-                    localStorage.setItem('recyclearner_all_users', JSON.stringify(storedUsers));
+                    localStorage.setItem(LS_ALL_USERS_KEY, JSON.stringify(storedUsers));
 
                     saveCurrentUser(user);
-                    updateHeaderUI(); // Reflect potential pic change in header
-                    showInfoModal('Profile Updated', 'Your profile information has been saved.', false);
+                    updateHeaderUI(); 
+                    showInfoModal('<i class="fas fa-check-circle text-success me-2"></i>Profile Updated', 'Your profile information has been saved.', true);
                 });
             }
 
-            const changeProfilePicButton = document.getElementById('changeProfilePicButton');
-            if (changeProfilePicButton) {
-                changeProfilePicButton.addEventListener('click', () => {
-                    currentProfilePicIndex = (currentProfilePicIndex + 1) % mockProfilePics.length;
-                    profileViewImage.src = mockProfilePics[currentProfilePicIndex];
-                });
-            }
              const backToMainFromProfile = document.getElementById('backToMainFromProfile');
              if(backToMainFromProfile) {
-                backToMainFromProfile.addEventListener('click', () => {
-                    navigateToView('main-content-tabs-view');
-                    if (desktopTabInstance['#about']) desktopTabInstance['#about'].show();
+                backToMainFromProfile.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navigateToView(routes['home']);
                 });
              }
 
 
-            // Navigation between auth pages
-            document.getElementById('navigateToSignUp')?.addEventListener('click', (e) => { e.preventDefault(); navigateToView('signup-view'); });
-            document.getElementById('navigateToSignIn')?.addEventListener('click', (e) => { e.preventDefault(); navigateToView('signin-view'); });
+            document.getElementById('navigateToSignUp')?.addEventListener('click', (e) => { e.preventDefault(); navigateToView(routes['sign-up']); });
+            document.getElementById('navigateToSignIn')?.addEventListener('click', (e) => { e.preventDefault(); navigateToView(routes['sign-in']); });
 
 
-            // --- AI Recycle Helper & Trial Logic ---
             const wasteForm = document.getElementById('waste-form');
             const loadingSpinner = document.getElementById('loading-spinner');
             const getInsightsButton = document.getElementById('get-insights-button');
@@ -1540,24 +1777,247 @@
                 if (user) {
                     user.aiTrialUsed = true;
                     saveCurrentUser(user);
-                     // Update in "all users" mock DB as well
-                    let storedUsers = JSON.parse(localStorage.getItem('recyclearner_all_users')) || {};
+                    let storedUsers = JSON.parse(localStorage.getItem(LS_ALL_USERS_KEY)) || {};
                     if (storedUsers[user.email]) {
                         storedUsers[user.email].aiTrialUsed = true;
-                        localStorage.setItem('recyclearner_all_users', JSON.stringify(storedUsers));
+                        localStorage.setItem(LS_ALL_USERS_KEY, JSON.stringify(storedUsers));
                     }
                 } else {
                     localStorage.setItem(LS_ANON_TRIAL_KEY, 'true');
                 }
             }
 
-            // Update AI Helper UI based on trial status when tab is shown
-             const submitWasteTabButton = document.getElementById('submit-waste-tab');
-             if(submitWasteTabButton){
-                new bootstrap.Tab(submitWasteTabButton)._element.addEventListener('shown.bs.tab', function () {
+            function updateAIHelperUIAccess() { 
+                if (!getInsightsButton || !aiTrialMessageDiv) return; 
+
+                if (!canUseAITrial()) {
+                    getInsightsButton.disabled = true;
+                    getInsightsButton.classList.add('btn-custom-disabled'); 
+                    aiTrialMessageDiv.innerHTML = `You've used your free AI analysis. Please <a href="#home" id="trialToPlansLink" class="alert-link">subscribe to a plan</a> for unlimited access or, if you are an existing user, please <a href="#sign-in" id="trialToSignInLink" class="alert-link">sign in</a>.`;
+                    aiTrialMessageDiv.style.display = 'block';
+                    
+                    document.getElementById('trialToPlansLink')?.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        navigateToView(routes['home']); 
+                        const plansTabButton = document.getElementById('plans-tab-btn');
+                        if (plansTabButton) {
+                            const tabInstance = bootstrap.Tab.getInstance(plansTabButton) || new bootstrap.Tab(plansTabButton);
+                            if(tabInstance) tabInstance.show();
+                             const plansSection = document.getElementById('subscription-plans');
+                             if(plansSection) plansSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                    document.getElementById('trialToSignInLink')?.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        navigateToView(routes['sign-in']);
+                    });
+
+                } else {
+                    getInsightsButton.disabled = false;
+                    getInsightsButton.classList.remove('btn-custom-disabled');
+                    aiTrialMessageDiv.style.display = 'none';
+                }
+            }
+            
+            const aiHelperTabBtn = document.getElementById('ai-helper-tab-btn');
+            if (aiHelperTabBtn) {
+                aiHelperTabBtn.addEventListener('shown.bs.tab', updateAIHelperUIAccess);
+            }
+            // Initial check for AI helper access
+            if (window.location.hash === '#home' || window.location.hash === '') {
+                 const activeTab = document.querySelector('#myTab .nav-link.active');
+                 if (!activeTab || activeTab.id === 'ai-helper-tab-btn' || activeTab.id === 'about-tab-btn') {
                     updateAIHelperUIAccess();
+                 }
+            }
+
+
+            if (wasteForm && loadingSpinner && getInsightsButton) {
+                wasteForm.addEventListener('submit', async function(event) {
+                    event.preventDefault();
+
+                    if (!canUseAITrial()) {
+                        updateAIHelperUIAccess(); 
+                        return;
+                    }
+
+                    getInsightsButton.disabled = true;
+                    loadingSpinner.style.display = 'flex';
+
+                    const wasteDescriptionInput = document.getElementById('waste-description');
+                    const wasteImageInput = document.getElementById('waste-image');
+                    const description = wasteDescriptionInput.value.trim();
+                    const imageFile = wasteImageInput.files[0];
+
+                    if (!description && !imageFile) {
+                        showInfoModal('<i class="fas fa-exclamation-triangle text-warning me-2"></i>Input Required', 'Please provide a description or upload an image of your waste item.', true);
+                        loadingSpinner.style.display = 'none';
+                        updateAIHelperUIAccess(); 
+                        return;
+                    }
+
+                    let base64ImageData = null;
+                    let mimeType = null;
+
+                    if (imageFile) {
+                        if (imageFile.size > 4 * 1024 * 1024) { 
+                             showInfoModal('<i class="fas fa-exclamation-triangle text-warning me-2"></i>Image Too Large', 'Please upload an image smaller than 4MB.', true);
+                             loadingSpinner.style.display = 'none';
+                             updateAIHelperUIAccess();
+                             return;
+                        }
+                        try {
+                            base64ImageData = await new Promise((resolve, reject) => {
+                                const reader = new FileReader();
+                                reader.onloadend = () => resolve(reader.result.split(',')[1]);
+                                reader.onerror = reject;
+                                reader.readAsDataURL(imageFile);
+                            });
+                            mimeType = imageFile.type;
+                        } catch (error) {
+                            console.error("Error reading image file:", error);
+                            showInfoModal('<i class="fas fa-times-circle text-danger me-2"></i>Image Error', 'Could not process the image file. Please try a different image or use text description.', true);
+                            loadingSpinner.style.display = 'none';
+                            updateAIHelperUIAccess();
+                            return;
+                        }
+                    }
+
+                    let promptText = `You are RecycLearner AI, an expert in recycling and creative upcycling.
+A user has submitted a waste item. Please analyze the provided description and/or image.
+
+Item Description: ${description || "No text description provided."}
+Image Provided: ${imageFile ? 'Yes' : 'No'}
+
+Provide a comprehensive guide for this item. If the item seems unclear or ambiguous, state that and give general advice or ask for clarification. Otherwise, include:
+1.  **Material Identification:** Based on the description and/or image, what is this item likely made of? Be specific.
+2.  **Recycling Instructions:**
+    * Is it commonly recyclable in most municipal programs? (Yes/No/Sometimes - explain if sometimes)
+    * How should it be prepared for recycling (e.g., rinse, flatten, remove labels/lids, separate parts)?
+    * Where can it typically be recycled (e.g., curbside bin with mixed recyclables, special drop-off location, mail-back program)? Mention common recycling symbols if relevant (e.g., PETE #1, HDPE #2, PP #5).
+    * Any common contaminants or reasons it might be rejected?
+3.  **Upcycling Ideas ✨ (Be Creative!):** Suggest 2-3 innovative and practical ideas to repurpose or upcycle this item. Provide brief, inspiring instructions or concepts for each idea. Aim for ideas that are accessible to an average person.
+4.  **Special Considerations/Safety:** Are there any important safety precautions for handling or disposal if the item is hazardous, contains batteries, or is not recyclable?
+5.  **Eco-Impact & Tip:** Briefly mention the positive environmental impact of correctly handling this item (recycling/upcycling) and provide a general eco-friendly tip related to reducing this type of waste or sustainable consumption.
+
+Format your response clearly using Markdown. Use headings (e.g., "### Recycling Instructions"), bold text for emphasis, and bullet points for lists. Ensure the tone is encouraging and informative.`;
+
+                    const chatHistory = [{ role: "user", parts: [] }];
+                    chatHistory[0].parts.push({ text: promptText });
+
+                    if (base64ImageData && mimeType) {
+                        chatHistory[0].parts.push({
+                            inlineData: { mimeType: mimeType, data: base64ImageData }
+                        });
+                    }
+
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; 
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    try {
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (!response.ok) {
+                            const errorData = await response.json();
+                            throw new Error(`API request failed with status ${response.status}: ${errorData.error?.message || 'Unknown error'}`);
+                        }
+
+                        const result = await response.json();
+
+                        if (result.candidates && result.candidates.length > 0 &&
+                            result.candidates[0].content && result.candidates[0].content.parts &&
+                            result.candidates[0].content.parts.length > 0) {
+                            let aiResponseText = result.candidates[0].content.parts[0].text;
+
+                            aiResponseText = aiResponseText
+                                .replace(/^### (.*$)/gim, '<h5>$1</h5>')
+                                .replace(/^## (.*$)/gim, '<h4>$1</h4>')
+                                .replace(/^# (.*$)/gim, '<h3>$1</h3>')
+                                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                                .replace(/^- (.*$)/gim, '<li>$1</li>')
+                                .replace(/^\* (.*$)/gim, '<li>$1</li>')
+                                .replace(/\n/g, '<br>');
+                            aiResponseText = aiResponseText.replace(/(<li>.*?<\/li>)+/gs, (match) => `<ul class="my-2">${match}</ul>`); 
+
+                            showInfoModal('<i class="fas fa-robot me-2"></i>AI Recycling & Upcycling Insights', aiResponseText, true);
+                            markAITrialUsed(); 
+                        } else {
+                            showInfoModal('<i class="fas fa-exclamation-circle text-warning me-2"></i>Analysis Incomplete', 'The AI analysis returned an unexpected result. Please try again or rephrase your query.', true);
+                        }
+                    } catch (error) {
+                        console.error("Error calling Gemini API:", error);
+                        showInfoModal('<i class="fas fa-times-circle text-danger me-2"></i>Analysis Failed', `Sorry, we couldn't get insights for your item right now. Please try again later. <br><small>Error: ${error.message}</small>`, true);
+                    } finally {
+                        loadingSpinner.style.display = 'none';
+                        wasteForm.reset();
+                        if(imagePreview) imagePreview.style.display = 'none';
+                        updateAIHelperUIAccess(); 
+                    }
                 });
-             }
+            }
+
+            const paymentForm = document.getElementById('payment-form');
+            if (paymentForm) {
+                paymentForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    if (!document.getElementById('termsCheck').checked) {
+                        showInfoModal('<i class="fas fa-exclamation-triangle text-warning me-2"></i>Agreement Required', 'Please agree to the Terms and Conditions to proceed.', true);
+                        return;
+                    }
+                    const planValueEl = document.getElementById('selected-plan-value');
+                    const planName = planValueEl ? planValueEl.value.replace(/-/g, ' ') : "your selected plan"; 
+
+                    showInfoModal('<i class="fas fa-check-circle text-success me-2"></i>Subscription Activated!', `Thank you for subscribing to RecycLearner! Your 7-day free trial for the <strong class="text-capitalize">${planName}</strong> has started. Welcome aboard!`, true);
+                    paymentForm.reset();
+                    setTimeout(() => {
+                        navigateToView(routes['home']);
+                    }, 2000);
+                });
+            }
+
+            const scrollElements = document.querySelectorAll('.scroll-animate');
+            const elementInView = (el, percentageScroll = 100) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (
+                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) * (percentageScroll / 100)
+                );
+            };
+            const displayScrollElement = (element) => { element.classList.add('is-visible'); };
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 85)) { displayScrollElement(el); }
+                });
+            }
+            window.addEventListener('scroll', handleScrollAnimation);
+            setTimeout(handleScrollAnimation, 100); 
 
 
-            function updateAIHelper
+            function handleResize() {
+                const currentHash = window.location.hash.substring(1) || 'home';
+                const currentViewId = routes[currentHash] || routes['home'];
+                const isAuthOrProfileOrCheckout = (currentViewId === routes['profile'] || currentViewId === routes['sign-in'] || currentViewId === routes['sign-up'] || currentViewId === routes['checkout']);
+
+                if (mobileNavToggle) {
+                    mobileNavToggle.classList.toggle('hidden-for-auth', isAuthOrProfileOrCheckout);
+                     // CSS media queries will handle display: block/none based on .hidden-for-auth and screen size
+                }
+            }
+            window.addEventListener('resize', handleResize);
+            
+            // --- Initial Setup ---
+            window.addEventListener('hashchange', handleHashChange);
+            updateHeaderUI(); 
+            handleHashChange(); // Initial route handling and nav visibility setup
+            handleResize(); // Call once on load to set initial mobile toggle state
+
+
+        });
+    </script>
+</body>
+</html>
