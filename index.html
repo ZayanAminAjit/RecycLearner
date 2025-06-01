@@ -212,7 +212,7 @@
             --shadow-light: var(--dm-shadow-light);
             --shadow-medium: var(--dm-shadow-medium);
             --shadow-strong: var(--dm-shadow-strong);
-            --shadow-inset: var(--dm-shadow-inset);
+            --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 
             animation-name: bgAnimationDark; /* Use a potentially different animation for dark mode if desired */
         }
@@ -1658,7 +1658,7 @@
 
         /* --- Responsive Adjustments for Navigation & Content --- */
         @media (max-width: 1199.98px) { /* Extra Large devices to Large */
-            .nav-pills .nav-link { font-size: 0.88rem; padding: 0.8rem 1.5rem; }
+            /* .nav-pills .nav-link { font-size: 0.88rem; padding: 0.8rem 1.5rem; } */ /* This rule is no longer needed as the horizontal nav is removed */
         }
 
         @media (max-width: 991.98px) { /* Large devices to Medium (Tablet) */
@@ -1788,6 +1788,7 @@
         </div>
     </header>
 
+    <!--
     <div id="main-nav-wrapper-container">
         <nav class="main-nav-wrapper" aria-label="Main navigation">
             <ul class="nav nav-pills" id="myTab" role="tablist">
@@ -1824,6 +1825,7 @@
             </ul>
         </nav>
     </div>
+    -->
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileNav" aria-labelledby="mobileNavLabel">
         <div class="offcanvas-header">
@@ -1865,6 +1867,7 @@
                             <li><strong>Collaboration & Community:</strong> We believe in the power of collective action and aim to foster a supportive community dedicated to environmental stewardship.</li>
                             <li><strong>Transparency & Trust:</strong> We are committed to providing accurate information and being transparent about our processes and data handling.</li>
                         </ul>
+                        <!--
                          <h3 class="section-subtitle mt-5">Meet the (Mock) Team</h3>
                         <div class="row">
                             <div class="col-md-4 mb-3">
@@ -1886,6 +1889,7 @@
                                  </div>
                             </div>
                         </div>
+                        -->
                     </article>
                 </div>
                 <div class="tab-pane fade" id="mission-tab-pane" role="tabpanel" aria-labelledby="mission-tab-btn">
@@ -2374,7 +2378,7 @@
 
             const views = document.querySelectorAll('.view');
             const userAuthSection = document.getElementById('user-auth-section');
-            const mainNavWrapperContainer = document.getElementById('main-nav-wrapper-container');
+            // const mainNavWrapperContainer = document.getElementById('main-nav-wrapper-container'); // No longer needed as horizontal nav is removed
             const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
             const logoLinkToHome = document.getElementById('logoLinkToHome');
             const darkModeToggle = document.getElementById('darkModeToggle');
@@ -2428,9 +2432,9 @@
                 const isAuthOrSpecialView = (viewId === routes['profile'] || viewId === routes['sign-in'] || viewId === routes['sign-up'] || viewId === routes['checkout']);
 
                 // Toggle visibility of main navigation tabs container based on view
-                if (mainNavWrapperContainer) {
-                    mainNavWrapperContainer.classList.toggle('hidden-for-auth', isAuthOrSpecialView);
-                }
+                // Removed: mainNavWrapperContainer.classList.toggle('hidden-for-auth', isAuthOrSpecialView);
+                // The horizontal nav is removed, so this specific line is no longer needed.
+
                 // Toggle visibility of mobile navigation toggle button
                 if (mobileNavToggle) {
                     mobileNavToggle.classList.toggle('hidden-for-auth', isAuthOrSpecialView);
@@ -2486,7 +2490,8 @@
             // --- Tab Management for Desktop and Mobile Navigation ---
             // This ensures that clicking a tab (desktop or mobile) correctly shows the content
             // and updates the active state for both navigation systems.
-            const desktopTabButtons = document.querySelectorAll('#myTab .nav-link');
+            // Note: Desktop tabs are removed, so this section will primarily manage mobile nav state.
+            const desktopTabButtons = document.querySelectorAll('#myTab .nav-link'); // These are now only used for Bootstrap's tab content logic
             const mobileNavLinks = document.querySelectorAll('#mobileNav .nav-link');
 
             desktopTabButtons.forEach(button => {
@@ -2795,7 +2800,7 @@
                     if (user.subscription) {
                         subDetailsContainer.innerHTML = `
                             <p><strong>Current Plan:</strong> ${user.subscription.planName}</p>
-                            <p><strong>Status:</strong> Active</p>
+                            <p><strong>Status:</strong> Active (Trial)</p>
                             <p><strong>Renews On:</strong> ${user.subscription.renewsOn || 'N/A'}</p>
                             <button class="btn btn-sm btn-outline-danger mt-2" id="cancelSubscriptionMockBtn">Cancel Subscription (Mock)</button>
                         `;
@@ -3450,40 +3455,3 @@ Format your response clearly using Markdown. Use headings (e.g., "### Recycling 
     </script>
 </body>
 </html>
-```
-
-I've made the following key changes and additions to significantly increase the line count and features:
-
-1.  **Dark Mode Implementation:**
-    * Added CSS variables for dark mode colors.
-    * Included a `body.dark-mode` class that overrides light mode styles.
-    * Added a toggle switch in the header.
-    * JavaScript to handle the toggle functionality and save the preference in `localStorage`. Styles for the toggle itself are also included.
-
-2.  **New Content Sections (Tabs):**
-    * **Recycling Guides:** HTML structure for a grid of guide cards. JavaScript (`loadRecyclingGuides`) populates this with mock data (`recyclingGuidesData`). Modal pop-up for guide details.
-    * **Upcycling Hub:** HTML for filter controls and a gallery. JavaScript (`loadUpcyclingIdeas`, `upcyclingIdeasData`, filter logic) populates and manages this.
-    * **Eco-Blog:** HTML for filters and a blog grid. JavaScript (`loadBlogPosts`, `blogPostsData`, filter logic) for content.
-    * **Community Central:** Mock HTML structure for success stories and forum discussions. JavaScript (`loadCommunityContent`, `successStoriesData`, `forumDiscussionsData`) for content.
-    * **FAQ Section:** HTML for a search bar and an accordion container. JavaScript (`loadFaqs`, `faqData`, search filter logic) populates the accordion.
-
-3.  **Expanded Existing Content & Styling:**
-    * Added more detailed placeholder text and structure to "About Us" (including mock team members) and "Our Mission" (including an icon grid).
-    * Enhanced hover effects and transitions across various elements (buttons, cards, nav links).
-    * Increased padding, margins, and font sizes in many areas for a more spacious and readable design.
-    * Added more specific CSS classes and detailed styling rules for almost every component.
-    * The profile page now includes mock "Eco Impact Stats" and "Subscription Details," populated by JavaScript.
-
-4.  **JavaScript Enhancements:**
-    * **Mock Data:** Substantial JavaScript arrays (`recyclingGuidesData`, `upcyclingIdeasData`, `blogPostsData`, `faqData`, etc.) to hold content for the new sections. This significantly contributes to the line count.
-    * **Dynamic Loading:** Functions to take this mock data and render the HTML for the new sections.
-    * **Client-Side Filtering:** Basic search/filter functionality for FAQs, Upcycling Hub, and Eco-Blog.
-    * **Improved AI Helper Logic:** Slightly more detailed prompt for the Gemini API, and mock updates to user stats after an AI analysis.
-    * **More Robust Navigation:** Ensured that navigating to `#home` always defaults to the "About Us" tab if no other tab was previously active or specified.
-    * **Code Comments:** Added more comments throughout HTML, CSS, and JavaScript to explain functionality and structure.
-
-5.  **Error Handling & Placeholders:**
-    * Added `onerror` attributes to images to load placeholders if the primary image fails (e.g., `assets/logo.png`).
-    * The mock location "Dubai, UAE" is now referenced in the AI prompt and displayed in the footer.
-
-This version should now comfortably exceed 4000 lines and provides a much richer user experience with more content and interactivity. The dark mode is a significant visual and functional additi
