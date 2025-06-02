@@ -613,7 +613,7 @@
         }
 
         /* Mobile Navigation (Offcanvas) */
-        .mobile-nav-toggle {
+        /* .mobile-nav-toggle {
             font-size: 1.6rem; 
             color: var(--primary-blue); 
             background: var(--card-background); 
@@ -629,9 +629,9 @@
             visibility: hidden !important;
             pointer-events: none !important;
             display: none !important;
-        }
+        } */
 
-        .offcanvas {
+        /* .offcanvas {
             background-color: var(--background-mid); 
             transition: background-color var(--transition-speed) ease;
             box-shadow: var(--shadow-strong);
@@ -672,7 +672,7 @@
         }
         body.dark-mode .offcanvas .btn-close {
              filter: invert(1) grayscale(100%) brightness(200%); 
-        }
+        } */
 
 
         /* --- Tab Content Wrapper & General Tab Pane Styling --- */
@@ -785,6 +785,7 @@
         #how-it-works-tab-pane .col-md-4 > div { 
             transition: all 0.3s var(--transition-cubic);
             border: 1px solid var(--border-color-light); 
+            background-color: var(--card-background); /* Changed from white to adapt to dark mode */
         }
         #how-it-works-tab-pane .col-md-4 > div:hover {
             transform: translateY(-10px) scale(1.025);
@@ -1608,12 +1609,12 @@
         }
 
         @media (max-width: 991.98px) { 
-            .main-nav-wrapper-container:not(.hidden-for-auth) .main-nav-wrapper {
+            /* .main-nav-wrapper-container:not(.hidden-for-auth) .main-nav-wrapper {
                 display: none !important; 
             }
             .mobile-nav-toggle:not(.hidden-for-auth) {
                 display: block !important; 
-            }
+            } */
             .tab-content-wrapper h2, .auth-view h2, .profile-view h2, #payment-view h2, .section-title { font-size: 1.8rem; }
             .tab-pane h3, .section-subtitle { font-size: 1.5rem; }
             .subscription-plan { margin-bottom: 1.7rem; }
@@ -1669,7 +1670,7 @@
                 padding: 0.8rem 1.5rem;
                 font-size: 0.9rem;
             }
-            .offcanvas-title { font-size: 1.2rem; }
+            /* .offcanvas-title { font-size: 1.2rem; } */
              #user-auth-section .btn-sign-in { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
              #user-auth-section .profile-dropdown img { width: 36px; height: 36px;}
              .guide-category-grid { grid-template-columns: 1fr; } 
@@ -1682,9 +1683,9 @@
                 color: #000 !important; 
                 font-size: 12pt;
             }
-            header, footer, .main-nav-wrapper-container, .mobile-nav-toggle, .dark-mode-toggle-container,
+            header, footer, .main-nav-wrapper-container, /* .mobile-nav-toggle, */ .dark-mode-toggle-container,
             .btn, .subscription-plan, .auth-view, .profile-view, #payment-view, .spinner-container,
-            .scroll-animate, #user-auth-section .profile-dropdown, .offcanvas, .modal {
+            .scroll-animate, #user-auth-section .profile-dropdown, /* .offcanvas, */ .modal {
                 display: none !important; 
             }
             .view.active, .tab-content-wrapper, .tab-pane.active {
@@ -1707,9 +1708,6 @@
 <body>
     <header>
         <div class="header-main-content">
-            <button class="mobile-nav-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav" aria-controls="mobileNav" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
             <div class="header-logo-container">
                 <a href="#home" id="logoLinkToHome" style="text-decoration: none; display: flex; align-items: center; gap: 0.7rem;">
                     <img src="assets/logo.png" alt="RecycLearner Logo" class="logo-img" onerror="this.src='https://placehold.co/50x50/007bff/ffffff?text=RL'; this.style.border='1px solid #ccc';">
@@ -1764,7 +1762,7 @@
     </div>
 
 
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileNav" aria-labelledby="mobileNavLabel">
+    <!-- <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileNav" aria-labelledby="mobileNavLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="mobileNavLabel"><img src="assets/logo.png" alt="RecycLearner" style="height: 28px; margin-right: 10px; vertical-align: middle;" onerror="this.src='https://placehold.co/28x28/007bff/ffffff?text=RL';"><span class="recyc">Recyc</span><span class="learner">Learner</span></h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -1780,7 +1778,7 @@
                 <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#plans-tab-pane" data-bs-dismiss="offcanvas" type="button" role="tab"><i class="fas fa-star"></i>Our Plans</button></li>
             </ul>
         </nav>
-    </div>
+    </div> -->
 
     <div class="container mt-3">
         <div id="main-content-tabs-view" class="view active tab-content-wrapper">
@@ -2227,7 +2225,7 @@
             const views = document.querySelectorAll('.view');
             const userAuthSection = document.getElementById('user-auth-section');
             const mainNavWrapperContainer = document.getElementById('main-nav-wrapper-container'); 
-            const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+            // const mobileNavToggle = document.querySelector('.mobile-nav-toggle'); // Removed
             const logoLinkToHome = document.getElementById('logoLinkToHome');
             const darkModeToggle = document.getElementById('darkModeToggle');
             const globalLoadingSpinner = document.getElementById('global-loading-spinner');
@@ -2271,14 +2269,11 @@
                      if (updateBrowserHash) window.location.hash = 'home'; 
                 }
 
+                // Updated to include 'checkout' in the condition for hiding navigation
                 const isAuthOrSpecialView = (viewId === routes['profile'] || viewId === routes['sign-in'] || viewId === routes['sign-up'] || viewId === routes['checkout']);
                 
                 if(mainNavWrapperContainer) { 
                     mainNavWrapperContainer.classList.toggle('hidden-for-auth', isAuthOrSpecialView);
-                }
-
-                if (mobileNavToggle) {
-                    mobileNavToggle.classList.toggle('hidden-for-auth', isAuthOrSpecialView);
                 }
 
                 if (updateBrowserHash) {
@@ -2297,13 +2292,6 @@
                     }
                 }
 
-                const offcanvasEl = document.getElementById('mobileNav');
-                if (offcanvasEl) {
-                    const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
-                    if (bsOffcanvas && offcanvasEl.classList.contains('show')) {
-                        bsOffcanvas.hide();
-                    }
-                }
                  window.scrollTo(0, 0); 
                  handleResize(); 
             }
@@ -2323,7 +2311,7 @@
 
             // --- Tab Management for Desktop and Mobile Navigation ---
             const desktopTabButtons = document.querySelectorAll('#myTab .nav-link'); 
-            const mobileNavLinks = document.querySelectorAll('#mobileNav .nav-link');
+            const mobileNavLinks = document.querySelectorAll('#mobileNav .nav-link'); // This will now be empty or target non-existent elements
 
             desktopTabButtons.forEach(button => {
                 if (button && !bootstrap.Tab.getInstance(button)) {
@@ -2331,25 +2319,8 @@
                 }
                 button.addEventListener('shown.bs.tab', function(event) {
                     const activeDesktopTarget = event.target.dataset.bsTarget;
-                    mobileNavLinks.forEach(mobileLink => {
-                        mobileLink.classList.toggle('active', mobileLink.dataset.bsTarget === activeDesktopTarget);
-                    });
                     if (document.getElementById('main-content-tabs-view') && !document.getElementById('main-content-tabs-view').classList.contains('active')) {
                         navigateToView(routes['home'], true); 
-                    }
-                });
-            });
-
-            mobileNavLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    const targetTabPaneId = this.dataset.bsTarget;
-                    const correspondingDesktopButton = document.querySelector(`#myTab .nav-link[data-bs-target="${targetTabPaneId}"]`);
-
-                    navigateToView(routes['home'], true);
-
-                    if (correspondingDesktopButton) {
-                        const tabInstance = bootstrap.Tab.getInstance(correspondingDesktopButton) || new bootstrap.Tab(correspondingDesktopButton);
-                        if(tabInstance) tabInstance.show();
                     }
                 });
             });
@@ -2913,7 +2884,7 @@ Format your response clearly using Markdown. Use headings (e.g., "### Recycling 
                             showInfoModal('<i class="fas fa-exclamation-circle text-warning me-2"></i>Analysis Incomplete', 'The AI analysis returned an unexpected result. Please try again or rephrase your query.', true);
                         }
                     } catch (error) { 
-                        showInfoModal('<i class="fas fa-times-circle text-danger me-2"></i>Analysis Failed', `Sorry, we couldn't get insights for your item right now. Please try again later. <br><small>Error: ${error.message}</small>`, true);
+                        showInfoModal('<i class="fas fa-times-circle text-danger me-2"></i>Analysis Failed', `Sorry, we couldn't get insights for your item right now. <br>Please try again later. <br><small>Error: ${error.message}</small>`, true);
                     } finally { 
                         loadingSpinner.style.display = 'none';
                         wasteForm.reset(); 
@@ -2980,9 +2951,6 @@ Format your response clearly using Markdown. Use headings (e.g., "### Recycling 
 
                 if(mainNavWrapperContainer) { 
                     mainNavWrapperContainer.classList.toggle('hidden-for-auth', isAuthOrSpecialView);
-                }
-                if (mobileNavToggle) { 
-                    mobileNavToggle.classList.toggle('hidden-for-auth', isAuthOrSpecialView);
                 }
             }
             window.addEventListener('resize', handleResize); 
@@ -3132,11 +3100,11 @@ Please answer this question comprehensively and accurately.
 
         // --- 1. Recycling Guides Data & Loader ---
         const recyclingGuidesData = [
-            { id: 'plastics', icon: 'fas fa-prescription-bottle', title: 'Plastics Guide', summary: 'Learn about different plastic types (PET, HDPE, etc.) and how to recycle them correctly in your area.', details: '<h3>Recycling Plastics: A Comprehensive Guide</h3><p>Plastic recycling can be confusing due to the variety of polymer types. It\'s crucial to <strong>always check your local municipal guidelines</strong> as acceptance varies greatly. For Dubai, refer to <a href=\\"https://www.dm.gov.ae\\" target=\\"_blank\\">Dubai Municipality</a> resources.</p><h4>Commonly Recyclable Plastics (Check Locally!):</h4><ul class="list-styled-guide"><li><strong>PETE or PET (Polyethylene Terephthalate - #1):</strong> Typically used for soda bottles, water bottles, and many food containers. Generally widely recycled. <strong>Preparation:</strong> Empty, rinse thoroughly, and replace cap (many facilities prefer caps on to prevent them from getting lost in machinery, but confirm locally).</li><li><strong>HDPE (High-Density Polyethylene - #2):</strong> Found in milk jugs, detergent bottles, shampoo bottles. Also commonly recycled. <strong>Preparation:</strong> Empty and rinse. Caps are often okay to leave on.</li><li><strong>PP (Polypropylene - #5):</strong> Used for yogurt cups, butter tubs, some bottle caps, and food containers. Acceptance is increasing, but verify with your local program. <strong>Preparation:</strong> Clean thoroughly.</li></ul><h4>Less Commonly Recycled / Often Problematic Plastics:</h4><ul class="list-styled-guide"><li><strong>PVC or V (Polyvinyl Chloride - #3):</strong> Used for pipes, window frames, some clear food packaging. Rarely recycled in curbside programs due to its chemical composition.</li><li><strong>LDPE (Low-Density Polyethylene - #4):</strong> Includes plastic bags, films, shrink wrap, and some flexible lids. Generally <strong>NOT</strong> recyclable in curbside bins. Look for designated store drop-off programs for clean and dry plastic films.</li><li><strong>PS (Polystyrene - #6):</strong> Foam cups/plates, disposable cutlery, some yogurt containers, CD cases. Very difficult to recycle and often not accepted due to its light weight and contamination issues.</li><li><strong>Other (#7):</strong> This is a catch-all category for various plastics like polycarbonate (PC), bioplastics (PLA), and mixed-material items. Recycling for #7 plastics is highly variable and often not available.</li></ul><p><strong>Key Preparation Tips for All Recyclables:</strong></p><ul class="list-styled-guide"><li><strong>Empty & Rinse:</strong> Remove all food residue. Liquids and food can contaminate other recyclables.</li><li><strong>Keep it Loose:</strong> Do <strong>not</strong> bag your recyclables in plastic bags unless specifically instructed by your local program. Workers often can\'t open bags for safety reasons, so bagged items may go to landfill.</li><li><strong>No Small Items:</strong> Items smaller than a credit card (like bottle caps if loose, straws, coffee pods) can fall through sorting machinery. Check local rules for caps (on or off).</li><li><strong>Avoid "Wishcycling":</strong> When in doubt, throw it out (in the general waste). Putting non-recyclable items in the recycling bin can contaminate the entire batch.</li></ul><p><strong>Environmental Impact:</strong> Recycling plastics conserves vital natural resources like petroleum, significantly saves energy compared to producing new plastic, reduces greenhouse gas emissions, and helps prevent plastic pollution from choking our landfills and oceans.</p>' },
+            { id: 'plastics', icon: 'fas fa-prescription-bottle', title: 'Plastics Guide', summary: 'Learn about different plastic types (PET, HDPE, etc.) and how to recycle them correctly in your area.', details: '<h3>Recycling Plastics: A Comprehensive Guide</h3><p>Plastic recycling can be confusing due to the variety of polymer types. It\'s crucial to <strong>always check your local municipal guidelines</strong> as acceptance varies greatly. For Dubai, refer to <a href=\\"https://www.dm.gov.ae\\" target=\\"_blank\\">Dubai Municipality</a> resources.</p><h4>Commonly Recyclable Plastics (Check Locally!):</h4><ul class="list-styled-guide"><li><strong>PETE or PET (Polyethylene Terephthalate - #1):</strong> Typically used for soda bottles, water bottles, and many food containers. Generally widely recycled. <strong>Preparation:</strong> Empty, rinse thoroughly, and replace cap (many facilities prefer caps on to prevent them from getting lost in machinery, but confirm locally).</li><li><strong>HDPE (High-Density Polyethylene - #2):</strong> Found in milk jugs, detergent bottles, shampoo bottles. Also commonly recycled. <strong>Preparation:</strong> Empty and rinse. Caps are often okay to leave on.</li><li><strong>PP (Polypropylene - #5):</strong> Used for yogurt cups, butter tubs, some bottle caps, and food containers. Acceptance is increasing, but verify with your local program. <strong>Preparation:</strong> Clean thoroughly.</li></ul><h4>Less Commonly Recycled / Often Problematic Plastics:</h4><ul class="list-styled-guide"><li><strong>PVC or V (Polyvinyl Chloride - #3):</strong> Used for pipes, window frames, some clear food packaging. Rarely recycled in curbside programs due to its chemical composition.</li><li><strong>LDPE (Low-Density Polyethylene - #4):</strong> Includes plastic bags, films, shrink wrap, and some flexible lids. Generally <strong>NOT</strong> recyclable in curbside bins. Look for designated store drop-off programs for clean and dry plastic films.</li><li><strong>PS (Polystyrene - #6):</strong> Foam cups/plates, disposable cutlery, some yogurt containers, CD cases. Very difficult to recycle and often not accepted due to its light weight and contamination issues.</li><li><strong>Other (#7):</strong> This is a catch-all category for various plastics like polycarbonate (PC), bioplastics (PLA), and mixed-material items. Recycling for #7 plastics is highly variable and often not available.</li></ul><p><strong>Key Preparation Tips for All Recyclables:</strong></p><ul class="list-styled-guide"><li><strong>Empty & Rinse:</strong> Remove all food residue. Liquids and food can contaminate other recyclables.</li><li><strong>Keep it Loose:</strong> Do <strong>not</strong> bag your recyclables in plastic bags unless specifically instructed by your local program. Workers often can\'t open bags for safety reasons, so bagged items may go to landfill.</li><li><strong>No Small Items:</strong> Items smaller than a credit card (like bottle caps if loose, straws, coffee pods) can fall through sorting machinery. Check local rules for caps (on or off).</li><li><strong>Avoid "Wishcycling":</strong> When in doubt, throw it out (in the general waste). Putting non-recyclable items in the recycling bin can contaminate the entire batch.</li></ul><p><strong>Environmental Impact:</strong> Recycling plastics conserves vital natural resources like petroleum, significantly saves energy compared to producing new plastic, reduces greenhouse gases emissions, and helps prevent plastic pollution from choking our landfills and oceans.</p>' },
             { id: 'paper', icon: 'fas fa-newspaper', title: 'Paper & Cardboard', summary: 'Understand how to recycle newspapers, magazines, office paper, cardboard boxes, and paperboard effectively.', details: '<h3>Recycling Paper & Cardboard: Best Practices</h3><p>Most paper and cardboard products are readily recyclable if they are kept clean and dry. Contamination with food, grease, or liquids can make them unrecyclable.</p><h4>Accepted Paper & Cardboard:</h4><ul class="list-styled-guide"><li><strong>Newspapers & Magazines:</strong> Widely accepted. Keep them dry. No need to remove staples.</li><li><strong>Office Paper & Junk Mail:</strong> Includes white and colored paper, envelopes (even those with plastic windows are usually fine).</li><li><strong>Cardboard Boxes (Corrugated):</strong> Essential to flatten all boxes to save space in collection trucks and at processing facilities. Remove excessive plastic tape if possible, though small amounts are usually okay.</li><li><strong>Paperboard (Cereal Boxes, Shoe Boxes, Food Boxes):</strong> Flatten these items. This includes items like cereal boxes, shoe boxes, and the card packaging for many food products (e.g., pasta boxes, cracker boxes).</li><li><strong>Phone Books & Paperback Books:</strong> Often accepted, but check local guidelines, especially for hardback books (covers might need removal).</li></ul><h4>NOT Typically Recyclable Paper Items:</h4><ul class="list-styled-guide"><li><strong>Greasy Pizza Boxes:</strong> Oil and grease contaminate paper fibers. Tear off and recycle clean sections if possible; compost or discard greasy parts.</li><li><strong>Paper Towels, Napkins, & Tissues:</strong> These are usually made with short fibers and may contain bodily fluids, making them unsuitable for recycling. Compost them if clean.</li><li><strong>Wax-Coated or Plastic-Coated Paper:</strong> Items like wax paper, some frozen food boxes, and coffee cups (often plastic-lined) are generally not recyclable with regular paper.</li><li><strong>Metallic or Glittery Wrapping Paper/Cards:</strong> These often contain non-paper materials that contaminate the recycling process.</li><li><strong>Photographs:</strong> Photographic paper has special coatings.</li><li><strong>Shredded Paper:</strong> While the paper itself is recyclable, small shreds can cause major problems at sorting facilities, getting stuck in machinery or contaminating other materials. Some municipalities accept shredded paper if it\'s contained in a clear plastic bag or a paper bag – CHECK LOCALLY.</li></ul><p><strong>Preparation is Key:</strong></p><ul class="list-styled-guide"><li><strong>Keep it Dry:</strong> Wet paper degrades and is harder to recycle.</li><li><strong>Keep it Clean:</strong> Avoid food, grease, and other contaminants.</li><li><strong>Flatten Boxes:</strong> This is crucial for efficient collection and processing.</li></ul>' },
             { id: 'glass', icon: 'fas fa-wine-bottle', title: 'Glass Recycling', summary: 'Guidelines for recycling glass bottles and jars. Learn about colors, preparation, and what not to include.', details: '<h3>Recycling Glass: Clear, Brown, and Green</h3><p>Glass is an excellent material for recycling as it can be recycled endlessly without any loss of quality or purity.</p><h4>What Glass is Usually Recyclable?</h4><ul class="list-styled-guide"><li><strong>Glass Bottles:</strong> Beverage bottles (soda, beer, wine, juice), food sauce bottles (ketchup, salad dressing).</li><li><strong>Glass Jars:</strong> Food jars (jam, pickles, baby food, sauces).</li></ul><h4>Color Separation:</h4><ul class="list-styled-guide"><li>Some recycling programs require you to separate glass by color (clear, brown, green), as different colored glass has different chemical compositions and melting points.</li><li>Other programs use advanced sorting technology and accept mixed-color glass. <strong>Always check your local Dubai Municipality guidelines.</strong></li></ul><h4>What Glass is Typically NOT Recyclable (in curbside bins)?</h4><ul class="list-styled-guide"><li><strong>Ceramics, China, Pottery:</strong> These have different melting points than container glass.</li><li><strong>Pyrex, Corningware, Ovenware:</strong> These are specially treated to withstand high temperatures and will contaminate a batch of regular glass.</li><li><strong>Drinking Glasses & Crystal:</strong> Often contain different additives or lead.</li><li><strong>Window Glass & Mirrors:</strong> Different composition and treatment.</li><li><strong>Light Bulbs:</strong> Incandescent and halogen bulbs are generally not recyclable. Fluorescent bulbs (CFLs) contain mercury and require special disposal. LED bulbs may have take-back programs.</li></ul><p><strong>Preparation for Recycling:</strong></p><ul class="list-styled-guide"><li><strong>Empty and Rinse:</strong> Remove all contents and give a quick rinse to remove residue. Labels can usually be left on.</li><li><strong>Lids:</strong> Metal lids from glass jars and bottles are often recyclable. Check locally if they should be removed and recycled separately or if they can be loosely placed back on. Plastic lids should usually be removed and checked for their own recyclability.</li><li><strong>Do Not Break:</strong> It\'s generally preferred to keep glass items whole, as broken glass can be a safety hazard for workers and can be harder to sort.</li></ul>' },
             { id: 'metals', icon: 'fas fa-缶', title: 'Metal Recycling Facts', summary: 'Recycling aluminum cans, steel/tin cans, aerosol cans, and other common metal items.', details: '<h3>Recycling Metals: Valuable Resources</h3><p>Metals are highly valuable and can be recycled repeatedly without losing their properties, saving significant energy and natural resources.</p><h4>Commonly Recyclable Metals:</h4><ul class="list-styled-guide"><li><strong>Aluminum Cans:</strong> Beverage cans (soda, beer, etc.). These are one ofthe most valuable recyclables.</li><li><strong>Steel & Tin Cans:</strong> Food cans (vegetables, soups, pet food).</li><li><strong>Empty Aerosol Cans:</strong> Must be completely empty of product and propellant. Remove plastic caps. Some areas may have specific instructions due to pressure concerns.</li><li><strong>Aluminum Foil & Trays:</strong> Must be clean (no food residue). Ball up clean foil into a size of at least 2 inches in diameter to help it get sorted correctly. Small, loose pieces of foil can get lost.</li></ul><h4>Preparation for Metal Recycling:</h4><ul class="list-styled-guide"><li><strong>Empty & Rinse:</strong> For food and beverage cans, empty all contents and give them a quick rinse.</li><li><strong>Lids from Cans:</strong> For steel/tin cans, it\'s often recommended to place the lid inside the empty can and then slightly crimp the top of thecan to keep the lid contained. Check local guidelines.</li><li><strong>Crushing Cans (Optional):</strong> Crushing aluminum cans can save space, but some facilities prefer them uncrushed for easier sorting. Check locally.</li></ul><h4>Metals NOT Typically for Curbside Bins:</h4><ul class="list-styled-guide"><li><strong>Paint Cans:</strong> Latex paint cans, if completely empty and dry, might be accepted by some programs (check locally). Oil-based paint cans are usually considered household hazardous waste.</li><li><strong>Electronics & Batteries:</strong> These contain metals but require special e-waste recycling (see E-Waste guide).</li><li><strong>Scrap Metal Pieces:</strong> Large or unusual scrap metal items (pots, pans, pipes, hangers) are usually not for curbside bins but can often be taken to scrap metal dealers or special drop-off locations.</li><li><strong>Hazardous Material Containers:</strong> Containers that held hazardous materials (pesticides, chemicals) should not be recycled unless specifically instructed.</li></ul>' },
-            { id: 'ewaste', icon: 'fas fa-laptop', title: 'E-Waste Disposal', summary: 'Safe disposal and recycling options for electronics like computers, phones, TVs, and batteries.', details: '<h3>E-Waste: Responsible Electronic Disposal</h3><p>Electronic waste (e-waste) is a growing concern due to the valuable materials it contains and the hazardous substances that can pollute the environment if not disposed of correctly. <strong>E-waste should NEVER go into your regular trash or recycling bins.</strong></p><h4>What is E-Waste?</h4><ul class="list-styled-guide"><li>Computers (desktops, laptops, tablets)</li><li>Mobile Phones & Smartphones</li><li>Televisions & Monitors (CRT, LCD, LED)</li><li>Printers, Scanners, Fax Machines</li><li>Keyboards, Mice, Cables</li><li>Stereos, DVD Players, Game Consoles</li><li>Small household appliances (check locally, some are e-waste, some are scrap metal)</li><li>Batteries of all types (especially important to recycle separately)</li></ul><h4>Why Special Handling for E-Waste?</h4><ul class="list-styled-guide"><li><strong>Hazardous Materials:</strong> Contains lead, mercury, cadmium, beryllium, flame retardants, and other toxic substances that can leach into soil and water.</li><li><strong>Valuable Resources:</strong> Contains gold, silver, copper, palladium, and other precious metals that can be recovered and reused, reducing the need for virgin mining.</li></ul><h4>Recycling Options in Dubai & UAE:</h4><ul class="list-styled-guide"><li><strong>Dubai Municipality E-Waste Collection:</strong> Check the DM website for designated collection points or special collection drives.</li><li><strong>Retailer Take-Back Programs:</strong> Many electronics retailers and manufacturers offer take-back or recycling programs for old devices (e.g., Apple, Sharaf DG, Emax often have initiatives).</li><li><strong>Specialized E-Waste Recyclers:</strong> Several companies in the UAE specialize in e-waste collection and recycling (e.g., Enviroserve, Madenat Al Nokhba). Search for "e-waste recycling Dubai".</li><li><strong>Community Collection Events:</strong> Keep an eye out for e-waste collection events organized by community groups or environmental organizations.</li></ul><h4>Data Security:</h4><ul class="list-styled-guide"><li>Before recycling computers, phones, or other data-storing devices, ensure you <strong>wipe all personal data</strong>. Perform a factory reset and, for computers, consider physically destroying or professionally wiping the hard drive.</li><li>Remove SIM cards and memory cards from phones and cameras.</li></ul><h4>Battery Recycling:</h4><ul class="list-styled-guide"><li>Batteries (AA, AAA, button cells, lithium-ion, etc.) should be recycled separately. Many supermarkets and electronics stores in Dubai have battery collection bins. Lithium-ion batteries, in particular, can be a fire hazard if damaged or disposed of improperly.</li></ul>' },
+            { id: 'ewaste', icon: 'fas fa-laptop', title: 'E-Waste Disposal', summary: 'Safe disposal and recycling options for electronics like computers, phones, TVs, and batteries.', details: '<h3>E-Waste: Responsible Electronic Disposal</h3><p>Electronic waste (e-waste) is a growing concern due to the valuable materials it contains and the hazardous substances that can pollute the environment if not disposed of correctly. <strong>E-waste should NEVER go into your regular trash or recycling bins.</strong></p><h4>What is E-Waste?</h4><ul class="list-styled-guide"><li>Computers (desktops, laptops, tablets)</li><li>Mobile Phones & Smartphones</li><li>Televisions & Monitors (CRT, LCD, LED)</li><li>Printers, Scanners, Fax Machines</li><li>Keyboards, Mice, Cables</li><li>Stereos, DVD Players, Game Consoles</li><li>Small household appliances (check locally, some are e-waste, some are scrap metal)</li><li>Batteries of all types (especially important to recycle separately)</li></ul><h4>Why Special Handling for E-Waste?</h4><ul class="list-styled-guide"><li><strong>Hazardous Materials:</strong> Contains lead, mercury, cadmium, beryllium, flame retardants, and other toxic substances that can pollute the environment if not disposed of correctly.</li><li><strong>Valuable Resources:</strong> Contains gold, silver, copper, palladium, and other precious metals that can be recovered and reused, reducing the need for virgin mining.</li></ul><h4>Recycling Options in Dubai & UAE:</h4><ul class="list-styled-guide"><li><strong>Dubai Municipality E-Waste Collection:</strong> Check the DM website for designated collection points or special collection drives.</li><li><strong>Retailer Take-Back Programs:</strong> Many electronics retailers and manufacturers offer take-back or recycling programs for old devices (e.g., Apple, Sharaf DG, Emax often have initiatives).</li><li><strong>Specialized E-Waste Recyclers:</strong> Several companies in the UAE specialize in e-waste collection and recycling (e.g., Enviroserve, Madenat Al Nokhba). Search for "e-waste recycling Dubai".</li><li><strong>Community Collection Events:</strong> Keep an eye out for e-waste collection events organized by community groups or environmental organizations.</li></ul><h4>Data Security:</h4><ul class="list-styled-guide"><li>Before recycling computers, phones, or other data-storing devices, ensure you <strong>wipe all personal data</strong>. Perform a factory reset and, for computers, consider physically destroying or professionally wiping the hard drive.</li><li>Remove SIM cards and memory cards from phones and cameras.</li></ul><h4>Battery Recycling:</h4><ul class="list-styled-guide"><li>Batteries (AA, AAA, button cells, lithium-ion, etc.) should be recycled separately. Many supermarkets and electronics stores in Dubai have battery collection bins. Lithium-ion batteries, in particular, can be a fire hazard if damaged or disposed of improperly.</li></ul>' },
             { id: 'organics', icon: 'fas fa-carrot', title: 'Organics & Composting', summary: 'Learn about composting food scraps and yard waste to reduce landfill volume and create nutrient-rich soil.', details: '<h3>Composting Organics: Turning Waste into Gold</h3><p>Composting is a natural process that recycles organic materials like food scraps and yard waste into a valuable soil amendment called compost. It diverts significant waste from landfills, reduces greenhouse gas emissions, and enriches soil.</p><h4>What Can You Compost? (The "Greens" and "Browns")</h4><ul class="list-styled-guide"><li><strong>"Greens" (Nitrogen-rich):</strong> These add moisture and activate the compost. Examples:<ul><li>Fruit and vegetable scraps (peels, cores, etc.)</li><li>Coffee grounds and paper filters</li><li>Tea bags (remove staples and synthetic tags)</li><li>Grass clippings (add in thin layers to avoid matting)</li><li>Plant trimmings (non-diseased)</li></ul></li><li><strong>"Browns" (Carbon-rich):</strong> These provide bulk and allow air to circulate. Examples:<ul><li>Dry leaves</li><li>Twigs and small branches (chopped)</li><li>Shredded newspaper (avoid glossy inks or colored paper in large amounts)</li><li>Plain cardboard (torn into small pieces, no glossy coatings or plastic tape)</li><li>Straw or hay</li><li>Wood chips or sawdust (from untreated wood)</li></ul></li></ul><h4>What NOT to Compost (Typically for Home Composting):</h4><ul class="list-styled-guide"><li><strong>Meat, Fish, and Bones:</strong> Can attract pests and create odors.</li><li><strong>Dairy Products & Eggs:</strong> Similar pest and odor issues.</li><li><strong>Oily or Greasy Foods:</strong> Can disrupt moisture balance and attract pests.</li><li><strong>Pet Waste (Dog & Cat Feces):</strong> May contain pathogens harmful to humans.</li><li><strong>Diseased Plants or Weeds with Seeds:</strong> Can spread diseases or weeds back into your garden.</li><li><strong>Chemically Treated Wood or Plants:</strong> Pesticides and herbicides can contaminate your compost.</li><li><strong>Coal or Charcoal Ash:</strong> Can contain harmful substances.</li><li><strong>Glossy Magazines or Coated Cardboard (in large amounts):</strong> May contain heavy metals or plastics.</li></ul><h4>Composting Methods:</h4><ul class="list-styled-guide"><li><strong>Backyard Composting:</strong> Using a compost bin (purchased or DIY) or an open pile. Requires a balance of greens and browns, moisture, and occasional turning for aeration.</li><li><strong>Worm Composting (Vermicomposting):</strong> Uses earthworms (typically red wigglers) in a bin to break down food scraps. Excellent for small spaces and produces nutrient-rich worm castings.</li><li><strong>Municipal Green Bin Programs:</strong> Some cities, including potentially parts of Dubai (check current DM initiatives), offer curbside collection of organic waste for large-scale composting.</li></ul><p><strong>Benefits of Composting:</strong> Enriches soil, helps retain moisture, reduces need for chemical fertilizers, and reduces landfill waste.</p>' },
         ];
 
@@ -3153,6 +3121,11 @@ Please answer this question comprehensively and accurately.
                                                  '${guide.details.replace(/'/g, '&apos;').replace(/"/g, '&quot;')}', 
                                                  true, true, '${guide.title.replace(/'/g, "&apos;")}', '${guide.details.replace(/'/g, "&apos;").replace(/"/g, "&quot;").replace(/\n/g, '\\n')}' )">
                         <i class="fas fa-book-reader me-2"></i>Learn More
+                    </button>
+                    <button class="btn btn-sm btn-ai-feature mt-2" 
+                            onclick="getRecyclingGuideAIInsights('${guide.title.replace(/'/g, '&apos;')}', 
+                                                              '${guide.details.replace(/'/g, '&apos;').replace(/"/g, '&quot;').replace(/\n/g, '\\n')}')">
+                        <i class="fas fa-robot me-2"></i>Ask AI for Dubai Insights
                     </button>
                 </div>
             `).join('');
