@@ -37,7 +37,7 @@
             10.3. How It Works
             10.4. AI Recycle Helper (Gemini Powered)
             10.5. Our Plans
-            10.6. Recycling Guides (Enhanced with Gemini Insights Button)
+            10.6. Recycling Guides (Enhanced with Gemini Insights Button & Upcycling Generator)
             10.7. FAQ Section (Enhanced with Gemini Custom Question Button)
         11. Subscription Plans Styling
         12. Buttons (General & Specific, including AI buttons)
@@ -217,10 +217,10 @@
             --input-focus-border-color: var(--dm-input-focus-border-color);
             --input-focus-box-shadow: var(--dm-input-focus-box-shadow);
 
-            --shadow-light: var(--dm-shadow-light);
-            --shadow-medium: var(--dm-shadow-medium);
-            --shadow-strong: var(--dm-shadow-strong);
-            --shadow-inset: var(--dm-shadow-inset);
+            --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.2); /* Slightly stronger shadows for dark mode */
+            --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-strong: 0 15px 40px rgba(0, 0, 0, 0.35);
+            --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.12);
 
             animation-name: bgAnimationDark; 
         }
@@ -1867,6 +1867,29 @@
                         <p class="lead">Navigate the world of recycling with ease. Our detailed guides cover a wide range of materials, helping you understand what can be recycled, how to prepare items, and their environmental impact.</p>
                         <div id="guide-category-grid-container" class="guide-category-grid">
                             </div>
+
+                        <hr class="my-5">
+
+                        <h2 class="section-title"><i class="fas fa-palette text-accent-purple me-2"></i>AI Upcycling Idea Generator</h2>
+                        <p class="lead">Looking for a creative way to reuse old materials? Tell our AI what you have, and it will spark innovative upcycling project ideas for you!</p>
+                        <form id="upcycling-form" class="mt-4 pt-3 border-top">
+                            <div class="mb-3">
+                                <label for="upcycle-material-input" class="form-label"><i class="fas fa-box-open me-2"></i>What material do you want to upcycle?</label>
+                                <textarea class="form-control form-control-lg" id="upcycle-material-input" rows="3" placeholder="e.g., old plastic bottles, cardboard boxes, used coffee grounds, old t-shirts, glass jars"></textarea>
+                                <div class="form-text mt-1">Be specific! The more details you provide, the more tailored the idea.</div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn-custom btn-ai-feature btn-lg" id="generate-upcycling-idea-button"><i class="fas fa-lightbulb me-2"></i>✨ Generate Upcycling Idea</button>
+                            </div>
+                        </form>
+                        <div class="spinner-container mt-4" id="upcycling-loading-spinner" style="display: none;">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="spinner-border me-3" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="mb-0">Our AI is brewing a creative idea... Please wait a moment!</p>
+                            </div>
+                        </div>
                     </article>
                 </div>
 
@@ -2958,8 +2981,8 @@ Format your response clearly using Markdown. Use headings (e.g., "### Recycling 
                             planName: planName,
                             status: 'Active (Trial)',
                             // Determine renewsOn based on plan type for mock purposes
-                            renewsOn: (planName.includes('month') || planName.includes('3 months')) ? 
-                                      new Date(new Date().setMonth(new Date().getMonth() + (planName.includes('3 months') ? 3 : 1))).toLocaleDateString() : 
+                            renewsOn: (planName.includes('MONTH') || planName.includes('3 MONTHS')) ? 
+                                      new Date(new Date().setMonth(new Date().getMonth() + (planName.includes('3 MONTHS') ? 3 : 1))).toLocaleDateString() : 
                                       new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toLocaleDateString(),
                             queriesUsed: 0 // Reset queries used for new subscription
                         };
@@ -3035,7 +3058,7 @@ Format your response clearly using Markdown. Use headings (e.g., "### Recycling 
         }
 
 
-        // --- NEW GEMINI API FEATURE: Recycling Guide Deeper Insights ---
+        // --- EXISTING GEMINI API FEATURE: Recycling Guide Deeper Insights ---
         async function getRecyclingGuideAIInsights(guideTitle, guideDetails) {
             const globalSpinner = document.getElementById('global-loading-spinner');
             if(globalSpinner) globalSpinner.style.display = 'flex';
@@ -3092,7 +3115,7 @@ Format your response clearly using Markdown with headings (e.g., "### Advanced D
         }
 
 
-        // --- NEW GEMINI API FEATURE: Custom FAQ Question ---
+        // --- EXISTING GEMINI API FEATURE: Custom FAQ Question ---
         const askAICustomFAQBtn = document.getElementById('ask-ai-custom-faq-btn');
         if (askAICustomFAQBtn) {
             askAICustomFAQBtn.addEventListener('click', async () => {
@@ -3141,6 +3164,77 @@ Please answer this question comprehensively and accurately.
                     } finally {
                          if(globalSpinner) globalSpinner.style.display = 'none';
                     }
+                }
+            });
+        }
+
+
+        // --- NEW GEMINI API FEATURE: Upcycling Project Generator ---
+        const upcyclingForm = document.getElementById('upcycling-form');
+        const upcycleMaterialInput = document.getElementById('upcycle-material-input');
+        const generateUpcyclingIdeaButton = document.getElementById('generate-upcycling-idea-button');
+        const upcyclingLoadingSpinner = document.getElementById('upcycling-loading-spinner');
+
+        if (upcyclingForm) {
+            upcyclingForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const material = upcycleMaterialInput.value.trim();
+                if (!material) {
+                    showInfoModal('<i class="fas fa-exclamation-triangle text-warning me-2"></i>Input Required', 'Please enter a material to generate an upcycling idea.', true);
+                    return;
+                }
+
+                generateUpcyclingIdeaButton.disabled = true;
+                upcyclingLoadingSpinner.style.display = 'flex';
+
+                const prompt = `You are RecycLearner AI, a creative upcycling expert based in Dubai, UAE.
+A user wants an upcycling idea for the following material: "${material}".
+
+Please generate ONE innovative and practical upcycling project idea. Include:
+1.  **Project Title:** A catchy and descriptive title for the upcycling project.
+2.  **Materials Needed:** A list of the primary material (the user's input) and any other common household items or simple tools required.
+3.  **Step-by-Step Instructions:** Clear, concise steps on how to create the project.
+4.  **Difficulty Level:** (Easy, Medium, Hard)
+5.  **Time Estimate:** (e.g., 30 minutes, 1-2 hours, half a day)
+6.  **Eco-Friendly Tip:** A short tip related to upcycling or sustainable living.
+
+Format your response clearly using Markdown. Use headings, bold text, and numbered lists for instructions. Ensure the idea is suitable for a general audience and practical.`;
+
+                const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                const payload = { contents: chatHistory };
+                const apiKey = ""; 
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(`API request failed with status ${response.status}: ${errorData.error?.message || 'Unknown API error'}`);
+                    }
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        let aiResponseText = result.candidates[0].content.parts[0].text;
+                        showInfoModal('<i class="fas fa-palette me-2"></i>✨ Your Upcycling Idea!', formatAIResponse(aiResponseText), true);
+                    } else {
+                        showInfoModal('<i class="fas fa-exclamation-circle text-warning me-2"></i>Idea Generation Failed', 'The AI could not generate an upcycling idea. Please try a different material or refine your request.', true);
+                    }
+                } catch (error) {
+                    console.error("Error fetching AI Upcycling Idea:", error);
+                    showInfoModal('<i class="fas fa-times-circle text-danger me-2"></i>Idea Generation Failed', `Sorry, we couldn't generate an idea right now. <br>Please try again later. <br><small>Error: ${error.message}</small>`, true);
+                } finally {
+                    upcyclingLoadingSpinner.style.display = 'none';
+                    generateUpcyclingIdeaButton.disabled = false;
+                    upcycleMaterialInput.value = ''; 
                 }
             });
         }
